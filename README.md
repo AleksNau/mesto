@@ -1,17 +1,50 @@
 # Проект: Место
 
-### Обзор
+Учебный проект о работе с DOM элементами. Спринт от Яндекс практикума
 
-* Figma
-* Картинки
+https://aleksnau.github.io/mesto/
 
-**Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+## Color Reference
 
-**Картинки**
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Example Color | ![#545454](https://via.placeholder.com/10/545454?text=+) #545454 |
+| Example Color | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) #FFFFFF |
+| Example Color | ![#000000](https://via.placeholder.com/10/000000?text=+) #000000 |
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться. Не
-забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
 
-Удачи!
+
+## Features
+
+- Flexbox
+- Grid
+- Адаптив
+- Кросбраузерность
+- javascript
+- Git
+
+
+## Optimizations
+
+Оптимизированы изображения через Photoshop
+Добавлены префиксы через Autoprefixer
+
+
+## Lessons Learned
+
+- Узнал как работать с переменными
+- DOM элементы
+- Узнал больше о Git
+
+
+
+
+## Related
+
+
+[Autoprefixer](https://github.com/autoprefixer/autoprefixer.github.io)
+
+[README.SO](https://github.com/matiassingers/awesome-readme)
+
+[Practicum](https://practicum.yandex.ru/)
