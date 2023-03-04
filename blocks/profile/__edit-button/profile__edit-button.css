@@ -7,6 +7,12 @@
     grid-area: button;
     align-self: end;
     margin-bottom: 8px;
+    transition: opacity linear .4s;
+    cursor: pointer;
+}
+
+.profile__edit-button:hover {
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 700px) {
