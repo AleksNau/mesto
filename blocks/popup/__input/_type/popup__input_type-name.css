@@ -2,7 +2,7 @@
     padding-top: 54px;
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 320px) {
     .popup__input_type-name {
         padding-top: 75px;
     }

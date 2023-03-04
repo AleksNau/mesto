@@ -41,7 +41,7 @@ const popupSave = function (event) {
 
 
 const popupCloseByClickOnOverlay = function (event) {
-    if (event.target !== event.currentTarget){
+    if (event.target !== event.currentTarget) {
         return;
     }
     popupClose();
@@ -49,5 +49,5 @@ const popupCloseByClickOnOverlay = function (event) {
 
 editButton.addEventListener('click', popupOpen);
 closeButton.addEventListener('click', popupClose);
-popupElement.addEventListener('click',popupCloseByClickOnOverlay);
-saveButton.addEventListener('click',popupSave);
+popupElement.addEventListener('click', popupCloseByClickOnOverlay);
+saveButton.addEventListener('click', popupSave);
