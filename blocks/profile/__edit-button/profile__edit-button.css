@@ -1,12 +1,16 @@
 .profile__edit-button {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 24px;
     height: 24px;
     background: transparent url("./images/Edit Button.svg") no-repeat center;
     border: 1px solid #FFFFFF;
     grid-area: button;
+    -ms-grid-row-align: end;
     align-self: end;
     margin-bottom: 8px;
+    -webkit-transition: opacity linear .4s;
+    -o-transition: opacity linear .4s;
     transition: opacity linear .4s;
     cursor: pointer;
 }

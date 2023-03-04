@@ -11,6 +11,7 @@
 
 @media screen and (max-width: 700px) {
     .profile__info {
+        -ms-grid-column-align: center;
         justify-self: center;
         padding-top: 14px;
         margin-bottom: 36px;

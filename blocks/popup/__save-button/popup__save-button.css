@@ -11,6 +11,8 @@
     border-radius: 2px;
     width: 100%;
     height: calc(46px + (50 - 46) * ((100vw - 320px) / (1280 - 320)));
+    -webkit-transition: background-color linear .4s;
+    -o-transition: background-color linear .4s;
     transition: background-color linear .4s;
     cursor: pointer;
 }
@@ -18,4 +20,3 @@
 .popup__save-button:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
-

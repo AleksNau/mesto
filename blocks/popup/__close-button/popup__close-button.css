@@ -6,6 +6,8 @@
     height: 32px;
     border-style: none;
     background: transparent url("./images/Close.png") no-repeat;
+    -webkit-transition: opacity linear .4s;
+    -o-transition: opacity linear .4s;
     transition: opacity linear .4s;
     cursor: pointer;
 }

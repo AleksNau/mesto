@@ -1,4 +1,6 @@
 .elements__like {
+    -webkit-transition: opacity linear .4s;
+    -o-transition: opacity linear .4s;
     transition: opacity linear .4s;
     cursor: pointer;
 }
