@@ -4,7 +4,13 @@
     padding: 34px 22px 37px 22px;
     border: 1px solid #888;
     width: calc(282px + (430 - 282) * ((100vw - 320px) / (1280 - 320)));
+    box-sizing: border-box;
     border-radius: 10px;
     position: relative;
 }
 
+@media screen and (max-width: 320px) {
+    .popup__conteiner {
+        padding: 25px 22px 25px 22px;
+    }
+}

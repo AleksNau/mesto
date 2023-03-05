@@ -15,6 +15,7 @@
     -o-transition: background-color linear .4s;
     transition: background-color linear .4s;
     cursor: pointer;
+    margin-top: 18px;
 }
 
 .popup__save-button:hover {
