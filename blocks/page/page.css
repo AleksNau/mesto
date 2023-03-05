@@ -1,6 +1,4 @@
 .page {
-    min-width: 320px;
-    max-width: 918px;
     margin: 0 auto;
-    padding: calc(28px + (45 - 28) * ((100vw - 320px) / (1280 - 320))) 19px calc(36px + (60 - 36) * ((100vw - 320px) / (1280 - 320))) 19px;
+    padding: calc(28px + (45 - 28) * ((100vw - 320px) / (1280 - 320))) 0 calc(36px + (60 - 36) * ((100vw - 320px) / (1280 - 320))) 0;
 }

@@ -13,7 +13,11 @@
     .profile__info {
         -ms-grid-column-align: center;
         justify-self: center;
-        padding-top: 14px;
+        padding-top: 8px;
         margin-bottom: 36px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
     }
 }
