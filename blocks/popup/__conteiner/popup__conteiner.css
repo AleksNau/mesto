@@ -2,7 +2,7 @@
     background-color: #ffffff;
     margin: 15% auto;
     padding: 34px 22px 37px 22px;
-    border: 1px solid #888;
+    border: 1px hidden #888;
     width: calc(282px + (430 - 282) * ((100vw - 320px) / (1280 - 320)));
     box-sizing: border-box;
     border-radius: 10px;
