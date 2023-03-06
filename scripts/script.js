@@ -36,5 +36,4 @@ const popupSave = function (event) {
 
 editButton.addEventListener('click', popupOpen);
 closeButton.addEventListener('click', popupClose);
-saveButton.addEventListener('click', popupSave);
 popupForm.addEventListener('submit',popupSave);
