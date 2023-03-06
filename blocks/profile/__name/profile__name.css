@@ -8,6 +8,7 @@
     -ms-grid-row-align: end;
     align-self: end;
     grid-area: name;
+    max-width: 294px;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     white-space: nowrap;
