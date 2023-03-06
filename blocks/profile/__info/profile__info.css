@@ -7,6 +7,10 @@
     margin: 0;
     grid-area: info;
     padding-top: 10px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 700px) {
