@@ -1,14 +1,12 @@
-.line {
-    background-color: rgba(84, 84, 84, 0.7);
-    height: 1px;
-    border: none;
+.header {
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
     margin: 0 auto;
     width: calc(282px + (880 - 282) * ((100vw - 320px) / (1280 - 320)));
     max-width: 880px;
 }
 
 @media screen and (max-width: 700px) {
-    .line {
+    .header {
         width: 100%;
         max-width:100%;
     }
