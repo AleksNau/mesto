@@ -1,15 +1,14 @@
 const popupElement = document.querySelector('.popup');
-const popupForm = popupElement.querySelector('.popup__conteiner');
+const popupForm = popupElement.querySelector('.popup__form');
 const closeButton = popupElement.querySelector('.popup__close-button');
-const saveButton = popupElement.querySelector('.popup__save-button');
 
 const profileElement = document.querySelector('.profile');
 const editButton = profileElement.querySelector('.profile__edit-button');
 const profileName = profileElement.querySelector('.profile__name');
 const profileInfo = profileElement.querySelector('.profile__info');
 
-let name = popupElement.querySelector('.popup__input_type-name');
-let info = popupElement.querySelector('.popup__input_type-info');
+let name = popupElement.querySelector('.popup__input_type_name');
+let info = popupElement.querySelector('.popup__input_type_info');
 
 function fillName() {
     name.value = profileName.textContent;
