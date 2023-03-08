@@ -9,17 +9,17 @@
 <body class="root">
 <div class="page">
     <header class="header">
-        <div class="header__conteiner"><img src="./images/logo.svg" alt="логотип" class="header__logo"></div>
+        <img src="./images/logo.svg" alt="логотип" class="header__logo">
     </header>
     <main class="main">
         <section class="profile">
-                <div class="profile__info-conteiner">
-                    <img src="./blocks/profile/__avatar/images/kusto.jpg" alt="Жак Кусто" class="profile__avatar">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button type="button" class="profile__edit-button"></button>
-                    <p class="profile__info">Исследователь океана</p>
-                </div>
-                <button type="button" class="profile__add-button"></button>
+            <div class="profile__info-conteiner">
+                <img src="./blocks/profile/__avatar/images/kusto.jpg" alt="Жак Кусто" class="profile__avatar">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button type="button" class="profile__edit-button"></button>
+                <p class="profile__info">Исследователь океана</p>
+            </div>
+            <button type="button" class="profile__add-button"></button>
         </section>
         <ul class="elements">
             <li class="elements__item">
@@ -76,10 +76,10 @@
                 <fieldset class="popup__fieldset">
                     <legend class="popup__title">Редактировать профиль</legend>
                     <label>
-                        <input name="Имя" type="text" class="popup__input popup__input_type_name">
+                        <input name="Name" type="text" class="popup__input popup__input_type_name">
                     </label>
                     <label>
-                        <input name="Инфо" type="text" class="popup__input popup__input_type_info">
+                        <input name="Info" type="text" class="popup__input popup__input_type_info">
                     </label>
                     <button type="submit" class="popup__save-button">Сохранить</button>
                 </fieldset>
