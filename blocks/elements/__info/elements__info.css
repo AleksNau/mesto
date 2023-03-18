@@ -1,7 +1,6 @@
 .elements__info {
     background-color: #fff;
     color: #000000;
-    min-height: 79px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -11,5 +10,5 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    padding: 0 15px 0 21px;
+    padding: 23px 15px 29px 21px;
 }
