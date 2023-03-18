@@ -35,4 +35,50 @@ const savePopup = function (event) {
 
 buttonEdit.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
-popupForm.addEventListener('submit',savePopup);
+popupForm.addEventListener('submit', savePopup);
+
+
+//блок отрисовки элементов
+const elementsList = document.querySelector(".elements");
+const elementTemplate = document.querySelector(".template__item").content;
+
+
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+//Отрисовка элеметов списка
+initialCards.forEach(renderItem);
+
+// Добавить код элемента в разметку
+function renderItem(item) {
+    const htmlElement = elementTemplate.cloneNode(true);
+    htmlElement.querySelector(".elements__image").src = item.link;
+    htmlElement.querySelector(".elements__image").alt = item.name;
+    htmlElement.querySelector(".elements__text").textContent = item.name;
+
+    elementsList.append(htmlElement);
+
+}
