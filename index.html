@@ -9,71 +9,80 @@
 </head>
 
 <body class="root">
-    <div class="page">
-        <header class="header">
-            <img src="./images/logo.svg" alt="логотип" class="header__logo">
-        </header>
-        <main class="main">
-            <section class="profile">
-                <div class="profile__info-conteiner">
-                    <img src="./blocks/profile/__avatar/images/kusto.jpg" alt="Жак Кусто" class="profile__avatar">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button type="button" class="profile__edit-button"></button>
-                    <p class="profile__info">Исследователь океана</p>
-                </div>
-                <button type="button" class="profile__add-button"></button>
-            </section>
-            <ul class="elements">
+<div class="page">
+    <header class="header">
+        <img src="./images/logo.svg" alt="логотип" class="header__logo">
+    </header>
+    <main class="main">
+        <section class="profile">
+            <div class="profile__info-conteiner">
+                <img src="./blocks/profile/__avatar/images/kusto.jpg" alt="Жак Кусто" class="profile__avatar">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button type="button" class="profile__edit-button"></button>
+                <p class="profile__info">Исследователь океана</p>
+            </div>
+            <button type="button" class="profile__add-button"></button>
+        </section>
+        <ul class="elements">
 
-            </ul>
-        </main>
-        <footer class="footer">
-            <p class="footer__trademark">© 2020 Mesto Russia</p>
-        </footer>
-        <div class="popup">
-            <div class="popup__conteiner">
-                <form name="profile-form" class="popup__form">
-                    <button type="button" class="popup__close-button"></button>
-                    <fieldset class="popup__fieldset">
-                        <legend class="popup__title">Редактировать профиль</legend>
-                        <label>
-                            <input name="Name" type="text" class="popup__input popup__input_type_name">
-                        </label>
-                        <label>
-                            <input name="Info" type="text" class="popup__input popup__input_type_info">
-                        </label>
-                        <button type="submit" class="popup__save-button">Сохранить</button>
-                    </fieldset>
-                </form>
-            </div></div>
-            <div class="popup__add">
-                <div class="popup__conteiner">
-                    <form name="profile-form" class="popup__form">
-                        <button type="button" class="popup__close-button"></button>
-                        <fieldset class="popup__fieldset">
-                            <legend class="popup__title">Новое место</legend>
-                            <label>
-                                <input name="place" type="text" class="popup__input popup__input_type_place" placeholder="Название">
-                            </label>
-                            <label>
-                                <input name="image-link" type="text" class="popup__input popup__input_type_image-link" placeholder="Ссылка на картинку">
-                            </label>
-                            <button type="submit" class="popup__create-button">Создать</button>
-                        </fieldset>
-                    </form>
-                </div>
+        </ul>
+    </main>
+    <footer class="footer">
+        <p class="footer__trademark">© 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+        <div class="popup__conteiner">
+            <form name="profile-form" class="popup__form">
+                <button type="button" class="popup__close-button"></button>
+                <fieldset class="popup__fieldset">
+                    <legend class="popup__title">Редактировать профиль</legend>
+                    <label>
+                        <input name="Name" type="text" class="popup__input popup__input_type_name">
+                    </label>
+                    <label>
+                        <input name="Info" type="text" class="popup__input popup__input_type_info">
+                    </label>
+                    <button type="submit" class="popup__save-button">Сохранить</button>
+                </fieldset>
+            </form>
         </div>
     </div>
-    <template class="template__item">
-        <li class="elements__item">
-            <img src="sdf" alt="Элемент" class="elements__image">
-            <div class="elements__info">
-                <p class="elements__text"></p>
-                <button type="button" class="elements__like"></button>
-            </div>
-        </li>
-    </template>
-    <script src="./scripts/script.js"></script>
+    <div class="popup__add">
+        <div class="popup__conteiner">
+            <form name="profile-form" class="popup__form">
+                <button type="button" class="popup__close-button"></button>
+                <fieldset class="popup__fieldset">
+                    <legend class="popup__title">Новое место</legend>
+                    <label>
+                        <input name="place" type="text" class="popup__input popup__input_type_place"
+                               placeholder="Название">
+                    </label>
+                    <label>
+                        <input name="image-link" type="text" class="popup__input popup__input_type_image-link"
+                               placeholder="Ссылка на картинку">
+                    </label>
+                    <button type="submit" class="popup__create-button">Создать</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="popup__image-zoom">
+        <div class="popup__conteiner-zoom">
+                <button type="button" class="popup__close-button"></button>
+                <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="" class="popup__image">
+        </div>
+    </div>
+</div>
+<template class="template__item">
+    <li class="elements__item">
+        <img src="#" alt="Элемент" class="elements__image">
+        <div class="elements__info">
+            <p class="elements__text"></p>
+            <button type="button" class="elements__like"></button>
+        </div>
+    </li>
+</template>
+<script src="./scripts/script.js"></script>
 
 </body>
 

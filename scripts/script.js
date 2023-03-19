@@ -15,6 +15,12 @@ const createNewElementButton = popupElementAddNewCard.querySelector(".popup__cre
 const buttonAddNewElement = profileElement.querySelector(".profile__add-button");
 const closeButtonNewCard = popupElementAddNewCard.querySelector('.popup__close-button');
 
+// переменные формы изображения
+const popupImage = document.querySelector(".popup__image-zoom");
+const imageZoomed = popupImage.querySelector(".popup__image");
+const buttonCloseZoom = popupImage.querySelector('.popup__close-button');
+
+
 let name = popupElement.querySelector('.popup__input_type_name');
 let info = popupElement.querySelector('.popup__input_type_info');
 //переменные карточек
@@ -55,6 +61,11 @@ const closePopupNewCard = function () {
     popupElementAddNewCard.classList.remove('popup_opened');
 }
 
+//функции зума
+const closePopupZoom = function () {
+    popupImage.classList.remove('popup_opened');
+}
+
 //слушателя формы профиля
 buttonEdit.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
@@ -64,6 +75,9 @@ popupForm.addEventListener('submit', savePopup);
 buttonAddNewElement.addEventListener("click",openPopupNewCard);
 closeButtonNewCard.addEventListener('click', closePopupNewCard);
 createNewElementButton.addEventListener('click', addNewCardElement);
+
+//слушатели зума изображения
+buttonCloseZoom.addEventListener('click', closePopupZoom);
 
 
 //блок отрисовки элементов
@@ -105,10 +119,12 @@ initialCards.forEach(renderItem);
 function renderItem(item) {
     const htmlElement = elementTemplate.cloneNode(true);
     const like = htmlElement.querySelector(".elements__like");
+    const image = htmlElement.querySelector(".elements__image");
     htmlElement.querySelector(".elements__image").src = item.link;
     htmlElement.querySelector(".elements__image").alt = item.name;
     htmlElement.querySelector(".elements__text").textContent = item.name;
     like.addEventListener("click",addLike);
+    image.addEventListener("click", zoomCardImage);
     elementsList.prepend(htmlElement);
     function addLike () {
         like.classList.toggle("elements__like_active");
@@ -140,5 +156,13 @@ function addNewCardElement (event) {
     console.log(initialCards);
     renderItem(initialCards[initialCards.length-1]);
     closePopupNewCard();
+}
+
+// функция увеличения изображения
+
+function zoomCardImage (event) {
+    imageZoomed.src = event.currentTarget.src;
+    console.log(imageZoomed.src);
+    popupImage.classList.add('popup_opened');
 }
 

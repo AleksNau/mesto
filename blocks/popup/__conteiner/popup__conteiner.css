@@ -14,3 +14,7 @@
         padding: 25px 22px 25px 22px;
     }
 }
+
+.popup__conteiner-zoom {
+    position: relative;
+}
