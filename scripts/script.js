@@ -142,8 +142,3 @@ function addNewCardElement (event) {
     closePopupNewCard();
 }
 
-//функция добавления лайка
-
-function addLike () {
-    elementLike.toggleAttribute("elements__like_active");
-}
