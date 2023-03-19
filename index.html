@@ -87,6 +87,22 @@
                     </fieldset>
                 </form>
             </div>
+            <div class="popup__add">
+                <div class="popup__conteiner">
+                    <form name="profile-form" class="popup__form">
+                        <button type="button" class="popup__close-button"></button>
+                        <fieldset class="popup__fieldset">
+                            <legend class="popup__title">Новое место</legend>
+                            <label>
+                                <input name="place" type="text" class="popup__input popup__input_type_place" placeholder="Название">
+                            </label>
+                            <label>
+                                <input name="image-link" type="text" class="popup__input popup__input_type_image-link" placeholder="Ссылка на картинку">
+                            </label>
+                            <button type="submit" class="popup__create-button">Создать</button>
+                        </fieldset>
+                    </form>
+                </div>
         </div>
     </div>
     <template class="template__item">
@@ -99,6 +115,7 @@
         </li>
     </template>
     <script src="./scripts/script.js"></script>
+    </div>
 </body>
 
 </html>
