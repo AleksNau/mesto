@@ -3,6 +3,7 @@ const popupElementAddNewCard = document.querySelector(".popup__add")
 const closeButtonNewCard = popupElementAddNewCard.querySelector('.popup__close-button');
 const popupForm = popupElement.querySelector('.popup__form');
 const closeButton = popupElement.querySelector('.popup__close-button');
+const createNewElementButton = popupElementAddNewCard.querySelector(".popup__create-button");
 
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
@@ -50,6 +51,7 @@ closeButton.addEventListener('click', closePopup);
 popupForm.addEventListener('submit', savePopup);
 buttonAddNewElement.addEventListener("click",openPopupNewCard);
 closeButtonNewCard.addEventListener('click', closePopupNewCard);
+createNewElementButton.addEventListener('click', addNewCardElement);
 
 
 //блок отрисовки элементов
@@ -93,8 +95,7 @@ function renderItem(item) {
     htmlElement.querySelector(".elements__image").alt = item.name;
     htmlElement.querySelector(".elements__text").textContent = item.name;
 
-    elementsList.append(htmlElement);
-
+    elementsList.prepend(htmlElement);
 }
 
 //добавляем слушатели на каждый созданый элемент
@@ -109,4 +110,17 @@ function setEventListener (htmlElement) {
     //просмотреть изображение полностью
     htmlElement.querySelector(".elements__image").addEventListener("click",openImage);
 
+}
+
+//добавить новую карточку
+
+function addNewCardElement (event) {
+    event.preventDefault();
+    const newElem = new Object();
+    newElem.name = popupElementAddNewCard.querySelector(".popup__input_type_place").value;
+    newElem.link =popupElementAddNewCard.querySelector(".popup__input_type_image-link").value;
+    initialCards.push(newElem);
+    console.log(initialCards);
+    renderItem(initialCards[initialCards.length-1]);
+    closePopupNewCard();
 }
