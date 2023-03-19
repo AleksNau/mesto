@@ -136,6 +136,8 @@ function setEventListener (htmlElement) {
     htmlElement.querySelector(".elements__like").addEventListener("click",addLike);
     //просмотреть изображение полностью
     htmlElement.querySelector(".elements__image").addEventListener("click",zoomCardImage);
+    //функция удаления
+    htmlElement.querySelector(".elements__delete").addEventListener("click",deleteCard);
 
 }
 
@@ -164,3 +166,10 @@ function zoomCardImage (event) {
     popupImage.classList.add('popup_opened');
 }
 
+
+//функция удаления карточки
+
+function deleteCard (event) {
+const card = event.target.closest(".elements__item");
+card.remove();
+}
