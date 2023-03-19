@@ -82,3 +82,17 @@ function renderItem(item) {
     elementsList.append(htmlElement);
 
 }
+
+//добавляем слушатели на каждый созданый элемент
+
+function setEventListener (htmlElement) {
+    //для попапа
+    htmlElement.querySelector(".popup__close-button").addEventListener("click",closePopup);
+    htmlElement.querySelector(".popup__create-button").addEventListener("click",createFunction);
+    //для элемента карточки
+    //закрасить лайк
+    htmlElement.querySelector(".elements__like").addEventListener("click",activateLike);
+    //просмотреть изображение полностью
+    htmlElement.querySelector(".elements__image").addEventListener("click",openImage);
+
+}
