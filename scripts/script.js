@@ -123,28 +123,26 @@ function renderItem(item) {
     htmlElement.querySelector(".elements__image").src = item.link;
     htmlElement.querySelector(".elements__image").alt = item.name;
     htmlElement.querySelector(".elements__text").textContent = item.name;
-    like.addEventListener("click",addLike);
-    image.addEventListener("click", zoomCardImage);
+    setEventListener(htmlElement);
+
     elementsList.prepend(htmlElement);
-    function addLike () {
-        like.classList.toggle("elements__like_active");
-    }
+
 }
 
 //добавляем слушатели на каждый созданый элемент
 
 function setEventListener (htmlElement) {
-    //для попапа
-    htmlElement.querySelector(".popup__close-button").addEventListener("click",closePopup);
-    htmlElement.querySelector(".popup__create-button").addEventListener("click",createFunction);
-    //для элемента карточки
     //закрасить лайк
-    htmlElement.querySelector(".elements__like").addEventListener("click",activateLike);
+    htmlElement.querySelector(".elements__like").addEventListener("click",addLike);
     //просмотреть изображение полностью
-    htmlElement.querySelector(".elements__image").addEventListener("click",openImage);
+    htmlElement.querySelector(".elements__image").addEventListener("click",zoomCardImage);
 
 }
 
+//функция навешивания лайка
+function addLike (event) {
+    event.currentTarget.classList.toggle("elements__like_active");
+}
 //добавить новую карточку
 
 function addNewCardElement (event) {
