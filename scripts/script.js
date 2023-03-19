@@ -1,41 +1,40 @@
-const popupElement = document.querySelector('.popup');
-const popupElementAddNewCard = document.querySelector(".popup__add")
-const closeButtonNewCard = popupElementAddNewCard.querySelector('.popup__close-button');
-const popupForm = popupElement.querySelector('.popup__form');
-const closeButton = popupElement.querySelector('.popup__close-button');
-const createNewElementButton = popupElementAddNewCard.querySelector(".popup__create-button");
-
+//переменные профиля
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
 const profileName = profileElement.querySelector('.profile__name');
 const profileInfo = profileElement.querySelector('.profile__info');
+
+// переменные формы профиля
+const popupElement = document.querySelector('.popup');
+const popupForm = popupElement.querySelector('.popup__form');
+const closeButton = popupElement.querySelector('.popup__close-button');
+
+// переменные формы карточки
+const popupElementAddNewCard = document.querySelector(".popup__add");
+const createNewElementButton = popupElementAddNewCard.querySelector(".popup__create-button");
 const buttonAddNewElement = profileElement.querySelector(".profile__add-button");
+const closeButtonNewCard = popupElementAddNewCard.querySelector('.popup__close-button');
 
 let name = popupElement.querySelector('.popup__input_type_name');
 let info = popupElement.querySelector('.popup__input_type_info');
+//переменные карточек
+
+//функции профиля
 
 function fillName() {
     name.value = profileName.textContent;
     info.value = profileInfo.textContent;
 }
 
+//функции формы профиля
 
 const openPopup = function () {
     popupElement.classList.add('popup_opened');
     fillName();
 }
 
-const openPopupNewCard = function () {
-    popupElementAddNewCard.classList.add('popup_opened');
-    console.log("проверка");
-}
-
 const closePopup = function () {
     popupElement.classList.remove('popup_opened');
-}
-
-const closePopupNewCard = function () {
-    popupElementAddNewCard.classList.remove('popup_opened');
 }
 
 const savePopup = function (event) {
@@ -45,10 +44,23 @@ const savePopup = function (event) {
     closePopup();
 }
 
+//функции создания новой карточки
 
+const openPopupNewCard = function () {
+    popupElementAddNewCard.classList.add('popup_opened');
+    console.log("проверка");
+}
+
+const closePopupNewCard = function () {
+    popupElementAddNewCard.classList.remove('popup_opened');
+}
+
+//слушателя формы профиля
 buttonEdit.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
 popupForm.addEventListener('submit', savePopup);
+
+//слушателя формы новой карточки
 buttonAddNewElement.addEventListener("click",openPopupNewCard);
 closeButtonNewCard.addEventListener('click', closePopupNewCard);
 createNewElementButton.addEventListener('click', addNewCardElement);
@@ -57,7 +69,6 @@ createNewElementButton.addEventListener('click', addNewCardElement);
 //блок отрисовки элементов
 const elementsList = document.querySelector(".elements");
 const elementTemplate = document.querySelector(".template__item").content;
-
 
 const initialCards = [
     {
@@ -85,17 +96,23 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
+
+
 //Отрисовка элеметов списка
 initialCards.forEach(renderItem);
 
 // Добавить код элемента в разметку
 function renderItem(item) {
     const htmlElement = elementTemplate.cloneNode(true);
+    const like = htmlElement.querySelector(".elements__like");
     htmlElement.querySelector(".elements__image").src = item.link;
     htmlElement.querySelector(".elements__image").alt = item.name;
     htmlElement.querySelector(".elements__text").textContent = item.name;
-
+    like.addEventListener("click",addLike);
     elementsList.prepend(htmlElement);
+    function addLike () {
+        like.classList.toggle("elements__like_active");
+    }
 }
 
 //добавляем слушатели на каждый созданый элемент
@@ -116,11 +133,17 @@ function setEventListener (htmlElement) {
 
 function addNewCardElement (event) {
     event.preventDefault();
-    const newElem = new Object();
+    const newElem = {};
     newElem.name = popupElementAddNewCard.querySelector(".popup__input_type_place").value;
     newElem.link =popupElementAddNewCard.querySelector(".popup__input_type_image-link").value;
     initialCards.push(newElem);
     console.log(initialCards);
     renderItem(initialCards[initialCards.length-1]);
     closePopupNewCard();
+}
+
+//функция добавления лайка
+
+function addLike () {
+    elementLike.toggleAttribute("elements__like_active");
 }
