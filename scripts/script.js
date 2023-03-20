@@ -10,13 +10,13 @@ const popupForm = popupElement.querySelector('.popup__form');
 const closeButton = popupElement.querySelector('.popup__close-button');
 
 // переменные формы карточки
-const popupElementAddNewCard = document.querySelector(".popup__add");
+const popupElementAddNewCard = document.querySelector(".popup_add");
 const createNewElementButton = popupElementAddNewCard.querySelector(".popup__create-button");
 const buttonAddNewElement = profileElement.querySelector(".profile__add-button");
 const closeButtonNewCard = popupElementAddNewCard.querySelector('.popup__close-button');
 
 // переменные формы изображения
-const popupImage = document.querySelector(".popup__image-zoom");
+const popupImage = document.querySelector(".popup_image-zoom");
 const imageZoomed = popupImage.querySelector(".popup__image");
 const buttonCloseZoom = popupImage.querySelector('.popup__close-button');
 
@@ -118,8 +118,6 @@ initialCards.forEach(renderItem);
 // Добавить код элемента в разметку
 function renderItem(item) {
     const htmlElement = elementTemplate.cloneNode(true);
-    const like = htmlElement.querySelector(".elements__like");
-    const image = htmlElement.querySelector(".elements__image");
     htmlElement.querySelector(".elements__image").src = item.link;
     htmlElement.querySelector(".elements__image").alt = item.name;
     htmlElement.querySelector(".elements__text").textContent = item.name;
