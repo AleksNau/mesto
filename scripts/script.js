@@ -19,6 +19,7 @@ const closeButtonNewCard = popupElementAddNewCard.querySelector('.popup__close-b
 const popupImage = document.querySelector(".popup_image-zoom");
 const imageZoomed = popupImage.querySelector(".popup__image");
 const buttonCloseZoom = popupImage.querySelector('.popup__close-button');
+const imageText = popupImage.querySelector(".popup__place-name");
 
 
 let name = popupElement.querySelector('.popup__input_type_name');
@@ -159,6 +160,10 @@ function addNewCardElement (event) {
 // функция увеличения изображения
 
 function zoomCardImage (event) {
+    const elem = event.currentTarget.closest(".elements__item");
+    const text = elem.querySelector("p.elements__text").textContent;
+    console.log(text);
+    imageText.textContent = text;
     imageZoomed.src = event.currentTarget.src;
     console.log(imageZoomed.src);
     popupImage.classList.add('popup_opened');
