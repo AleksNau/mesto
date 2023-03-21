@@ -82,7 +82,7 @@ buttonCloseZoom.addEventListener('click', closePopupZoom);
 
 //блок отрисовки элементов
 const elementsList = document.querySelector(".elements");
-const elementTemplate = document.querySelector(".template__item").content;
+const elementTemplate = document.querySelector(".template-item").content;
 
 const initialCards = [
     {
