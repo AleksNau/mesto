@@ -1,3 +1,4 @@
 .popup__conteiner_zoom {
     position: relative;
+    max-width: 64%;
 }
