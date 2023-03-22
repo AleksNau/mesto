@@ -55,7 +55,6 @@ const savePopup = function (event) {
 
 const openPopupNewCard = function () {
     popupElementAddNewCard.classList.add('popup_opened');
-    console.log("проверка");
 }
 
 const closePopupNewCard = function () {
@@ -73,7 +72,7 @@ closeButton.addEventListener('click', closePopup);
 popupForm.addEventListener('submit', savePopup);
 
 //слушателя формы новой карточки
-buttonAddNewElement.addEventListener("click",openPopupNewCard);
+buttonAddNewElement.addEventListener("click", openPopupNewCard);
 closeButtonNewCard.addEventListener('click', closePopupNewCard);
 createNewElementButton.addEventListener('click', addNewCardElement);
 
@@ -130,49 +129,47 @@ function renderItem(item) {
 
 //добавляем слушатели на каждый созданый элемент
 
-function setEventListener (htmlElement) {
+function setEventListener(htmlElement) {
     //закрасить лайк
-    htmlElement.querySelector(".elements__like").addEventListener("click",addLike);
+    htmlElement.querySelector(".elements__like").addEventListener("click", addLike);
     //просмотреть изображение полностью
-    htmlElement.querySelector(".elements__image").addEventListener("click",zoomCardImage);
+    htmlElement.querySelector(".elements__image").addEventListener("click", zoomCardImage);
     //функция удаления
-    htmlElement.querySelector(".elements__delete").addEventListener("click",deleteCard);
+    htmlElement.querySelector(".elements__delete").addEventListener("click", deleteCard);
 
 }
 
 //функция навешивания лайка
-function addLike (event) {
+function addLike(event) {
     event.currentTarget.classList.toggle("elements__like_active");
 }
+
 //добавить новую карточку
 
-function addNewCardElement (event) {
+function addNewCardElement(event) {
     event.preventDefault();
     const newElem = {};
     newElem.name = popupElementAddNewCard.querySelector(".popup__input_type_place").value;
-    newElem.link =popupElementAddNewCard.querySelector(".popup__input_type_image-link").value;
+    newElem.link = popupElementAddNewCard.querySelector(".popup__input_type_image-link").value;
     initialCards.push(newElem);
-    console.log(initialCards);
-    renderItem(initialCards[initialCards.length-1]);
+    renderItem(initialCards[initialCards.length - 1]);
     closePopupNewCard();
 }
 
 // функция увеличения изображения
 
-function zoomCardImage (event) {
-    const elem = event.currentTarget.closest(".elements__item");
-    const text = elem.querySelector("p.elements__text").textContent;
-    console.log(text);
+function zoomCardImage(event) {
+    const elementItem = event.currentTarget.closest(".elements__item");
+    const text = elementItem.querySelector(".elements__text").textContent;
     imageText.textContent = text;
     imageZoomed.src = event.currentTarget.src;
-    console.log(imageZoomed.src);
     popupImage.classList.add('popup_opened');
 }
 
 
 //функция удаления карточки
 
-function deleteCard (event) {
-const card = event.target.closest(".elements__item");
-card.remove();
+function deleteCard(event) {
+    const card = event.target.closest(".elements__item");
+    card.remove();
 }
