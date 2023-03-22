@@ -160,8 +160,7 @@ function addNewCardElement(event) {
 
 function zoomCardImage(event) {
     const elementItem = event.currentTarget.closest(".elements__item");
-    const text = elementItem.querySelector(".elements__text").textContent;
-    imageText.textContent = text;
+    imageText.textContent = elementItem.querySelector(".elements__text").textContent;
     imageZoomed.src = event.currentTarget.src;
     popupImage.classList.add('popup_opened');
 }
