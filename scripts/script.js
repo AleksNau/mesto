@@ -7,13 +7,13 @@ const profileInfo = profileElement.querySelector('.profile__info');
 // переменные формы профиля
 const popupElement = document.querySelector('.popup');
 const popupForm = popupElement.querySelector('.popup__form');
-const closeButton = popupElement.querySelector('.popup__close-button');
+const buttonClose = popupElement.querySelector('.popup__close-button');
 
 // переменные формы карточки
 const popupElementAddNewCard = document.querySelector(".popup_add");
-const createNewElementButton = popupElementAddNewCard.querySelector(".popup__create-button");
+const buttonCreateNewElement = popupElementAddNewCard.querySelector(".popup__create-button");
 const buttonAddNewElement = profileElement.querySelector(".profile__add-button");
-const closeButtonNewCard = popupElementAddNewCard.querySelector('.popup__close-button');
+const buttonCloseNewCard = popupElementAddNewCard.querySelector('.popup__close-button');
 
 // переменные формы изображения
 const popupImage = document.querySelector(".popup_image-zoom");
@@ -24,17 +24,14 @@ const imageText = popupImage.querySelector(".popup__place-name");
 
 let name = popupElement.querySelector('.popup__input_type_name');
 let info = popupElement.querySelector('.popup__input_type_info');
-//переменные карточек
 
 //функции профиля
-
 function fillName() {
     name.value = profileName.textContent;
     info.value = profileInfo.textContent;
 }
 
 //функции формы профиля
-
 const openPopup = function () {
     popupElement.classList.add('popup_opened');
     fillName();
@@ -52,7 +49,6 @@ const savePopup = function (event) {
 }
 
 //функции создания новой карточки
-
 const openPopupNewCard = function () {
     popupElementAddNewCard.classList.add('popup_opened');
 }
@@ -68,13 +64,13 @@ const closePopupZoom = function () {
 
 //слушателя формы профиля
 buttonEdit.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
+buttonClose.addEventListener('click', closePopup);
 popupForm.addEventListener('submit', savePopup);
 
 //слушателя формы новой карточки
 buttonAddNewElement.addEventListener("click", openPopupNewCard);
-closeButtonNewCard.addEventListener('click', closePopupNewCard);
-createNewElementButton.addEventListener('click', addNewCardElement);
+buttonCloseNewCard.addEventListener('click', closePopupNewCard);
+buttonCreateNewElement.addEventListener('click', addNewCardElement);
 
 //слушатели зума изображения
 buttonCloseZoom.addEventListener('click', closePopupZoom);
@@ -124,11 +120,9 @@ function renderItem(item) {
     setEventListener(htmlElement);
 
     elementsList.prepend(htmlElement);
-
 }
 
 //добавляем слушатели на каждый созданый элемент
-
 function setEventListener(htmlElement) {
     //закрасить лайк
     htmlElement.querySelector(".elements__like").addEventListener("click", addLike);
@@ -136,7 +130,6 @@ function setEventListener(htmlElement) {
     htmlElement.querySelector(".elements__image").addEventListener("click", zoomCardImage);
     //функция удаления
     htmlElement.querySelector(".elements__delete").addEventListener("click", deleteCard);
-
 }
 
 //функция навешивания лайка
@@ -145,7 +138,6 @@ function addLike(event) {
 }
 
 //добавить новую карточку
-
 function addNewCardElement(event) {
     event.preventDefault();
     const newElem = {};
@@ -158,7 +150,6 @@ function addNewCardElement(event) {
 }
 
 // функция увеличения изображения
-
 function zoomCardImage(event) {
     const elementItem = event.currentTarget.closest(".elements__item");
     imageText.textContent = elementItem.querySelector(".elements__text").textContent;
@@ -166,9 +157,7 @@ function zoomCardImage(event) {
     popupImage.classList.add('popup_opened');
 }
 
-
 //функция удаления карточки
-
 function deleteCard(event) {
     const card = event.target.closest(".elements__item");
     card.remove();
