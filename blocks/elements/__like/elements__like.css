@@ -5,7 +5,7 @@
     cursor: pointer;
     width: 22px;
     height: 19px;
-    background:transparent url("./images/like.svg") no-repeat;
+    background: transparent url("./images/like.svg") no-repeat;
     border: none;
 }
 

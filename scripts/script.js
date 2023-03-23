@@ -143,7 +143,9 @@ function addNewCardElement(event) {
     const newElem = {};
     newElem.name = popupElementAddNewCard.querySelector(".popup__input_type_place").value;
     newElem.link = popupElementAddNewCard.querySelector(".popup__input_type_image-link").value;
-    if (newElem.name === "" || newElem.link === "") {return}
+    if (newElem.name === "" || newElem.link === "") {
+        return
+    }
     initialCards.push(newElem);
     renderItem(initialCards[initialCards.length - 1]);
     closePopupNewCard();
