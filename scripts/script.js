@@ -6,6 +6,7 @@ const profileInfo = profileElement.querySelector('.profile__info');
 
 // переменные формы профиля
 const popupElement = document.querySelector('.popup');
+const popupElement2 = document.querySelector('.popup_profile');
 const popupForm = popupElement.querySelector('.popup__form');
 const buttonClose = popupElement.querySelector('.popup__close-button');
 
@@ -32,10 +33,7 @@ function fillName() {
 }
 
 //функции формы профиля
-const openPopup = function () {
-    popupElement.classList.add('popup_opened');
-    fillName();
-}
+
 
 const closePopup = function () {
     popupElement.classList.remove('popup_opened');
@@ -68,7 +66,7 @@ buttonClose.addEventListener('click', closePopup);
 popupForm.addEventListener('submit', savePopup);
 
 //слушателя формы новой карточки
-buttonAddNewElement.addEventListener("click", openPopupNewCard);
+buttonAddNewElement.addEventListener("click", openPopup);
 buttonCloseNewCard.addEventListener('click', closePopupNewCard);
 buttonCreateNewElement.addEventListener('click', addNewCardElement);
 
@@ -163,4 +161,18 @@ function zoomCardImage(event) {
 function deleteCard(event) {
     const card = event.target.closest(".elements__item");
     card.remove();
+}
+
+
+//универсальная функция открытия попапа кроме изображений
+
+function openPopup(event) {
+    switch (event.currentTarget){
+        case buttonEdit:
+            popupElement2.classList.add('popup_opened');
+            break;
+        case buttonAddNewElement:
+            popupElementAddNewCard.classList.add('popup_opened');
+            break;
+    }
 }
