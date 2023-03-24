@@ -35,9 +35,7 @@ function fillName() {
 //функции формы профиля
 
 
-const closePopup = function () {
-    popupElement.classList.remove('popup_opened');
-}
+
 
 const savePopup = function (event) {
     event.preventDefault();
@@ -67,11 +65,11 @@ popupForm.addEventListener('submit', savePopup);
 
 //слушателя формы новой карточки
 buttonAddNewElement.addEventListener("click", openPopup);
-buttonCloseNewCard.addEventListener('click', closePopupNewCard);
+buttonCloseNewCard.addEventListener('click', closePopup);
 buttonCreateNewElement.addEventListener('click', addNewCardElement);
 
 //слушатели зума изображения
-buttonCloseZoom.addEventListener('click', closePopupZoom);
+buttonCloseZoom.addEventListener('click', closePopup);
 
 
 //блок отрисовки элементов
@@ -175,4 +173,18 @@ function openPopup(event) {
             popupElementAddNewCard.classList.add('popup_opened');
             break;
     }
+}
+// находим все крестики проекта по универсальному селектору
+const closeButtons = document.querySelectorAll('.popup__close');
+
+closeButtons.forEach((button) => {
+    // находим 1 раз ближайший к крестику попап
+    const popup = button.closest('.popup');
+    // устанавливаем обработчик закрытия на крестик
+    button.addEventListener('click', () => closePopup(popup));
+});
+
+
+function closePopup (popup) {
+    popup.currentTarget.closest('.popup').classList.remove('popup_opened');
 }
