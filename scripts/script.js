@@ -150,8 +150,10 @@ function addNewCardElement(event) {
 // функция увеличения изображения
 function zoomCardImage(event) {
     const elementItem = event.currentTarget.closest(".elements__item");
-    imageText.textContent = elementItem.querySelector(".elements__text").textContent;
+    const imageName = elementItem.querySelector(".elements__text").textContent;
+    imageText.textContent = imageName;
     imageZoomed.src = event.currentTarget.src;
+    imageZoomed.alt = imageName;
     popupImage.classList.add('popup_opened');
 }
 
