@@ -8,18 +8,14 @@ const profileInfo = profileElement.querySelector('.profile__info');
 const popupElement = document.querySelector('.popup');
 const popupElement2 = document.querySelector('.popup_profile');
 const popupForm = popupElement.querySelector('.popup__form');
-const buttonClose = popupElement.querySelector('.popup__close-button');
 
 // переменные формы карточки
 const popupElementAddNewCard = document.querySelector(".popup_add");
-const buttonCreateNewElement = popupElementAddNewCard.querySelector(".popup__create-button");
 const buttonAddNewElement = profileElement.querySelector(".profile__add-button");
-const buttonCloseNewCard = popupElementAddNewCard.querySelector('.popup__close-button');
 
 // переменные формы изображения
 const popupImage = document.querySelector(".popup_image-zoom");
 const imageZoomed = popupImage.querySelector(".popup__image");
-const buttonCloseZoom = popupImage.querySelector('.popup__close-button');
 const imageText = popupImage.querySelector(".popup__place-name");
 
 
@@ -41,27 +37,15 @@ const savePopup = function (event) {
     event.preventDefault();
     profileName.textContent = name.value;
     profileInfo.textContent = info.value;
-    closePopup();
+    closePopup(event.currentTarget.closest('.popup'));
 }
 
 //функции создания новой карточки
-const openPopupNewCard = function () {
-    popupElementAddNewCard.classList.add('popup_opened');
-}
-
-const closePopupNewCard = function () {
-    popupElementAddNewCard.classList.remove('popup_opened');
-}
-
-//функции зума
-const closePopupZoom = function () {
-    popupImage.classList.remove('popup_opened');
-}
 
 //слушателя формы профиля
 buttonEdit.addEventListener('click', openPopup);
 
-popupForm.addEventListener('submit', savePopup);
+popupElement2.addEventListener('submit', savePopup);
 
 //слушателя формы новой карточки
 buttonAddNewElement.addEventListener("click", openPopup);
@@ -144,7 +128,7 @@ function addNewCardElement(event) {
     }
     initialCards.push(newElem);
     renderItem(initialCards[initialCards.length - 1]);
-    closePopupNewCard();
+    closePopup(event.currentTarget.closest('.popup'));
 }
 
 // функция увеличения изображения
@@ -170,6 +154,7 @@ function openPopup(event) {
     switch (event.currentTarget){
         case buttonEdit:
             popupElement2.classList.add('popup_opened');
+            fillName();
             break;
         case buttonAddNewElement:
             popupElementAddNewCard.classList.add('popup_opened');
