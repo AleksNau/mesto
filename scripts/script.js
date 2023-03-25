@@ -18,48 +18,17 @@ const popupImage = document.querySelector(".popup_image-zoom");
 const imageZoomed = popupImage.querySelector(".popup__image");
 const imageText = popupImage.querySelector(".popup__place-name");
 
-
+// инпуты
 const name = popupElement.querySelector('.popup__input_type_name');
 const info = popupElement.querySelector('.popup__input_type_info');
+const inputPlace = popupElementAddNewCard.querySelector(".popup__input_type_place");
+const inputLink = popupElementAddNewCard.querySelector(".popup__input_type_image-link");
 
-//функции профиля
-function fillName() {
-    name.value = profileName.textContent;
-    info.value = profileInfo.textContent;
-}
-
-//функции формы профиля
-
-
-
-
-const savePopup = function (event) {
-    event.preventDefault();
-    profileName.textContent = name.value;
-    profileInfo.textContent = info.value;
-    closePopup(event.currentTarget.closest('.popup'));
-}
-
-//функции создания новой карточки
-
-//слушателя формы профиля
-buttonEdit.addEventListener('click', openPopup);
-
-popupProfile.addEventListener('submit', savePopup);
-
-//слушателя формы новой карточки
-buttonAddNewElement.addEventListener("click", openPopup);
-
-popupElementAddNewCard.addEventListener('submit', addNewCardElement);
-
-//слушатели зума изображения
-
-
-
-//блок отрисовки элементов
+//карточки и темплейт
 const elementsList = document.querySelector(".elements");
 const elementTemplate = document.querySelector(".template-item").content;
 
+//изначальные карточки
 const initialCards = [
     {
         name: 'Архыз',
@@ -87,6 +56,33 @@ const initialCards = [
     }
 ];
 
+// находим все крестики проекта по универсальному селектору
+const closeButtons = document.querySelectorAll('.popup__close-button');
+
+//функции профиля
+function fillName() {
+    name.value = profileName.textContent;
+    info.value = profileInfo.textContent;
+}
+
+//функции формы профиля
+const savePopup = function (event) {
+    event.preventDefault();
+    profileName.textContent = name.value;
+    profileInfo.textContent = info.value;
+    closePopup(event.currentTarget.closest('.popup'));
+}
+
+//слушателя формы профиля
+buttonEdit.addEventListener('click', openPopup);
+
+popupProfile.addEventListener('submit', savePopup);
+
+//слушателя формы новой карточки
+buttonAddNewElement.addEventListener("click", openPopup);
+
+popupElementAddNewCard.addEventListener('submit', addNewCardElement);
+
 
 //Отрисовка элеметов списка
 initialCards.forEach(addCard);
@@ -101,11 +97,11 @@ function createCard(item) {
 
     return htmlElement;
 }
+
 //добавить карточку на страницу
 function addCard (item) {
     elementsList.prepend(createCard(item));
 }
-
 
 //добавляем слушатели на каждый созданый элемент
 function setEventListener(htmlElement) {
@@ -122,9 +118,6 @@ function addLike(event) {
     event.currentTarget.classList.toggle("elements__like_active");
 }
 
-const inputPlace = popupElementAddNewCard.querySelector(".popup__input_type_place");
-const inputLink = popupElementAddNewCard.querySelector(".popup__input_type_image-link");
-
 //добавить новую карточку
 function addNewCardElement(event) {
     event.preventDefault();
@@ -135,7 +128,6 @@ function addNewCardElement(event) {
         return
     }
     addCard(createCard(newElem));
-
     closePopup(event.currentTarget.closest('.popup'));
     event.target.reset();
 }
@@ -158,7 +150,6 @@ function deleteCard(event) {
 
 
 //универсальная функция открытия попапа кроме изображений
-
 function openPopup(event) {
     switch (event.currentTarget){
         case buttonEdit:
@@ -170,8 +161,6 @@ function openPopup(event) {
             break;
     }
 }
-// находим все крестики проекта по универсальному селектору
-const closeButtons = document.querySelectorAll('.popup__close-button');
 
 closeButtons.forEach((button) => {
     // находим 1 раз ближайший к крестику попап
@@ -184,5 +173,3 @@ closeButtons.forEach((button) => {
 function closePopup (popup) {
     popup.classList.remove('popup_opened');
 }
-
-//функция создания карточки
