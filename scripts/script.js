@@ -89,18 +89,23 @@ const initialCards = [
 
 
 //Отрисовка элеметов списка
-initialCards.forEach(renderItem);
+initialCards.forEach(addCard);
 
-// Добавить код элемента в разметку
-function renderItem(item) {
+// создать прототип карточки
+function createCard(item) {
     const htmlElement = elementTemplate.cloneNode(true);
     htmlElement.querySelector(".elements__image").src = item.link;
     htmlElement.querySelector(".elements__image").alt = item.name;
     htmlElement.querySelector(".elements__text").textContent = item.name;
     setEventListener(htmlElement);
 
-    elementsList.prepend(htmlElement);
+    return htmlElement;
 }
+//добавить карточку на страницу
+function addCard (item) {
+    elementsList.prepend(createCard(item));
+}
+
 
 //добавляем слушатели на каждый созданый элемент
 function setEventListener(htmlElement) {
@@ -126,8 +131,7 @@ function addNewCardElement(event) {
     if (newElem.name === "" || newElem.link === "") {
         return
     }
-    initialCards.push(newElem);
-    renderItem(initialCards[initialCards.length - 1]);
+    addCard(createCard(newElem));
     closePopup(event.currentTarget.closest('.popup'));
 }
 
@@ -171,7 +175,9 @@ closeButtons.forEach((button) => {
     button.addEventListener('click', () => closePopup(popup));
 });
 
-
+//универсальная функция закрытия попапа кроме изображений
 function closePopup (popup) {
     popup.classList.remove('popup_opened');
 }
+
+//функция создания карточки
