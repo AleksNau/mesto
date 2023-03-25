@@ -148,7 +148,6 @@ function deleteCard(event) {
     card.remove();
 }
 
-
 //универсальная функция открытия попапа кроме изображений
 function openPopup(event) {
     switch (event.currentTarget) {
