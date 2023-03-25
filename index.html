@@ -49,7 +49,7 @@
     </div>
     <div class="popup popup_add">
         <div class="popup__conteiner">
-            <form name="create_card-form" class="popup__form">
+            <form name="create_card-form" class="popup__form" id="create_card-form"  method="post">
                 <button type="button" class="popup__close-button"></button>
                 <fieldset class="popup__fieldset">
                     <legend class="popup__title">Новое место</legend>
@@ -61,7 +61,7 @@
                         <input name="image-link" type="text" class="popup__input popup__input_type_image-link"
                                placeholder="Ссылка на картинку">
                     </label>
-                    <button type="submit" class="popup__create-button">Создать</button>
+                    <button type="submit" class="popup__create-button"  form="create_card-form" value="Сохранить изменения">Создать</button>
                 </fieldset>
             </form>
         </div>

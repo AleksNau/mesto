@@ -66,7 +66,7 @@ popupForm.addEventListener('submit', savePopup);
 //слушателя формы новой карточки
 buttonAddNewElement.addEventListener("click", openPopup);
 
-buttonCreateNewElement.addEventListener('click', addNewCardElement);
+popupElementAddNewCard.addEventListener('submit', addNewCardElement);
 
 //слушатели зума изображения
 
