@@ -23,8 +23,8 @@ const buttonCloseZoom = popupImage.querySelector('.popup__close-button');
 const imageText = popupImage.querySelector(".popup__place-name");
 
 
-let name = popupElement.querySelector('.popup__input_type_name');
-let info = popupElement.querySelector('.popup__input_type_info');
+const name = popupElement.querySelector('.popup__input_type_name');
+const info = popupElement.querySelector('.popup__input_type_info');
 
 //функции профиля
 function fillName() {
