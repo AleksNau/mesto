@@ -6,7 +6,7 @@ const profileInfo = profileElement.querySelector('.profile__info');
 
 // переменные формы профиля
 const popupElement = document.querySelector('.popup');
-const popupElement2 = document.querySelector('.popup_profile');
+const popupProfile = document.querySelector('.popup_profile');
 const popupForm = popupElement.querySelector('.popup__form');
 
 // переменные формы карточки
@@ -45,7 +45,7 @@ const savePopup = function (event) {
 //слушателя формы профиля
 buttonEdit.addEventListener('click', openPopup);
 
-popupElement2.addEventListener('submit', savePopup);
+popupProfile.addEventListener('submit', savePopup);
 
 //слушателя формы новой карточки
 buttonAddNewElement.addEventListener("click", openPopup);
@@ -157,7 +157,7 @@ function deleteCard(event) {
 function openPopup(event) {
     switch (event.currentTarget){
         case buttonEdit:
-            popupElement2.classList.add('popup_opened');
+            popupProfile.classList.add('popup_opened');
             fillName();
             break;
         case buttonAddNewElement:
