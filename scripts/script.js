@@ -99,7 +99,7 @@ function createCard(item) {
 }
 
 //добавить карточку на страницу
-function addCard (item) {
+function addCard(item) {
     elementsList.prepend(createCard(item));
 }
 
@@ -151,7 +151,7 @@ function deleteCard(event) {
 
 //универсальная функция открытия попапа кроме изображений
 function openPopup(event) {
-    switch (event.currentTarget){
+    switch (event.currentTarget) {
         case buttonEdit:
             popupProfile.classList.add('popup_opened');
             fillName();
@@ -170,6 +170,6 @@ closeButtons.forEach((button) => {
 });
 
 //универсальная функция закрытия попапа кроме изображений
-function closePopup (popup) {
+function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
