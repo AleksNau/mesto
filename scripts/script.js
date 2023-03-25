@@ -122,17 +122,22 @@ function addLike(event) {
     event.currentTarget.classList.toggle("elements__like_active");
 }
 
+const inputPlace = popupElementAddNewCard.querySelector(".popup__input_type_place");
+const inputLink = popupElementAddNewCard.querySelector(".popup__input_type_image-link");
+
 //добавить новую карточку
 function addNewCardElement(event) {
     event.preventDefault();
     const newElem = {};
-    newElem.name = popupElementAddNewCard.querySelector(".popup__input_type_place").value;
-    newElem.link = popupElementAddNewCard.querySelector(".popup__input_type_image-link").value;
+    newElem.name = inputPlace.value;
+    newElem.link = inputLink.value;
     if (newElem.name === "" || newElem.link === "") {
         return
     }
     addCard(createCard(newElem));
+
     closePopup(event.currentTarget.closest('.popup'));
+    event.target.reset();
 }
 
 // функция увеличения изображения
