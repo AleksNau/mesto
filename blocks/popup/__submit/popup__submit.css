@@ -1,4 +1,4 @@
-.popup__save-button {
+.popup__submit {
     font-family: 'Inter', ‘Arial’, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -18,12 +18,12 @@
     margin-top: 18px;
 }
 
-.popup__save-button:hover {
+.popup__submit:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 480px) {
-    .popup__save-button {
+    .popup__submit {
         font-size: 14px;
         line-height: 17px;
         margin-top: 15px;
