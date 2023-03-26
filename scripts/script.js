@@ -178,4 +178,3 @@ function closePopup(popup) {
 function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
-
