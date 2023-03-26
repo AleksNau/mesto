@@ -26,6 +26,7 @@ const inputLink = popupElementAddNewCard.querySelector(".popup__input_type_image
 
 //карточки и темплейт
 const elementsList = document.querySelector(".elements");
+const elementsImages = document.querySelectorAll('.elements__image')
 const elementTemplate = document.querySelector(".template-item").content;
 
 //изначальные карточки
@@ -108,11 +109,14 @@ function setEventListener(htmlElement) {
     //закрасить лайк
     htmlElement.querySelector(".elements__like").addEventListener("click", addLike);
     //просмотреть изображение полностью
-    htmlElement.querySelector(".elements__image").addEventListener("click", zoomCardImage);
+    htmlElement.querySelector(".elements__image").addEventListener("click", openPopup);
+
     //функция удаления
     htmlElement.querySelector(".elements__delete").addEventListener("click", deleteCard);
 }
-
+function proverka () {
+    console.log("openPopup");
+}
 //функция навешивания лайка
 function addLike(event) {
     event.currentTarget.classList.toggle("elements__like_active");
@@ -139,7 +143,6 @@ function zoomCardImage(event) {
     imageText.textContent = imageName;
     imageZoomed.src = event.currentTarget.src;
     imageZoomed.alt = imageName;
-    popupImage.classList.add('popup_opened');
 }
 
 //функция удаления карточки
@@ -158,6 +161,11 @@ function openPopup(event) {
         case buttonAddNewElement:
             popupElementAddNewCard.classList.add('popup_opened');
             break;
+        case event.currentTarget.closest('.elements__image'):
+            popupImage.classList.add('popup_opened');
+            zoomCardImage(event);
+            break;
+
     }
 }
 
