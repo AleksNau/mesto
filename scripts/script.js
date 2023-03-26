@@ -73,12 +73,12 @@ const savePopup = function (event) {
 }
 
 //слушателя формы профиля
-buttonEdit.addEventListener('click', openPopup);
+buttonEdit.addEventListener('click', openPopupWithOptions);
 
 popupProfile.addEventListener('submit', savePopup);
 
 //слушателя формы новой карточки
-buttonAddNewElement.addEventListener("click", openPopup);
+buttonAddNewElement.addEventListener("click", openPopupWithOptions);
 
 popupElementAddNewCard.addEventListener('submit', addNewCardElement);
 
@@ -107,8 +107,7 @@ function setEventListener(htmlElement) {
     //закрасить лайк
     htmlElement.querySelector(".elements__like").addEventListener("click", addLike);
     //просмотреть изображение полностью
-    htmlElement.querySelector(".elements__image").addEventListener("click", openPopup);
-
+    htmlElement.querySelector(".elements__image").addEventListener("click", openPopupWithOptions);
     //функция удаления
     htmlElement.querySelector(".elements__delete").addEventListener("click", deleteCard);
 }
@@ -125,7 +124,7 @@ function addNewCardElement(event) {
     newElem.name = inputPlace.value;
     newElem.link = inputLink.value;
     if (newElem.name === "" || newElem.link === "") {
-        return
+        return;
     }
     addCard(createCard(newElem));
     closePopup(event.currentTarget.closest('.popup'));
@@ -147,28 +146,27 @@ function deleteCard(event) {
     card.remove();
 }
 
-//универсальная функция открытия попапа кроме изображений
-function openPopup(event) {
-    switch (event.currentTarget) {
+//функция открытия попапа
+function openPopupWithOptions(event) {
+    const buttonTarget = event.currentTarget;
+    const elementImage = buttonTarget.closest('.elements__image');
+    switch (buttonTarget) {
         case buttonEdit:
-            popupProfile.classList.add('popup_opened');
+            openPopup(popupProfile);
             fillName();
             break;
         case buttonAddNewElement:
-            popupElementAddNewCard.classList.add('popup_opened');
+            openPopup(popupElementAddNewCard);
             break;
-        case event.currentTarget.closest('.elements__image'):
-            popupImage.classList.add('popup_opened');
+        case elementImage:
+            openPopup(popupImage);
             zoomCardImage(event);
             break;
-
     }
 }
 
 closeButtons.forEach((button) => {
-    // находим 1 раз ближайший к крестику попап
     const popup = button.closest('.popup');
-    // устанавливаем обработчик закрытия на крестик
     button.addEventListener('click', () => closePopup(popup));
 });
 
@@ -176,3 +174,8 @@ closeButtons.forEach((button) => {
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
+//универчальная функция открытия попапа
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+}
+
