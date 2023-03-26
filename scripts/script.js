@@ -7,7 +7,6 @@ const profileInfo = profileElement.querySelector('.profile__info');
 // переменные формы профиля
 const popupElement = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_profile');
-const popupForm = popupElement.querySelector('.popup__form');
 
 // переменные формы карточки
 const popupElementAddNewCard = document.querySelector(".popup_add");
@@ -26,7 +25,6 @@ const inputLink = popupElementAddNewCard.querySelector(".popup__input_type_image
 
 //карточки и темплейт
 const elementsList = document.querySelector(".elements");
-const elementsImages = document.querySelectorAll('.elements__image')
 const elementTemplate = document.querySelector(".template-item").content;
 
 //изначальные карточки
@@ -114,9 +112,7 @@ function setEventListener(htmlElement) {
     //функция удаления
     htmlElement.querySelector(".elements__delete").addEventListener("click", deleteCard);
 }
-function proverka () {
-    console.log("openPopup");
-}
+
 //функция навешивания лайка
 function addLike(event) {
     event.currentTarget.classList.toggle("elements__like_active");
