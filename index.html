@@ -56,12 +56,14 @@
                 <fieldset class="popup__fieldset">
                     <legend class="popup__title">Новое место</legend>
                     <label>
-                        <input name="place" type="text" class="popup__input popup__input_type_place"
+                        <input name="place" id="place" type="text" minlength="8" class="popup__input popup__input_type_place"
                                placeholder="Название">
+                        <span id="place-error" class="error"></span>
                     </label>
                     <label>
-                        <input name="image-link" type="text" class="popup__input popup__input_type_image-link"
+                        <input name="image-link" id="image-link" type="url" class="popup__input popup__input_type_image-link"
                                placeholder="Ссылка на картинку">
+                        <span id="image-link-error" class="error"></span>
                     </label>
                     <button type="submit" class="popup__submit" form="create_card-form" value="Сохранить изменения">Создать</button>
                 </fieldset>
