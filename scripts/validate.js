@@ -1,29 +1,45 @@
-//пока профиль,потом можно поменять на просто форму popup__form
-const form = document.querySelector('.popup__form_profile');
+// включение валидации вызовом enableValidation
+// все настройки передаются при вызове
 
-const enableValidation = () => {
-    form.addEventListener('submit', (evt) => {
-        evt.preventDefault();
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_invalid',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+};
+//пока профиль,потом можно поменять на просто форму popup__form
+//const form = document.querySelector('.popup__form_profile');
+
+const enableValidation = ({formSelector, ...rest}) => {
+    const forms = Array.from(document.querySelectorAll(formSelector));
+    forms.forEach(form => {
+        form.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+        })
+        setEventListeners(form, rest);
     })
 
-    setEventListeners(form);
+
+
 }
 //накладываем слушатели на форму
-function setEventListeners (formValidate) {
+function setEventListeners (formValidate, {inputSelector, submitButtonSelector, ...rest}) {
     //создаём массив из инпутов
-    const formInputs = Array.from(formValidate.querySelectorAll(".popup__input"));
-    const formButton = formValidate.querySelector(".popup__submit");
-    console.log(formButton);
-    disableButton(formButton);
+    const formInputs = Array.from(formValidate.querySelectorAll(inputSelector));
+    const formButton = formValidate.querySelector(submitButtonSelector);
+    console.log(rest);
+    disableButton(formButton, rest);
     //каждому инпуту добавляем слушатель
     formInputs.forEach(input => {
         input.addEventListener('input', () => {
             checkInputValidity(input);
             //проверить есть ли хоть один незаполеный инпут
             if (hasInvalidInput(formInputs)) {
-                disableButton(formButton);
+                disableButton(formButton, rest);
             } else {
-                enableButton(formButton);
+                enableButton(formButton, rest);
             }
         })
     })
@@ -45,20 +61,20 @@ function hasInvalidInput (formInputs) {
     return formInputs.some(item => !item.validity.valid);
 }
 
-function enableButton (button) {
-    button.classList.remove("popup__submit_invalid");
+function enableButton (button, {inactiveButtonClass}) {
+    button.classList.remove(inactiveButtonClass);
     button.classList.add("popup__submit_valid");
     button.removeAttribute('disabled' ,true);
 
 }
 
-function disableButton (button) {
+function disableButton (button, {inactiveButtonClass}) {
     button.classList.remove("popup__submit_valid");
-    button.classList.add("popup__submit_invalid");
+    button.classList.add(inactiveButtonClass);
     button.setAttribute('disabled',true);
 }
 
-enableValidation();
+enableValidation(validationConfig);
 
 
 // const formInputs = Array.from(form.querySelectorAll(".popup__input"));
