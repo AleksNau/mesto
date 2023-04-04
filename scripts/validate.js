@@ -75,6 +75,4 @@ function disableButton (button, {inactiveButtonClass}) {
 }
 
 enableValidation(validationConfig);
-
-
 // const formInputs = Array.from(form.querySelectorAll(".popup__input"));
