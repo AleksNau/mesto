@@ -199,7 +199,6 @@ document.addEventListener('keyup', function (e) {
     }
 }, );
 
-// Закрытие модального - Клик на ESC
 
 popupCloseByClickOnOverlay();
 
