@@ -176,5 +176,13 @@ function closePopup(popup) {
 }
 //универчальная функция открытия попапа
 function openPopup(popup) {
+    popup.addEventListener('click',popupCloseByClickOnOverlay)
     popup.classList.add('popup_opened');
+}
+
+function popupCloseByClickOnOverlay (event) {
+    if (event.target !== event.currentTarget) {
+        return;
+    }
+    closePopup(event.currentTarget);
 }

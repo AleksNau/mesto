@@ -20,10 +20,8 @@ const enableValidation = ({formSelector, ...rest}) => {
         })
         setEventListeners(form, rest);
     })
-
-
-
 }
+
 //накладываем слушатели на форму
 function setEventListeners (formValidate, {inputSelector, submitButtonSelector, ...rest}) {
     //создаём массив из инпутов
