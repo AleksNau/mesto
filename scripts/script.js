@@ -179,7 +179,7 @@ function openPopup(popup) {
     //popup.addEventListener('click',popupCloseByClickOnOverlay)
     popup.classList.add('popup_opened');
 }
-
+//закрытие по оверлею
 function popupCloseByClickOnOverlay () {
     const popaps =Array.from(document.querySelectorAll('.popup'));
     popaps.forEach(popap => {
@@ -191,6 +191,16 @@ function popupCloseByClickOnOverlay () {
         });
     })
 }
+//закрытие по esc
+document.addEventListener('keyup', function (e) {
+
+    if (e.keyCode === 27) {
+        document.querySelector('.popup_opened').classList.remove('popup_opened');
+    }
+}, );
+
+// Закрытие модального - Клик на ESC
+
 popupCloseByClickOnOverlay();
 
 
