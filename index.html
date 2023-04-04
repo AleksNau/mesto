@@ -37,11 +37,11 @@
                 <fieldset class="popup__fieldset">
                     <legend class="popup__title">Редактировать профиль</legend>
                     <label>
-                        <input name="Name" id="name" type="text" class="popup__input popup__input_type_name" minlength="8">
+                        <input name="Name" id="name" type="text" class="popup__input popup__input_type_name" minlength="2" maxlength="40" required>
                         <span id="name-error" class="error"></span>
                     </label>
                     <label>
-                        <input name="Info" id="info" type="text" class="popup__input popup__input_type_info" minlength="8">
+                        <input name="Info" id="info" type="text" class="popup__input popup__input_type_info" minlength="2" maxlength="200" required>
                         <span id="info-error" class="error"></span>
                     </label>
                     <button type="submit" class="popup__submit">Сохранить</button>
@@ -56,13 +56,13 @@
                 <fieldset class="popup__fieldset">
                     <legend class="popup__title">Новое место</legend>
                     <label>
-                        <input name="place" id="place" type="text" minlength="8" class="popup__input popup__input_type_place"
-                               placeholder="Название">
+                        <input name="place" id="place" type="text" class="popup__input popup__input_type_place"
+                               placeholder="Название" minlength="2" maxlength="30" required>
                         <span id="place-error" class="error"></span>
                     </label>
                     <label>
                         <input name="image-link" id="image-link" type="url" class="popup__input popup__input_type_image-link"
-                               placeholder="Ссылка на картинку">
+                               placeholder="Ссылка на картинку" required>
                         <span id="image-link-error" class="error"></span>
                     </label>
                     <button type="submit" class="popup__submit" form="create_card-form" value="Сохранить изменения">Создать</button>
