@@ -176,13 +176,21 @@ function closePopup(popup) {
 }
 //универчальная функция открытия попапа
 function openPopup(popup) {
-    popup.addEventListener('click',popupCloseByClickOnOverlay)
+    //popup.addEventListener('click',popupCloseByClickOnOverlay)
     popup.classList.add('popup_opened');
 }
 
-function popupCloseByClickOnOverlay (event) {
-    if (event.target !== event.currentTarget) {
-        return;
-    }
-    closePopup(event.currentTarget);
+function popupCloseByClickOnOverlay () {
+    const popaps =Array.from(document.querySelectorAll('.popup'));
+    popaps.forEach(popap => {
+        popap.addEventListener('click', (e) => {
+            if (e.target !== popap) {
+                return;
+            }
+            closePopup(e.target);
+        });
+    })
 }
+popupCloseByClickOnOverlay();
+
+
