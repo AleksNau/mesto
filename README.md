@@ -20,6 +20,8 @@ https://aleksnau.github.io/mesto/
 - Кросбраузерность
 - javascript
 - Git
+- Валидация всех форм через JS
+- Улучшена UX при работе с попапами
 
 ## Optimizations
 
@@ -31,6 +33,8 @@ https://aleksnau.github.io/mesto/
 - Узнал как работать с переменными
 - DOM элементы
 - Узнал больше о Git
+- Валидация форм
+- Обработка событий
 
 ## Related
 
