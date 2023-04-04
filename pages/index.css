@@ -42,3 +42,15 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__place-name/popup__place-name.css);
+
+.error {
+    color: black;
+}
+
+.popup__submit_invalid {
+    background: red;
+}
+
+.popup__submit_valid {
+    background-color: green;
+}
