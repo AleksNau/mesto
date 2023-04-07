@@ -44,7 +44,7 @@
 @import url(../blocks/popup/__place-name/popup__place-name.css);
 
 .error {
-    color: black;
+    color: rgba(255, 0, 0, 0.5);
 }
 
 .popup__submit_invalid {
