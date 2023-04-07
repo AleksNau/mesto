@@ -23,7 +23,7 @@ const enableValidation = ({formSelector, ...rest}) => {
 }
 
 //накладываем слушатели на форму
-function setEventListeners (formValidate, {inputSelector, submitButtonSelector, ...rest}) {
+function setEventListeners (formValidate, {inputSelector, submitButtonSelector,inputErrorClass, ...rest}) {
     //создаём массив из инпутов
     const formInputs = Array.from(formValidate.querySelectorAll(inputSelector));
     const formButton = formValidate.querySelector(submitButtonSelector);
@@ -32,7 +32,7 @@ function setEventListeners (formValidate, {inputSelector, submitButtonSelector, 
     //каждому инпуту добавляем слушатель
     formInputs.forEach(input => {
         input.addEventListener('input', () => {
-            checkInputValidity(input);
+            checkInputValidity(input, inputErrorClass);
             //проверить есть ли хоть один незаполеный инпут
             if (hasInvalidInput(formInputs)) {
                 disableButton(formButton, rest);
@@ -43,17 +43,17 @@ function setEventListeners (formValidate, {inputSelector, submitButtonSelector, 
     })
 }
 
-function checkInputValidity (item) {
+function checkInputValidity (item, errorClass) {
     //находим сообщение(span) об ошибке называть по принципу id инпута к которому он относится +"-error"
     const currentInputErrorConteiner = document.querySelector(`#${item.id}-error`);
     //checkValidity встроенный метод который возвращает тру или фолс основываясь на разметке
     if (item.checkValidity()) {
         currentInputErrorConteiner.textContent = "";
-        item.classList.remove("popup__input_type_error");
+        item.classList.remove(errorClass);
     } else {
         //выводим встроенное сообщение validationMessage
         currentInputErrorConteiner.textContent = item.validationMessage;
-        item.classList.add("popup__input_type_error");
+        item.classList.add(errorClass);
     }
 }
 //проверяем вернёт ли какой элемент то что он не заполнен
