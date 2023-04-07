@@ -45,6 +45,11 @@
 
 .error {
     color: rgba(255, 0, 0, 0.5);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    display: block;
+    min-height: 28px;
 }
 
 .popup__submit_invalid {
