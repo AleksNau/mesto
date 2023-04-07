@@ -173,8 +173,44 @@ closeButtons.forEach((button) => {
 //универсальная функция закрытия попапа кроме изображений
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    removeListenerCloseByEsc();
 }
 //универчальная функция открытия попапа
 function openPopup(popup) {
+    //popup.addEventListener('click',popupCloseByClickOnOverlay)
     popup.classList.add('popup_opened');
+    addListenerCloseByEsc();
 }
+//закрытие по оверлею
+function popupCloseByClickOnOverlay () {
+    const popaps =Array.from(document.querySelectorAll('.popup'));
+    popaps.forEach(popap => {
+        popap.addEventListener('click', (e) => {
+            if (e.target !== popap) {
+                return;
+            }
+            closePopup(e.target);
+        });
+    })
+}
+
+//закрытие по esc
+function addListenerCloseByEsc () {
+    document.addEventListener('keyup', function (e) {
+        if (e.keyCode === 27) {
+            document.querySelector('.popup_opened').classList.remove('popup_opened');
+        }
+    }, );
+}
+
+function removeListenerCloseByEsc () {
+    document.removeEventListener('keyup', function (e) {
+        if (e.keyCode === 27) {
+            document.querySelector('.popup_opened').classList.remove('popup_opened');
+        }
+    }, );
+}
+
+popupCloseByClickOnOverlay();
+
+
