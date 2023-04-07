@@ -49,9 +49,11 @@ function checkInputValidity (item) {
     //checkValidity встроенный метод который возвращает тру или фолс основываясь на разметке
     if (item.checkValidity()) {
         currentInputErrorConteiner.textContent = "";
+        item.classList.remove("popup__input_type_error");
     } else {
         //выводим встроенное сообщение validationMessage
         currentInputErrorConteiner.textContent = item.validationMessage;
+        item.classList.add("popup__input_type_error");
     }
 }
 //проверяем вернёт ли какой элемент то что он не заполнен
@@ -63,7 +65,6 @@ function enableButton (button, {inactiveButtonClass}) {
     button.classList.remove(inactiveButtonClass);
     button.classList.add("popup__submit_valid");
     button.removeAttribute('disabled' ,true);
-
 }
 
 function disableButton (button, {inactiveButtonClass}) {
