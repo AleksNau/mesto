@@ -19,7 +19,7 @@ const enableValidation = ({formSelector, ...rest}) => {
 }
 
 //накладываем слушатели на форму
-function setEventListeners (formValidate, {inputSelector, submitButtonSelector,inputErrorClass, ...rest}) {
+function setEventListeners(formValidate, {inputSelector, submitButtonSelector, inputErrorClass, ...rest}) {
     //создаём массив из инпутов
     const formInputs = Array.from(formValidate.querySelectorAll(inputSelector));
     const formButton = formValidate.querySelector(submitButtonSelector);
@@ -38,7 +38,7 @@ function setEventListeners (formValidate, {inputSelector, submitButtonSelector,i
     })
 }
 
-function checkInputValidity (item, errorClass) {
+function checkInputValidity(item, errorClass) {
     //находим сообщение(span) об ошибке называть по принципу id инпута к которому он относится +"-error"
     const currentInputErrorConteiner = document.querySelector(`#${item.id}-error`);
     //checkValidity встроенный метод который возвращает тру или фолс основываясь на разметке
@@ -51,19 +51,20 @@ function checkInputValidity (item, errorClass) {
         item.classList.add(errorClass);
     }
 }
+
 //проверяем вернёт ли какой элемент то что он не заполнен
-function hasInvalidInput (formInputs) {
+function hasInvalidInput(formInputs) {
     return formInputs.some(item => !item.validity.valid);
 }
 
-function enableButton (button, {inactiveButtonClass}) {
+function enableButton(button, {inactiveButtonClass}) {
     button.classList.remove(inactiveButtonClass);
-    button.removeAttribute('disabled' ,true);
+    button.removeAttribute('disabled', true);
 }
 
-function disableButton (button, {inactiveButtonClass}) {
+function disableButton(button, {inactiveButtonClass}) {
     button.classList.add(inactiveButtonClass);
-    button.setAttribute('disabled',true);
+    button.setAttribute('disabled', true);
 }
 
 enableValidation(validationConfig);
