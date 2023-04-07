@@ -193,8 +193,8 @@ function popupCloseByClickOnOverlay () {
         });
     })
 }
-//закрытие по esc
 
+//закрытие по esc
 function addListenerCloseByEsc () {
     document.addEventListener('keyup', function (e) {
         if (e.keyCode === 27) {
@@ -210,8 +210,6 @@ function removeListenerCloseByEsc () {
         }
     }, );
 }
-
-
 
 popupCloseByClickOnOverlay();
 
