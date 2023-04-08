@@ -27,6 +27,8 @@ const inputLink = popupElementAddNewCard.querySelector(".popup__input_type_image
 const elementsList = document.querySelector(".elements");
 const elementTemplate = document.querySelector(".template-item").content;
 
+const esc = 27;
+
 //изначальные карточки
 const initialCards = [
     {
@@ -195,7 +197,7 @@ function popupCloseByClickOnOverlay () {
 //закрытие по esc
 function addListenerCloseByEsc () {
     document.addEventListener('keyup', function (e) {
-        const esc = 27;
+
         if (e.keyCode === esc) {
             document.querySelector('.popup_opened').classList.remove('popup_opened');
         }
@@ -204,7 +206,7 @@ function addListenerCloseByEsc () {
 
 function removeListenerCloseByEsc () {
     document.removeEventListener('keyup', function (e) {
-        if (e.keyCode === 27) {
+        if (e.keyCode === esc) {
             document.querySelector('.popup_opened').classList.remove('popup_opened');
         }
     }, );
