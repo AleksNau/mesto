@@ -195,7 +195,8 @@ function popupCloseByClickOnOverlay () {
 //закрытие по esc
 function addListenerCloseByEsc () {
     document.addEventListener('keyup', function (e) {
-        if (e.keyCode === 27) {
+        const esc = 27;
+        if (e.keyCode === esc) {
             document.querySelector('.popup_opened').classList.remove('popup_opened');
         }
     }, );
