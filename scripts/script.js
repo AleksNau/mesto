@@ -65,7 +65,7 @@ function fillName() {
 }
 
 //функции формы профиля
-const savePopup = function (event) {
+const submitEditProfileForm = function (event) {
     event.preventDefault();
     profileName.textContent = name.value;
     profileInfo.textContent = info.value;
@@ -75,7 +75,7 @@ const savePopup = function (event) {
 //слушателя формы профиля
 buttonEdit.addEventListener('click', openPopupWithOptions);
 
-popupProfile.addEventListener('submit', savePopup);
+popupProfile.addEventListener('submit', submitEditProfileForm);
 
 //слушателя формы новой карточки
 buttonAddNewElement.addEventListener("click", openPopupWithOptions);
