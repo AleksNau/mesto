@@ -154,7 +154,6 @@ closeButtons.forEach((button) => {
 //универсальная функция закрытия попапа кроме изображений
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    removeListenerCloseByEsc(popup);
 
 }
 //универчальная функция открытия попапа
@@ -179,19 +178,9 @@ function popupCloseByClickOnOverlay () {
 function addListenerCloseByEsc (form) {
     document.addEventListener('keyup', function (e) {
         if (e.keyCode === esc) {
-
             closePopup(form);
         }
-    }, );
-}
-
-function removeListenerCloseByEsc (form) {
-    document.removeEventListener('keyup', function (e) {
-        if (e.keyCode === esc) {
-
-            closePopup(form);
-        }
-    }, );
+    },true );
 }
 
 function openProfilePopup () {
