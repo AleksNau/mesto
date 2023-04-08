@@ -75,12 +75,12 @@ const submitEditProfileForm = function (event) {
 }
 
 //слушателя формы профиля
-buttonEdit.addEventListener('click', openPopupWithOptions);
+buttonEdit.addEventListener('click', openProfilePopup);
 
 popupProfile.addEventListener('submit', submitEditProfileForm);
 
 //слушателя формы новой карточки
-buttonAddNewElement.addEventListener("click", openPopupWithOptions);
+buttonAddNewElement.addEventListener("click", openAddCardPopup);
 
 popupElementAddNewCard.addEventListener('submit', addNewCardElement);
 
@@ -110,7 +110,7 @@ function setEventListener(htmlElement) {
     //закрасить лайк
     htmlElement.querySelector(".elements__like").addEventListener("click", addLike);
     //просмотреть изображение полностью
-    htmlElement.querySelector(".elements__image").addEventListener("click", openPopupWithOptions);
+    htmlElement.querySelector(".elements__image").addEventListener("click", openImage);
     //функция удаления
     htmlElement.querySelector(".elements__delete").addEventListener("click", deleteCard);
 }
@@ -146,25 +146,6 @@ function deleteCard(event) {
     card.remove();
 }
 
-//функция открытия попапа
-function openPopupWithOptions(event) {
-    const buttonTarget = event.currentTarget;
-    const elementImage = buttonTarget.closest('.elements__image');
-    switch (buttonTarget) {
-        case buttonEdit:
-            openPopup(popupProfile);
-            fillName();
-            break;
-        case buttonAddNewElement:
-            openPopup(popupElementAddNewCard);
-            break;
-        case elementImage:
-            openPopup(popupImage);
-            zoomCardImage(event);
-            break;
-    }
-}
-
 closeButtons.forEach((button) => {
     const popup = button.closest('.popup');
     button.addEventListener('click', () => closePopup(popup));
@@ -173,13 +154,13 @@ closeButtons.forEach((button) => {
 //универсальная функция закрытия попапа кроме изображений
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    removeListenerCloseByEsc();
+    removeListenerCloseByEsc(popup);
+
 }
 //универчальная функция открытия попапа
 function openPopup(popup) {
-    //popup.addEventListener('click',popupCloseByClickOnOverlay)
     popup.classList.add('popup_opened');
-    addListenerCloseByEsc();
+
 }
 //закрытие по оверлею
 function popupCloseByClickOnOverlay () {
@@ -195,22 +176,40 @@ function popupCloseByClickOnOverlay () {
 }
 
 //закрытие по esc
-function addListenerCloseByEsc () {
+function addListenerCloseByEsc (form) {
     document.addEventListener('keyup', function (e) {
         if (e.keyCode === esc) {
-            document.querySelector('.popup_opened').classList.remove('popup_opened');
+
+            closePopup(form);
         }
     }, );
 }
 
-function removeListenerCloseByEsc () {
+function removeListenerCloseByEsc (form) {
     document.removeEventListener('keyup', function (e) {
         if (e.keyCode === esc) {
-            document.querySelector('.popup_opened').classList.remove('popup_opened');
+
+            closePopup(form);
         }
     }, );
 }
 
+function openProfilePopup () {
+    openPopup(popupProfile);
+    fillName();
+    addListenerCloseByEsc(popupProfile);
+}
+
+function openAddCardPopup () {
+    openPopup(popupElementAddNewCard);
+    addListenerCloseByEsc(popupElementAddNewCard);
+}
+
+function openImage (event) {
+    openPopup(popupImage);
+    zoomCardImage(event);
+    addListenerCloseByEsc(popupImage);
+}
 popupCloseByClickOnOverlay();
 
 
