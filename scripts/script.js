@@ -127,7 +127,7 @@ function addNewCardElement(event) {
     newElem.name = inputPlace.value;
     newElem.link = inputLink.value;
     addCard(createCard(newElem));
-    closePopup(event.currentTarget.closest('.popup'));
+    closePopup(popupElementAddNewCard);
     event.target.reset();
 }
 
