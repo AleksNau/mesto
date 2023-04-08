@@ -71,7 +71,7 @@ const submitEditProfileForm = function (event) {
     event.preventDefault();
     profileName.textContent = name.value;
     profileInfo.textContent = info.value;
-    closePopup(event.currentTarget.closest('.popup'));
+    closePopup(popupProfile);
 }
 
 //слушателя формы профиля
