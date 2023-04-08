@@ -89,8 +89,9 @@ initialCards.forEach(addCard);
 // создать прототип карточки
 function createCard(item) {
     const htmlElement = elementTemplate.cloneNode(true);
-    htmlElement.querySelector(".elements__image").src = item.link;
-    htmlElement.querySelector(".elements__image").alt = item.name;
+    const imageElement =  htmlElement.querySelector(".elements__image");
+    imageElement.src = item.link;
+    imageElement.alt = item.name;
     htmlElement.querySelector(".elements__text").textContent = item.name;
     setEventListener(htmlElement);
 
