@@ -181,8 +181,8 @@ function openPopup(popup) {
 }
 //закрытие по оверлею
 function popupCloseByClickOnOverlay () {
-    const popaps =Array.from(document.querySelectorAll('.popup'));
-    popaps.forEach(popap => {
+    const popups =Array.from(document.querySelectorAll('.popup'));
+    popups.forEach(popap => {
         popap.addEventListener('click', (e) => {
             if (e.target !== popap) {
                 return;
