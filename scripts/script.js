@@ -102,6 +102,7 @@ function createCard(item) {
 
 //добавить карточку на страницу
 function addCard(item) {
+    console.log(item);
     elementsList.prepend(createCard(item));
 }
 
@@ -123,10 +124,8 @@ function addLike(event) {
 //добавить новую карточку
 function addNewCardElement(event) {
     event.preventDefault();
-    const newElem = {};
-    newElem.name = inputPlace.value;
-    newElem.link = inputLink.value;
-    addCard(createCard(newElem));
+    addCard({name: inputPlace.value, link: inputLink.value});
+
     closePopup(popupElementAddNewCard);
     event.target.reset();
 }
