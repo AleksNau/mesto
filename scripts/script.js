@@ -154,12 +154,13 @@ closeButtons.forEach((button) => {
 //универсальная функция закрытия попапа кроме изображений
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener("keyup", addListenerCloseByEsc);
 
 }
 //универчальная функция открытия попапа
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-
+    document.addEventListener("keyup", addListenerCloseByEsc);
 }
 //закрытие по оверлею
 function popupCloseByClickOnOverlay () {
@@ -175,18 +176,16 @@ function popupCloseByClickOnOverlay () {
 }
 
 //закрытие по esc
-function addListenerCloseByEsc (form) {
-    document.addEventListener('keyup', function (e) {
-        if (e.keyCode === esc) {
-            closePopup(form);
+function addListenerCloseByEsc (event) {
+    const closestOpenedPopup = document.querySelector('.popup_opened');
+        if (event.keyCode === esc) {
+            closePopup(closestOpenedPopup);
         }
-    },true );
 }
 
 function openProfilePopup () {
     openPopup(popupProfile);
     fillName();
-    addListenerCloseByEsc(popupProfile);
 }
 
 function openAddCardPopup () {
