@@ -10,6 +10,7 @@ const popupProfile = document.querySelector('.popup_profile');
 
 // переменные формы карточки
 const popupElementAddNewCard = document.querySelector(".popup_add");
+const popupFormAdd = popupElementAddNewCard.querySelector('.popup__form');
 const buttonAddNewElement = profileElement.querySelector(".profile__add-button");
 
 // переменные формы изображения
@@ -102,7 +103,6 @@ function createCard(item) {
 
 //добавить карточку на страницу
 function addCard(item) {
-    console.log(item);
     elementsList.prepend(createCard(item));
 }
 
@@ -124,8 +124,9 @@ function addLike(event) {
 //добавить новую карточку
 function addNewCardElement(event) {
     event.preventDefault();
+    const buttonSubmit = popupFormAdd.querySelector('.popup__submit');
     addCard({name: inputPlace.value, link: inputLink.value});
-
+    disableButton(buttonSubmit, validationConfig);
     closePopup(popupElementAddNewCard);
     event.target.reset();
 }
