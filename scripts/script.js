@@ -33,6 +33,59 @@ const esc = 27;
 // находим все крестики проекта по универсальному селектору
 const closeButtons = document.querySelectorAll('.popup__close-button');
 
+
+
+
+
+class Card {
+    constructor(data) {
+        this._data = data;
+
+    }
+
+    createCard(item) {
+        this._card = elementTemplate.cloneNode(true).children[0];//children[0]
+        this._imageElement =  this._card.querySelector(".elements__image");
+        this._imageElement.src = item.link;
+        this._imageElement.alt = item.name;
+        this._card.querySelector(".elements__text").textContent = item.name;
+        setEventListener(this._card);
+
+        return this._card;
+    }
+
+    getCard(){
+        this.createCard(this._data);
+        return this._card;
+    }
+}
+
+class elementsListClass {
+    constructor(conteinerSelector) {
+        this._container =conteinerSelector;
+    }
+
+    addCard(item) {
+
+        elementsList.prepend(newItem.getCard());
+        console.log(newItem);
+    }
+    defRen() {
+        const rep = Array.from(this._container)
+        rep.forEach(this.addCard);
+    }
+}
+
+const newElementsList = new elementsListClass(elementsList);
+
+
+
+
+
+
+
+
+
 //функции профиля
 function fillName() {
     name.value = profileName.textContent;
@@ -57,9 +110,9 @@ buttonAddNewElement.addEventListener("click", openAddCardPopup);
 
 popupElementAddNewCard.addEventListener('submit', addNewCardElement);
 
-
+const newListList = new elementsListClass(initialCards);
 //Отрисовка элеметов списка
-initialCards.forEach(addCard);
+newListList.defRen();
 
 // создать прототип карточки
 function createCard(item) {
@@ -96,8 +149,12 @@ function addLike(event) {
 //добавить новую карточку
 function addNewCardElement(event) {
     event.preventDefault();
+    //тут нужно создать новый объект карточки
+    const newListItem = Object.fromEntries(new FormData(event.target));
     const buttonSubmit = popupFormAdd.querySelector('.popup__submit');
-    addCard({name: inputPlace.value, link: inputLink.value});
+
+    newElementsList.addCard(newListItem);
+
     disableButton(buttonSubmit, validationConfig);
     closePopup(popupElementAddNewCard);
     event.target.reset();
@@ -171,5 +228,7 @@ function openImage (event) {
     addListenerCloseByEsc(popupImage);
 }
 popupCloseByClickOnOverlay();
+
+
 
 
