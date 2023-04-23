@@ -33,13 +33,28 @@ const esc = 27;
 // находим все крестики проекта по универсальному селектору
 const closeButtons = document.querySelectorAll('.popup__close-button');
 
+class popupFormClass {
+    constructor(formSelector, onAddItem) {
+        this.formSelector = formSelector;
+        this._onAddItem = onAddItem;
+
+      this.formSelector.addEventListener("submit", this._onSubmit);
+    }
+
+    _onSubmit = (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.target));
+        this._onAddItem(data);
+    }
+}
 
 
 
 
 class Card {
-    constructor(data) {
+    constructor(data,list) {
         this._data = data;
+        this._list = list;
 
     }
 
@@ -59,16 +74,14 @@ class Card {
         return this._card;
     }
 }
-
+//лист элементов
 class elementsListClass {
     constructor(conteinerSelector) {
         this._container =conteinerSelector;
     }
 
     addCard(item) {
-
-        elementsList.prepend(newItem.getCard());
-        console.log(newItem);
+        elementsList.prepend(createCard(item));
     }
     defRen() {
         const rep = Array.from(this._container)
@@ -77,7 +90,11 @@ class elementsListClass {
 }
 
 const newElementsList = new elementsListClass(elementsList);
-
+const newCardForm = new popupFormClass(popupFormAdd, (data) => {
+    const newItem = new Card(data,newElementsList);
+    const card = newItem.getCard();
+    newElementsList.addCard(card);
+});
 
 
 
@@ -126,10 +143,6 @@ function createCard(item) {
     return htmlElement;
 }
 
-//добавить карточку на страницу
-function addCard(item) {
-    elementsList.prepend(createCard(item));
-}
 
 //добавляем слушатели на каждый созданый элемент
 function setEventListener(htmlElement) {
@@ -152,8 +165,8 @@ function addNewCardElement(event) {
     //тут нужно создать новый объект карточки
     const newListItem = Object.fromEntries(new FormData(event.target));
     const buttonSubmit = popupFormAdd.querySelector('.popup__submit');
+    newElementsList.addCard({name: inputPlace.value, link: inputLink.value});
 
-    newElementsList.addCard(newListItem);
 
     disableButton(buttonSubmit, validationConfig);
     closePopup(popupElementAddNewCard);
