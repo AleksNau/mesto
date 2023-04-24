@@ -176,55 +176,59 @@ popupCloseByClickOnOverlay();
 //Создаем класс Card
 
 class Card {
+    htmlElement;
+    imageElement
     //принимает в себя два параметра
-    constructor(data, templateSelector) {
+    constructor(templateSelector,data) {
         this._data = data;
         this._template = templateSelector;
     }
 
     //имеет несколько методов
 //метод получения template
-    getTemplate() {
-        return this._template;
-    }
-
-//метод лайка
-    addLike(event) {
-        event.currentTarget.classList.toggle("elements__like_active");
-    } 
-    
-//метод удаления карточки 
-    deleteCard(event) {
-        const card = event.target.closest(".elements__item");
-        card.remove();
-    }
-//Метод открытия попапа с картинкой 
-    openImage (event) {
-        openPopup(popupImage);
-        zoomCardImage(event);
-        addListenerCloseByEsc(popupImage);
-    }
-//метод навешивания всех слушателей
-    setEventListener(htmlElement) {
-        //закрасить лайк
-        htmlElement.querySelector(".elements__like").addEventListener("click", addLike);
-        //просмотреть изображение полностью
-        htmlElement.querySelector(".elements__image").addEventListener("click", openImage);
-        //функция удаления
-        htmlElement.querySelector(".elements__delete").addEventListener("click", deleteCard);
-    }
+// getTemplate() {
+//     return this._template;
+// }
+//
+//етод лайка
+// addLike(event) {
+//     event.currentTarget.classList.toggle("elements__like_active");
+// } 
+// 
+//етод удаления карточки 
+// deleteCard(event) {
+//     const card = event.target.closest(".elements__item");
+//     card.remove();
+// }
+//етод открытия попапа с картинкой 
+// openImage (event) {
+//     openPopup(popupImage);
+//     zoomCardImage(event);
+//     addListenerCloseByEsc(popupImage);
+// }
+//Метод навешивания всех слушателей
+//    setEventListener(htmlElement) {
+//        //закрасить лайк
+//        htmlElement.querySelector(".elements__like").addEventListener("click", addLike);
+//        //просмотреть изображение полностью
+//        htmlElement.querySelector(".elements__image").addEventListener("click", openImage);
+//        //функция удаления
+//        htmlElement.querySelector(".elements__delete").addEventListener("click", deleteCard);
+//    }
 //Основной (публичный) метод создания карточки, в котором мы вызываем нужные методы и наполняем будущую карточку данными из формы.
-    createCard(item) {
-        const htmlElement = elementTemplate.cloneNode(true);
+    createCard() {
+        const htmlElement = this._template.cloneNode(true).children[0];
         const imageElement =  htmlElement.querySelector(".elements__image");
-        imageElement.src = item.link;
-        imageElement.alt = item.name;
-        htmlElement.querySelector(".elements__text").textContent = item.name;
+        imageElement.src = this._data.link;
+        imageElement.alt = this._data.name;
+        htmlElement.querySelector(".elements__text").textContent = this._data.name;
         setEventListener(htmlElement);
+        console.log(htmlElement);
 
         return htmlElement;
     }  
 
 }
 
-const itemCard = new Card(data,elementTemplate);
+const itemCard = new Card(elementTemplate,{name:"ghjhj", link:"sfjhdgsj"});
+itemCard.createCard();
