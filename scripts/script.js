@@ -190,45 +190,47 @@ class Card {
 //     return this._template;
 // }
 //
-//етод лайка
-// addLike(event) {
-//     event.currentTarget.classList.toggle("elements__like_active");
-// } 
-// 
-//етод удаления карточки 
-// deleteCard(event) {
-//     const card = event.target.closest(".elements__item");
-//     card.remove();
-// }
-//етод открытия попапа с картинкой 
-// openImage (event) {
-//     openPopup(popupImage);
-//     zoomCardImage(event);
-//     addListenerCloseByEsc(popupImage);
-// }
+
+ addLike(event) {
+     event.currentTarget.classList.toggle("elements__like_active");
+ }
+
+
+ deleteCard = () => {
+     this.element.remove();
+ }
+
+ openImage (event) {
+     openPopup(popupImage);
+     zoomCardImage(event);
+     addListenerCloseByEsc(popupImage);
+ }
 //Метод навешивания всех слушателей
-//    setEventListener(htmlElement) {
-//        //закрасить лайк
-//        htmlElement.querySelector(".elements__like").addEventListener("click", addLike);
-//        //просмотреть изображение полностью
-//        htmlElement.querySelector(".elements__image").addEventListener("click", openImage);
-//        //функция удаления
-//        htmlElement.querySelector(".elements__delete").addEventListener("click", deleteCard);
-//    }
+    setEventListener() {
+        //закрасить лайк
+        this.element.querySelector(".elements__like").addEventListener("click", this.addLike);
+        //просмотреть изображение полностью
+        this.element.querySelector(".elements__image").addEventListener("click", this.openImage);
+        //функция удаления
+        this.element.querySelector(".elements__delete").addEventListener("click", this.deleteCard);
+    }
 //Основной (публичный) метод создания карточки, в котором мы вызываем нужные методы и наполняем будущую карточку данными из формы.
     createCard() {
-        const htmlElement = this._template.cloneNode(true).children[0];
-        const imageElement =  htmlElement.querySelector(".elements__image");
+        this.element = this._template.cloneNode(true).children[0];
+        const imageElement =  this.element.querySelector(".elements__image");
         imageElement.src = this._data.link;
         imageElement.alt = this._data.name;
-        htmlElement.querySelector(".elements__text").textContent = this._data.name;
-        setEventListener(htmlElement);
-        console.log(htmlElement);
+        this.element.querySelector(".elements__text").textContent = this._data.name;
+        this.setEventListener();
 
-        return htmlElement;
+        return this.element;
     }  
 
 }
+//верный метод
+function addCard2(item) {
+    elementsList.prepend(item);
+}
 
 const itemCard = new Card(elementTemplate,{name:"ghjhj", link:"sfjhdgsj"});
-itemCard.createCard();
+addCard2(itemCard.createCard());
