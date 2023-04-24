@@ -214,8 +214,17 @@ class Card {
         htmlElement.querySelector(".elements__delete").addEventListener("click", deleteCard);
     }
 //Основной (публичный) метод создания карточки, в котором мы вызываем нужные методы и наполняем будущую карточку данными из формы.
-    createCard() {
+    createCard(item) {
+        const htmlElement = elementTemplate.cloneNode(true);
+        const imageElement =  htmlElement.querySelector(".elements__image");
+        imageElement.src = item.link;
+        imageElement.alt = item.name;
+        htmlElement.querySelector(".elements__text").textContent = item.name;
+        setEventListener(htmlElement);
 
+        return htmlElement;
     }  
-      
+
 }
+
+const itemCard = new Card(data,elementTemplate);
