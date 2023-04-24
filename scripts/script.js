@@ -173,3 +173,49 @@ function openImage (event) {
 popupCloseByClickOnOverlay();
 
 
+//Создаем класс Card
+
+class Card {
+    //принимает в себя два параметра
+    constructor(data, templateSelector) {
+        this._data = data;
+        this._template = templateSelector;
+    }
+
+    //имеет несколько методов
+//метод получения template
+    getTemplate() {
+        return this._template;
+    }
+
+//метод лайка
+    addLike(event) {
+        event.currentTarget.classList.toggle("elements__like_active");
+    } 
+    
+//метод удаления карточки 
+    deleteCard(event) {
+        const card = event.target.closest(".elements__item");
+        card.remove();
+    }
+//Метод открытия попапа с картинкой 
+    openImage (event) {
+        openPopup(popupImage);
+        zoomCardImage(event);
+        addListenerCloseByEsc(popupImage);
+    }
+//метод навешивания всех слушателей
+    setEventListener(htmlElement) {
+        //закрасить лайк
+        htmlElement.querySelector(".elements__like").addEventListener("click", addLike);
+        //просмотреть изображение полностью
+        htmlElement.querySelector(".elements__image").addEventListener("click", openImage);
+        //функция удаления
+        htmlElement.querySelector(".elements__delete").addEventListener("click", deleteCard);
+    }
+//Основной (публичный) метод создания карточки, в котором мы вызываем нужные методы и наполняем будущую карточку данными из формы.
+    createCard() {
+
+    }  
+      
+}
