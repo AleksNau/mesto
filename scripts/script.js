@@ -58,9 +58,6 @@ buttonAddNewElement.addEventListener("click", openAddCardPopup);
 popupElementAddNewCard.addEventListener('submit', addNewCardElement);
 
 
-//Отрисовка элеметов списка
-initialCards.forEach(addCard);
-
 // создать прототип карточки
 function createCard(item) {
     const htmlElement = elementTemplate.cloneNode(true);
@@ -231,6 +228,11 @@ class Card {
 function addCard2(item) {
     elementsList.prepend(item);
 }
-
+//примеры для карточки
 const itemCard = new Card(elementTemplate,{name:"ghjhj", link:"sfjhdgsj"});
 addCard2(itemCard.createCard());
+
+initialCards.forEach((item) => {
+    const itemCard = new Card(elementTemplate,item);
+    addCard2(itemCard.createCard())
+});
