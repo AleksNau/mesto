@@ -70,6 +70,7 @@ function disableButton(button, {inactiveButtonClass}) {
 enableValidation(validationConfig);
 
 class FormValidator {
+    //добавить в параметры конструктора объект с его параметрами
     constructor(objectSettings, formElementSelector) {
         this._objectSettings=objectSettings;
         this._formElementSelector=formElementSelector;
@@ -87,4 +88,4 @@ class FormValidator {
 }
 
 const fv = new FormValidator(validationConfig);
-fv.enableValidation(this);
+fv.enableValidation();
