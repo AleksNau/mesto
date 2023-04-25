@@ -206,6 +206,23 @@ const itemCard = new Card(elementTemplate,{name:"ghjhj", link:"sfjhdgsj"});
 addCard2(itemCard.createCard());
 //отрисовка стандартных карточек
 initialCards.forEach((item) => {
-
     addCard2(item)
 });
+
+class popupForm {
+    
+    constructor(formSelector, onAdItem) {
+        this._formSelector = formSelector;
+        this._onAdItem =onAdItem;
+        document.querySelector(this._formSelector).addEventListener('submit', this.onSubmit);
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.target));
+        console.log(data);
+    }
+}
+
+//создаю эекземпляр класса формы- передается селектор ФОРМЫ
+const newForm = new popupForm('.popup_add');
