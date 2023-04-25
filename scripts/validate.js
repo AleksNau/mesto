@@ -68,3 +68,23 @@ function disableButton(button, {inactiveButtonClass}) {
 }
 
 enableValidation(validationConfig);
+
+class FormValidator {
+    constructor(objectSettings, formElementSelector) {
+        this._objectSettings=objectSettings;
+        this._formElementSelector=formElementSelector;
+    }
+    enableValidation () {
+        const forms = Array.from(document.querySelectorAll(this._objectSettings.formSelector));
+        forms.forEach(form => {
+            form.addEventListener('submit', (evt) => {
+                evt.preventDefault();
+            })
+            console.log(form);
+            setEventListeners(form, rest);
+        })
+    }
+}
+
+const fv = new FormValidator(validationConfig);
+fv.enableValidation(this);
