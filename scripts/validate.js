@@ -1,5 +1,3 @@
-// включение валидации вызовом enableValidation
-
 const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -9,19 +7,18 @@ const validationConfig = {
 };
 
 
-
-
 class FormValidator {
     //добавить в параметры конструктора объект с его параметрами
-    constructor(formSelector,{...rest}) {
-        this._form=document.querySelector(formSelector);
+    constructor(formSelector, {...rest}) {
+        this._form = document.querySelector(formSelector);
         this._rest = rest;
     }
+
     enableValidation = () => {
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
-        
+
         this.setEventListeners(this._rest);
     }
 
@@ -47,6 +44,7 @@ class FormValidator {
             })
         })
     }
+
     checkInputValidity(item, errorClass) {
         //находим сообщение(span) об ошибке называть по принципу id инпута к которому он относится +"-error"
         const currentInputErrorConteiner = document.querySelector(`#${item.id}-error`);
@@ -65,12 +63,14 @@ class FormValidator {
         button.classList.remove(inactiveButtonClass);
         button.removeAttribute('disabled', true);
     }
-    
+
     disableButton(button, {inactiveButtonClass}) {
         button.classList.add(inactiveButtonClass);
         button.setAttribute('disabled', true);
     }
 }
 
-const fv = new FormValidator('.popup__form_profile',validationConfig);
-fv.enableValidation();
+const formProfile = new FormValidator('.popup__form_profile', validationConfig);
+formProfile.enableValidation();
+const formAdd = new FormValidator('.popup__form_add', validationConfig);
+formAdd.enableValidation();
