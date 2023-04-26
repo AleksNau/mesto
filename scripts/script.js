@@ -141,16 +141,16 @@ class Card {
     }
 
 //метод навешивания лайка
-    addLike(event) {
+    #addLike(event) {
         event.currentTarget.classList.toggle("elements__like_active");
     }
 
 //метод удаления карточки
-    deleteCard = () => {
+    #deleteCard = () => {
         this.element.remove();
     }
 
-    openImage(event) {
+    #openImage(event) {
         openPopup(popupImage);
         zoomCardImage(event);
         addListenerCloseByEsc(popupImage);
@@ -159,11 +159,11 @@ class Card {
 //Метод навешивания всех слушателей
     setEventListener() {
         //закрасить лайк
-        this.element.querySelector(".elements__like").addEventListener("click", this.addLike);
+        this.element.querySelector(".elements__like").addEventListener("click", this.#addLike);
         //просмотреть изображение полностью
-        this.element.querySelector(".elements__image").addEventListener("click", this.openImage);
+        this.element.querySelector(".elements__image").addEventListener("click", this.#openImage);
         //функция удаления
-        this.element.querySelector(".elements__delete").addEventListener("click", this.deleteCard);
+        this.element.querySelector(".elements__delete").addEventListener("click", this.#deleteCard);
     }
 
 //Основной (публичный) метод создания карточки, в котором мы вызываем нужные методы и наполняем будущую карточку данными из формы.
