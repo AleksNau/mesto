@@ -1,13 +1,5 @@
-const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit',
-    inactiveButtonClass: 'popup__submit_invalid',
-    inputErrorClass: 'popup__input_type_error'
-};
 
-
-class FormValidator {
+export default class FormValidator {
     //добавить в параметры конструктора объект с его параметрами
     constructor(formSelector, {...rest}) {
         this._form = document.querySelector(formSelector);
@@ -70,7 +62,3 @@ class FormValidator {
     }
 }
 
-const formProfile = new FormValidator('.popup__form_profile', validationConfig);
-formProfile.enableValidation();
-const formAdd = new FormValidator('.popup__form_add', validationConfig);
-formAdd.enableValidation();

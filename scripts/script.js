@@ -1,3 +1,4 @@
+import FormValidator from './FormValidator.js'
 //переменные профиля
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
@@ -191,3 +192,15 @@ initialCards.forEach((item) => {
     addCard(item)
 });
 
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_invalid',
+    inputErrorClass: 'popup__input_type_error'
+};
+
+const formProfile = new FormValidator('.popup__form_profile', validationConfig);
+formProfile.enableValidation();
+const formAdd = new FormValidator('.popup__form_add', validationConfig);
+formAdd.enableValidation();
