@@ -16,7 +16,7 @@ const popupFormAdd = popupElementAddNewCard.querySelector('.popup__form_add');
 const buttonAddNewElement = profileElement.querySelector(".profile__add-button");
 
 // переменные формы изображения
-const popupImage = document.querySelector(".popup_image-zoom");
+export const popupImage = document.querySelector(".popup_image-zoom");
 const imageZoomed = popupImage.querySelector(".popup__image");
 const imageText = popupImage.querySelector(".popup__place-name");
 
@@ -72,7 +72,7 @@ function addNewCardElement(event) {
 }
 
 // функция увеличения изображения
-function zoomCardImage(event) {
+export function zoomCardImage(event) {
     const elementItem = event.currentTarget.closest(".elements__item");
     const imageName = elementItem.querySelector(".elements__text").textContent;
     imageText.textContent = imageName;
@@ -94,7 +94,7 @@ function closePopup(popup) {
 }
 
 //универчальная функция открытия попапа
-function openPopup(popup) {
+export function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener("keyup", addListenerCloseByEsc);
 }
@@ -113,7 +113,7 @@ function popupCloseByClickOnOverlay() {
 }
 
 //закрытие по esc
-function addListenerCloseByEsc(event) {
+export function addListenerCloseByEsc(event) {
     const closestOpenedPopup = document.querySelector('.popup_opened');
     if (event.keyCode === esc) {
         closePopup(closestOpenedPopup);
