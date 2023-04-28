@@ -1,3 +1,4 @@
+import {initialCards,validationConfig} from './constants.js'
 import FormValidator from './FormValidator.js'
 import Card from './Card.js'
 //переменные профиля
@@ -148,13 +149,7 @@ initialCards.forEach((item) => {
     addCard(item)
 });
 
-const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit',
-    inactiveButtonClass: 'popup__submit_invalid',
-    inputErrorClass: 'popup__input_type_error'
-};
+
 
 const formProfile = new FormValidator('.popup__form_profile', validationConfig);
 formProfile.enableValidation();
