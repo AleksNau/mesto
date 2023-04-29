@@ -5,7 +5,9 @@ export default class FormValidator {
     constructor(formSelector, {...rest}) {
         this._form = formSelector;
         this._config = rest;
+        //создаём массив из инпутов
         this.inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector));
+        this._submitButton = this._form.querySelector(this._config.submitButtonSelector);
 
     }
 
@@ -21,20 +23,17 @@ export default class FormValidator {
         return formInputs.some(item => !item.validity.valid);
     }
 
-    #setEventListeners({inputSelector, submitButtonSelector, inputErrorClass, ...rest}) {
-        //создаём массив из инпутов
-
-        const formButton = this._form.querySelector(submitButtonSelector);
-        this.disableButton(formButton, rest);
+    #setEventListeners({inputErrorClass, ...rest}) {
+        this.disableButton(this._submitButton, rest);
         //каждому инпуту добавляем слушатель
         this.inputList.forEach(input => {
             input.addEventListener('input', () => {
                 this.#checkInputValidity(input, inputErrorClass);
                 //проверить есть ли хоть один незаполеный инпут
                 if (this.#hasInvalidInput(this.inputList)) {
-                    this.disableButton(formButton, rest);
+                    this.disableButton(this._submitButton, rest);
                 } else {
-                    this.enableButton(formButton, rest);
+                    this.enableButton(this._submitButton, rest);
                 }
             })
         })
