@@ -10,6 +10,7 @@ const profileInfo = profileElement.querySelector('.profile__info');
 // переменные формы профиля
 const popupElement = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_profile');
+const popupFormProfile = popupProfile.querySelector('.popup__form_profile');
 
 // переменные формы карточки
 const popupElementAddNewCard = document.querySelector(".popup_add");
@@ -151,7 +152,7 @@ initialCards.forEach((item) => {
 
 
 
-const formProfile = new FormValidator('.popup__form_profile', validationConfig);
+const formProfile = new FormValidator(popupFormProfile, validationConfig);
 formProfile.enableValidation();
-const formAdd = new FormValidator('.popup__form_add', validationConfig);
+const formAdd = new FormValidator(popupFormAdd, validationConfig);
 formAdd.enableValidation();
