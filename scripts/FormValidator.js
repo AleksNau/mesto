@@ -3,7 +3,7 @@ export default class FormValidator {
     //добавить в параметры конструктора объект с его параметрами
     constructor(formSelector, {...rest}) {
         this._form = formSelector;
-        this._rest = rest;
+        this._config = rest;
     }
 
     enableValidation = () => {
@@ -11,7 +11,7 @@ export default class FormValidator {
             evt.preventDefault();
         });
 
-        this.#setEventListeners(this._rest);
+        this.#setEventListeners(this._config);
     }
 
     #hasInvalidInput(formInputs) {
