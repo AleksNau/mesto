@@ -64,7 +64,6 @@ popupElementAddNewCard.addEventListener('submit', addNewCardElement);
 //добавить новую карточку
 function addNewCardElement(event) {
     event.preventDefault();
-    const buttonSubmit = popupFormAdd.querySelector('.popup__submit');
 
     addCard({name: inputPlace.value, link: inputLink.value});
     formAdd.disableButton();
