@@ -1,5 +1,5 @@
 
-import {popupImage, openPopup, zoomCardImage, addListenerCloseByEsc} from './script.js'
+import {popupImage, openPopup, zoomCardImage} from './script.js'
 export default class Card {
     //принимает в себя два параметра
     constructor(templateSelector, data) {
@@ -8,7 +8,7 @@ export default class Card {
     }
 
 //метод навешивания лайка
-    #addLike(event) {
+    #toggleLike(event) {
         event.currentTarget.classList.toggle("elements__like_active");
     }
 
@@ -20,13 +20,12 @@ export default class Card {
     #openImage(event) {
         openPopup(popupImage);
         zoomCardImage(event);
-        addListenerCloseByEsc(popupImage);
     }
 
 //Метод навешивания всех слушателей
     setEventListener() {
         //закрасить лайк
-        this.element.querySelector(".elements__like").addEventListener("click", this.#addLike);
+        this.element.querySelector(".elements__like").addEventListener("click", this.#toggleLike);
         //просмотреть изображение полностью
         this.element.querySelector(".elements__image").addEventListener("click", this.#openImage);
         //функция удаления

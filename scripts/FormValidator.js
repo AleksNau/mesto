@@ -1,9 +1,14 @@
 
 export default class FormValidator {
+
     //добавить в параметры конструктора объект с его параметрами
     constructor(formSelector, {...rest}) {
-        this._form = document.querySelector(formSelector);
-        this._rest = rest;
+        this._form = formSelector;
+        this._config = rest;
+        //создаём массив из инпутов
+        this.inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector));
+        this._submitButton = this._form.querySelector(this._config.submitButtonSelector);
+
     }
 
     enableValidation = () => {
@@ -11,54 +16,51 @@ export default class FormValidator {
             evt.preventDefault();
         });
 
-        this.#setEventListeners(this._rest);
+        this.#setEventListeners();
     }
 
     #hasInvalidInput(formInputs) {
         return formInputs.some(item => !item.validity.valid);
     }
 
-    #setEventListeners({inputSelector, submitButtonSelector, inputErrorClass, ...rest}) {
-        //создаём массив из инпутов
-        const formInputs = Array.from(this._form.querySelectorAll(inputSelector));
-        const formButton = this._form.querySelector(submitButtonSelector);
-        this.disableButton(formButton, rest);
+    #setEventListeners() {
+        this.disableButton();
         //каждому инпуту добавляем слушатель
-        formInputs.forEach(input => {
+        this.inputList.forEach(input => {
             input.addEventListener('input', () => {
-                this.#checkInputValidity(input, inputErrorClass);
+                this.#checkInputValidity(input);
                 //проверить есть ли хоть один незаполеный инпут
-                if (this.#hasInvalidInput(formInputs)) {
-                    this.disableButton(formButton, rest);
+                if (this.#hasInvalidInput(this.inputList)) {
+                    this.disableButton();
                 } else {
-                    this.enableButton(formButton, rest);
+                    this.enableButton();
                 }
             })
         })
     }
 
-    #checkInputValidity(item, errorClass) {
+    #checkInputValidity(item) {
         //находим сообщение(span) об ошибке называть по принципу id инпута к которому он относится +"-error"
         const currentInputErrorConteiner = document.querySelector(`#${item.id}-error`);
         //checkValidity встроенный метод который возвращает тру или фолс основываясь на разметке
         if (item.checkValidity()) {
             currentInputErrorConteiner.textContent = "";
-            item.classList.remove(errorClass);
+            item.classList.remove(this._config.inputErrorClass);
         } else {
             //выводим встроенное сообщение validationMessage
             currentInputErrorConteiner.textContent = item.validationMessage;
-            item.classList.add(errorClass);
+            item.classList.add(this._config.inputErrorClass);
         }
     }
 
-    enableButton(button, {inactiveButtonClass}) {
-        button.classList.remove(inactiveButtonClass);
-        button.removeAttribute('disabled', true);
+    enableButton() {
+        this._submitButton.classList.remove(this._config.inactiveButtonClass);
+        this._submitButton.removeAttribute('disabled', true);
     }
 
-    disableButton(button, {inactiveButtonClass}) {
-        button.classList.add(inactiveButtonClass);
-        button.setAttribute('disabled', true);
+    disableButton() {
+        this._submitButton.classList.add(this._config.inactiveButtonClass);
+        this._submitButton.setAttribute('disabled', true);
     }
 }
 
