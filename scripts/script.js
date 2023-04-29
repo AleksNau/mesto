@@ -143,7 +143,8 @@ function createCardItem(item) {
 
 //добавить карточку на страницу
 function addCard(item) {
-    elementsList.prepend(createCardItem(item).createCard());
+    const cardItem = createCardItem(item);
+    elementsList.prepend(cardItem.createCard());
 }
 
 //отрисовка стандартных карточек
