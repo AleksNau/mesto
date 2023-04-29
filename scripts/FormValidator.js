@@ -16,24 +16,24 @@ export default class FormValidator {
             evt.preventDefault();
         });
 
-        this.#setEventListeners(this._config);
+        this.#setEventListeners();
     }
 
     #hasInvalidInput(formInputs) {
         return formInputs.some(item => !item.validity.valid);
     }
 
-    #setEventListeners({inputErrorClass, ...rest}) {
-        this.disableButton(this._submitButton, rest);
+    #setEventListeners() {
+        this.disableButton();
         //каждому инпуту добавляем слушатель
         this.inputList.forEach(input => {
             input.addEventListener('input', () => {
-                this.#checkInputValidity(input, inputErrorClass);
+                this.#checkInputValidity(input, this._config.inputErrorClass);
                 //проверить есть ли хоть один незаполеный инпут
                 if (this.#hasInvalidInput(this.inputList)) {
-                    this.disableButton(this._submitButton, rest);
+                    this.disableButton();
                 } else {
-                    this.enableButton(this._submitButton, rest);
+                    this.enableButton();
                 }
             })
         })
@@ -53,9 +53,9 @@ export default class FormValidator {
         }
     }
 
-    enableButton(button, {inactiveButtonClass}) {
-        button.classList.remove(inactiveButtonClass);
-        button.removeAttribute('disabled', true);
+    enableButton() {
+        this._submitButton.classList.remove(this._config.inactiveButtonClass);
+        this._submitButton.removeAttribute('disabled', true);
     }
 
     disableButton() {
