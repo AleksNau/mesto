@@ -147,9 +147,7 @@ function addCard(item) {
 }
 
 //отрисовка стандартных карточек
-initialCards.forEach((item) => {
-    addCard(item)
-});
+initialCards.forEach(addCard);
 
 
 
