@@ -8,7 +8,7 @@ export default class Card {
     }
 
 //метод навешивания лайка
-    #addLike(event) {
+    #toggleLike(event) {
         event.currentTarget.classList.toggle("elements__like_active");
     }
 
@@ -26,7 +26,7 @@ export default class Card {
 //Метод навешивания всех слушателей
     setEventListener() {
         //закрасить лайк
-        this.element.querySelector(".elements__like").addEventListener("click", this.#addLike);
+        this.element.querySelector(".elements__like").addEventListener("click", this.#toggleLike);
         //просмотреть изображение полностью
         this.element.querySelector(".elements__image").addEventListener("click", this.#openImage);
         //функция удаления
