@@ -67,7 +67,7 @@ function addNewCardElement(event) {
     const buttonSubmit = popupFormAdd.querySelector('.popup__submit');
 
     addCard({name: inputPlace.value, link: inputLink.value});
-    formAdd.disableButton(buttonSubmit, validationConfig);
+    formAdd.disableButton();
     closePopup(popupElementAddNewCard);
     event.target.reset();
 }
