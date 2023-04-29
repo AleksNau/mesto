@@ -114,7 +114,7 @@ function popupCloseByClickOnOverlay() {
 }
 
 //закрытие по esc
-export function addListenerCloseByEsc(event) {
+function addListenerCloseByEsc(event) {
 
     if (event.keyCode === esc) {
         const closestOpenedPopup = document.querySelector('.popup_opened');

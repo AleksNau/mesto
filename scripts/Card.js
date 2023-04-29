@@ -1,5 +1,5 @@
 
-import {popupImage, openPopup, zoomCardImage, addListenerCloseByEsc} from './script.js'
+import {popupImage, openPopup, zoomCardImage} from './script.js'
 export default class Card {
     //принимает в себя два параметра
     constructor(templateSelector, data) {
