@@ -137,14 +137,14 @@ popupCloseByClickOnOverlay();
 //Создаем класс Card
 function createCardItem(item) {
     const itemCard = new Card(elementTemplate, item);
-    return itemCard;
+    return itemCard.createCard();
 }
 
 
 //добавить карточку на страницу
 function addCard(item) {
     const cardItem = createCardItem(item);
-    elementsList.prepend(cardItem.createCard());
+    elementsList.prepend(cardItem);
 }
 
 //отрисовка стандартных карточек
