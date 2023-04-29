@@ -102,9 +102,9 @@ export function openPopup(popup) {
 //закрытие по оверлею
 function popupCloseByClickOnOverlay() {
     const popups = Array.from(document.querySelectorAll('.popup'));
-    popups.forEach(popap => {
-        popap.addEventListener('click', (e) => {
-            if (e.target !== popap) {
+    popups.forEach(popup => {
+        popup.addEventListener('click', (e) => {
+            if (e.target !== popup) {
                 return;
             }
             closePopup(e.target);
