@@ -28,7 +28,7 @@ export default class FormValidator {
         //каждому инпуту добавляем слушатель
         this.inputList.forEach(input => {
             input.addEventListener('input', () => {
-                this.#checkInputValidity(input, this._config.inputErrorClass);
+                this.#checkInputValidity(input);
                 //проверить есть ли хоть один незаполеный инпут
                 if (this.#hasInvalidInput(this.inputList)) {
                     this.disableButton();
@@ -39,17 +39,17 @@ export default class FormValidator {
         })
     }
 
-    #checkInputValidity(item, errorClass) {
+    #checkInputValidity(item) {
         //находим сообщение(span) об ошибке называть по принципу id инпута к которому он относится +"-error"
         const currentInputErrorConteiner = document.querySelector(`#${item.id}-error`);
         //checkValidity встроенный метод который возвращает тру или фолс основываясь на разметке
         if (item.checkValidity()) {
             currentInputErrorConteiner.textContent = "";
-            item.classList.remove(errorClass);
+            item.classList.remove(this._config.inputErrorClass);
         } else {
             //выводим встроенное сообщение validationMessage
             currentInputErrorConteiner.textContent = item.validationMessage;
-            item.classList.add(errorClass);
+            item.classList.add(this._config.inputErrorClass);
         }
     }
 
