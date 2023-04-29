@@ -129,7 +129,6 @@ function openProfilePopup() {
 
 function openAddCardPopup() {
     openPopup(popupElementAddNewCard);
-    addListenerCloseByEsc(popupElementAddNewCard);
 }
 
 popupCloseByClickOnOverlay();
