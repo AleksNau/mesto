@@ -8,7 +8,6 @@ const profileName = profileElement.querySelector('.profile__name');
 const profileInfo = profileElement.querySelector('.profile__info');
 
 // переменные формы профиля
-const popupElement = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const popupFormProfile = popupProfile.querySelector('.popup__form_profile');
 
@@ -23,8 +22,8 @@ const imageZoomed = popupImage.querySelector(".popup__image");
 const imageText = popupImage.querySelector(".popup__place-name");
 
 // инпуты
-const name = popupElement.querySelector('.popup__input_type_name');
-const info = popupElement.querySelector('.popup__input_type_info');
+const name = popupProfile.querySelector('.popup__input_type_name');
+const info = popupProfile.querySelector('.popup__input_type_info');
 const inputPlace = popupElementAddNewCard.querySelector(".popup__input_type_place");
 const inputLink = popupElementAddNewCard.querySelector(".popup__input_type_image-link");
 
