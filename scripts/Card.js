@@ -20,7 +20,6 @@ export default class Card {
     #openImage(event) {
         openPopup(popupImage);
         zoomCardImage(event);
-        addListenerCloseByEsc(popupImage);
     }
 
 //Метод навешивания всех слушателей
