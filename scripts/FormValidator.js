@@ -1,9 +1,12 @@
 
 export default class FormValidator {
+
     //добавить в параметры конструктора объект с его параметрами
     constructor(formSelector, {...rest}) {
         this._form = formSelector;
         this._config = rest;
+        this.inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector));
+
     }
 
     enableValidation = () => {
@@ -20,15 +23,15 @@ export default class FormValidator {
 
     #setEventListeners({inputSelector, submitButtonSelector, inputErrorClass, ...rest}) {
         //создаём массив из инпутов
-        const formInputs = Array.from(this._form.querySelectorAll(inputSelector));
+
         const formButton = this._form.querySelector(submitButtonSelector);
         this.disableButton(formButton, rest);
         //каждому инпуту добавляем слушатель
-        formInputs.forEach(input => {
+        this.inputList.forEach(input => {
             input.addEventListener('input', () => {
                 this.#checkInputValidity(input, inputErrorClass);
                 //проверить есть ли хоть один незаполеный инпут
-                if (this.#hasInvalidInput(formInputs)) {
+                if (this.#hasInvalidInput(this.inputList)) {
                     this.disableButton(formButton, rest);
                 } else {
                     this.enableButton(formButton, rest);
