@@ -135,7 +135,7 @@ popupCloseByClickOnOverlay();
 
 //Создаем класс Card
 function createCardItem(item) {
-    const itemCard = new Card(elementTemplate, item);
+    const itemCard = new Card(elementTemplate, item,handleCardClick);
     return itemCard.createCard();
 }
 
@@ -155,3 +155,12 @@ const formProfile = new FormValidator(popupFormProfile, validationConfig);
 formProfile.enableValidation();
 const formAdd = new FormValidator(popupFormAdd, validationConfig);
 formAdd.enableValidation();
+
+
+
+function handleCardClick(name, link) {
+    imageText.textContent = name;//name
+    imageZoomed.src = link;//устанавливаем ссылку
+    imageZoomed.alt = name;//устанавливаем подпись картинке name
+    openPopup(popupImage);//открываем попап универсальной функцией, которая навешивает обработчик Escape внутри себя
+}
