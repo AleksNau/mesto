@@ -100,7 +100,7 @@ export function openPopup(popup) {
 }
 
 //закрытие по оверлею
-function popupCloseByClickOnOverlay() {
+/*function popupCloseByClickOnOverlay() {
     const popups = Array.from(document.querySelectorAll('.popup'));
     popups.forEach(popup => {
         popup.addEventListener('click', (e) => {
@@ -110,7 +110,7 @@ function popupCloseByClickOnOverlay() {
             closePopup(e.target);
         });
     })
-}
+}*/
 
 //закрытие по esc
 function addListenerCloseByEsc(event) {
@@ -130,7 +130,7 @@ function openAddCardPopup() {
     openPopup(popupElementAddNewCard);
 }
 
-popupCloseByClickOnOverlay();
+//popupCloseByClickOnOverlay();
 
 
 //Создаем класс Card
@@ -149,7 +149,18 @@ function addCard(item) {
 //отрисовка стандартных карточек
 initialCards.forEach(addCard);
 
+const popups = document.querySelectorAll('.popup')
 
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+            closePopup(popup)
+        }
+    })
+})
 
 const formProfile = new FormValidator(popupFormProfile, validationConfig);
 formProfile.enableValidation();
