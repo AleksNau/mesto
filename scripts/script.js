@@ -206,3 +206,56 @@ class Popup {
 
 const pop = new Popup('.popup_profile');
 pop.setEventListeners();
+//нужно разложить как то и передать параметры
+class PopupWithImage extends Popup {
+    open = (name,link) => {
+        imageText.textContent = name;//name
+        imageZoomed.src = link;//устанавливаем ссылку
+        imageZoomed.alt = name;//устанавливаем подпись картинке name
+        openPopup(popupImage)
+    }
+}
+
+class PopupWithForm extends Popup {
+    constructor(submit) {
+        super();
+        this._submit = submit;
+        this._form = this._popup.querySelector(".popup__form");
+    }
+//собирает данные всех полей формы
+    _getInputValues(e) {
+        this._data = Object.fromEntries(new FormData(e.target));
+        return this._data;
+    }
+//добавить сабмит
+    setEventListeners() {
+        this._button = this._popup.querySelector(".popup__close-button");
+        this._button.addEventListener('click', () => this.close(this._popup));
+        buttonEdit.addEventListener('click', this.open);
+        this._form.addEventListener('submit', this._submit);//функция обработчик колбэк сабмита
+        console.log("setEventListenersPopupWithForm");
+    }
+    //обнулять еще
+    close = () => {
+        this._popup.classList.remove('popup_opened');
+        document.removeEventListener("keyup", this._handleEscClose);
+        closePopup(popupElementAddNewCard);
+        this._form.reset();
+    }
+}
+
+class UserInfo {
+    constructor(name,info) {
+        this._name = name;
+        this._info = info;
+    }
+// возвращает объект с данными пользователя. Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
+    getUserInfo() {
+
+    }
+
+//принимает новые данные пользователя и добавляет их на страницу.
+    setUserInfo() {
+
+    }
+}
