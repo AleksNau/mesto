@@ -71,15 +71,6 @@ function addNewCardElement(event) {
     event.target.reset();
 }
 
-// функция увеличения изображения
-export function zoomCardImage(event) {
-    const elementItem = event.currentTarget.closest(".elements__item");
-    const imageName = elementItem.querySelector(".elements__text").textContent;
-    imageText.textContent = imageName;
-    imageZoomed.src = event.currentTarget.src;
-    imageZoomed.alt = imageName;
-}
-
 
 closeButtons.forEach((button) => {
     const popup = button.closest('.popup');
@@ -98,19 +89,6 @@ export function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener("keyup", addListenerCloseByEsc);
 }
-
-//закрытие по оверлею
-/*function popupCloseByClickOnOverlay() {
-    const popups = Array.from(document.querySelectorAll('.popup'));
-    popups.forEach(popup => {
-        popup.addEventListener('click', (e) => {
-            if (e.target !== popup) {
-                return;
-            }
-            closePopup(e.target);
-        });
-    })
-}*/
 
 //закрытие по esc
 function addListenerCloseByEsc(event) {
