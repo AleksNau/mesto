@@ -153,3 +153,56 @@ function handleCardClick(name, link) {
     imageZoomed.alt = name;//устанавливаем подпись картинке name
     openPopup(popupImage);//открываем попап универсальной функцией, которая навешивает обработчик Escape внутри себя
 }
+
+
+class Section {
+    constructor({items, renderer},conteinerSelector) {
+        this._items = items;
+        this._renderer = renderer;
+        this._conteiner = conteinerSelector;
+    }
+
+    addItem() {
+//принимает DOM-элемент и добавляет его в контейнер
+    }
+}
+
+class Popup {
+    constructor(popupSelector) {
+        this._popup = document.querySelector(popupSelector);
+
+    }
+//которые отвечают за открытие и закрытие попапа.
+    open = () => {
+        this._popup.classList.add('popup_opened');
+        document.addEventListener("keyup", this._handleEscClose);
+        console.log("open")
+    }
+
+    close = () => {
+        this._popup.classList.remove('popup_opened');
+        document.removeEventListener("keyup", this._handleEscClose);
+        console.log("close")
+    }
+
+    _handleEscClose() {
+//содержит логику закрытия попапа клавишей Esc.
+        if (event.keyCode === esc) {
+            const closestOpenedPopup = document.querySelector('.popup_opened');
+            closePopup(closestOpenedPopup);
+            console.log("_handleEscClose");
+        }
+    }
+
+    setEventListeners() {
+//оторый добавляет слушатель клика иконке закрытия попапа
+        this._button = this._popup.querySelector(".popup__close-button");
+        this._button.addEventListener('click', () => this.close(this._popup));
+        buttonEdit.addEventListener('click', this.open);
+        console.log("setEventListeners");
+
+    }
+}
+
+const pop = new Popup('.popup_profile');
+pop.setEventListeners();
