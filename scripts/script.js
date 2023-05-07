@@ -37,84 +37,38 @@ const esc = 27;
 const closeButtons = document.querySelectorAll('.popup__close-button');
 
 //функции профиля
-function fillName() {
-    name.value = profileName.textContent;
-    info.value = profileInfo.textContent;
-}
 
-//функции формы профиля
+//функции формы профиля - функция колбэк для класса
 const submitEditProfileForm = function (event) {
     event.preventDefault();
     profileName.textContent = name.value;
     profileInfo.textContent = info.value;
     closePopup(popupProfile);
+    console.log("submitEditProfileForm");
 }
 
-//слушателя формы профиля
-buttonEdit.addEventListener('click', openProfilePopup);
-
-popupProfile.addEventListener('submit', submitEditProfileForm);
-
-//слушателя формы новой карточки
-buttonAddNewElement.addEventListener("click", openAddCardPopup);
-
-popupElementAddNewCard.addEventListener('submit', addNewCardElement);
-
-
-//добавить новую карточку
-function addNewCardElement(event) {
+//добавить новую карточку - функция колбэк для класса
+const addNewCardElement = function (event){
     event.preventDefault();
 
     addCard({name: inputPlace.value, link: inputLink.value});
     formAdd.disableButton();
     closePopup(popupElementAddNewCard);
     event.target.reset();
+    console.log("addNewCardElement");
 }
-
-
-closeButtons.forEach((button) => {
-    const popup = button.closest('.popup');
-    button.addEventListener('click', () => closePopup(popup));
-});
 
 //универсальная функция закрытия попапа кроме изображений
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener("keyup", addListenerCloseByEsc);
-
 }
-
-//универчальная функция открытия попапа
-export function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    document.addEventListener("keyup", addListenerCloseByEsc);
-}
-
-//закрытие по esc
-function addListenerCloseByEsc(event) {
-
-    if (event.keyCode === esc) {
-        const closestOpenedPopup = document.querySelector('.popup_opened');
-        closePopup(closestOpenedPopup);
-    }
-}
-
-function openProfilePopup() {
-    openPopup(popupProfile);
-    fillName();
-}
-
-function openAddCardPopup() {
-    openPopup(popupElementAddNewCard);
-}
-
-//popupCloseByClickOnOverlay();
 
 
 //Создаем класс Card
 function createCardItem(item) {
     const itemCard = new Card(elementTemplate, item,handleCardClick);
     return itemCard.createCard();
+    console.log("createCardItem");
 }
 
 
@@ -148,10 +102,11 @@ formAdd.enableValidation();
 
 
 function handleCardClick(name, link) {
-    imageText.textContent = name;//name
-    imageZoomed.src = link;//устанавливаем ссылку
-    imageZoomed.alt = name;//устанавливаем подпись картинке name
-    openPopup(popupImage);//открываем попап универсальной функцией, которая навешивает обработчик Escape внутри себя
+    const ni = new PopupWithImage(".popup_image-zoom");
+    ni.setEventListeners()
+    document.addEventListener("keyup", ni._handleEscClose);
+    ni.open(name,link)
+    console.log("handleCardClick")
 }
 
 
@@ -185,7 +140,7 @@ class Popup {
         console.log("close")
     }
 
-    _handleEscClose() {
+    _handleEscClose(event) {
 //содержит логику закрытия попапа клавишей Esc.
         if (event.keyCode === esc) {
             const closestOpenedPopup = document.querySelector('.popup_opened');
@@ -198,27 +153,26 @@ class Popup {
 //оторый добавляет слушатель клика иконке закрытия попапа
         this._button = this._popup.querySelector(".popup__close-button");
         this._button.addEventListener('click', () => this.close(this._popup));
-        buttonEdit.addEventListener('click', this.open);
+       // buttonEdit.addEventListener('click', this.open);
         console.log("setEventListeners");
 
     }
 }
 
-const pop = new Popup('.popup_profile');
-pop.setEventListeners();
 //нужно разложить как то и передать параметры
 class PopupWithImage extends Popup {
     open = (name,link) => {
         imageText.textContent = name;//name
         imageZoomed.src = link;//устанавливаем ссылку
         imageZoomed.alt = name;//устанавливаем подпись картинке name
-        openPopup(popupImage)
+        this._popup.classList.add('popup_opened');
     }
 }
 
 class PopupWithForm extends Popup {
-    constructor(submit) {
+    constructor(popupSelector,submit) {
         super();
+        this._popup = document.querySelector(popupSelector);
         this._submit = submit;
         this._form = this._popup.querySelector(".popup__form");
     }
@@ -231,7 +185,7 @@ class PopupWithForm extends Popup {
     setEventListeners() {
         this._button = this._popup.querySelector(".popup__close-button");
         this._button.addEventListener('click', () => this.close(this._popup));
-        buttonEdit.addEventListener('click', this.open);
+       // buttonEdit.addEventListener('click', this.open);
         this._form.addEventListener('submit', this._submit);//функция обработчик колбэк сабмита
         console.log("setEventListenersPopupWithForm");
     }
@@ -239,7 +193,6 @@ class PopupWithForm extends Popup {
     close = () => {
         this._popup.classList.remove('popup_opened');
         document.removeEventListener("keyup", this._handleEscClose);
-        closePopup(popupElementAddNewCard);
         this._form.reset();
     }
 }
@@ -259,3 +212,11 @@ class UserInfo {
 
     }
 }
+
+const pop = new PopupWithForm('.popup_profile',submitEditProfileForm);
+pop.setEventListeners();
+buttonEdit.addEventListener('click', pop.open);
+
+const pop2 = new PopupWithForm('.popup_add',addNewCardElement);
+pop2.setEventListeners();
+buttonAddNewElement.addEventListener('click', pop2.open);
