@@ -39,7 +39,6 @@ const submitEditProfileForm = function (event) {
     profileName.textContent = name.value;
     profileInfo.textContent = info.value;
     closePopup(popupProfile);
-    console.log("submitEditProfileForm");
 }
 
 //добавить новую карточку - функция колбэк для класса
@@ -50,7 +49,6 @@ const addNewCardElement = function (event){
     formAdd.disableButton();
     closePopup(popupElementAddNewCard);
     event.target.reset();
-    console.log("addNewCardElement");
 }
 
 //универсальная функция закрытия попапа кроме изображений
@@ -63,7 +61,6 @@ function closePopup(popup) {
 function createCardItem(item) {
     const itemCard = new Card(elementTemplate, item,handleCardClick);
     return itemCard.createCard();
-    console.log("createCardItem");
 }
 
 
@@ -77,7 +74,7 @@ function addCard(item) {
 initialCards.forEach(addCard);
 
 const popups = document.querySelectorAll('.popup')
-
+//при желании удалить
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_opened')) {
@@ -132,7 +129,6 @@ class Popup {
     close = () => {
         this._popup.classList.remove('popup_opened');
         document.removeEventListener("keyup", this._handleEscClose);
-        console.log("close")
     }
 
     _handleEscClose(event) {
@@ -148,7 +144,6 @@ class Popup {
 //оторый добавляет слушатель клика иконке закрытия попапа
         this._button = this._popup.querySelector(".popup__close-button");
         this._button.addEventListener('click', () => this.close(this._popup));
-       // buttonEdit.addEventListener('click', this.open);
         console.log("setEventListeners");
 
     }
@@ -180,9 +175,7 @@ class PopupWithForm extends Popup {
     setEventListeners() {
         this._button = this._popup.querySelector(".popup__close-button");
         this._button.addEventListener('click', () => this.close(this._popup));
-       // buttonEdit.addEventListener('click', this.open);
         this._form.addEventListener('submit', this._submit);//функция обработчик колбэк сабмита
-        console.log("setEventListenersPopupWithForm");
     }
     //обнулять еще
     close = () => {
