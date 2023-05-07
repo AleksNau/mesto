@@ -1,7 +1,7 @@
 export default class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
-
+        this.popups = document.querySelectorAll('.popup')
     }
 //которые отвечают за открытие и закрытие попапа.
     open = () => {
@@ -27,7 +27,7 @@ export default class Popup {
     }
 
     overlay(){
-        popups.forEach((popup) => {
+        this.popups.forEach((popup) => {
             popup.addEventListener('mousedown', (evt) => {
                 if (evt.target.classList.contains('popup_opened')) {
                     this.close();

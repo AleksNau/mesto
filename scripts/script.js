@@ -3,6 +3,8 @@ import FormValidator from './FormValidator.js'
 import Card from './Card.js'
 import UserInfo from './UserInfo.js'
 import Popup from './Popup.js'
+import PopupWithForm from "./PopupWithForm.js";
+
 //переменные профиля
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
@@ -70,7 +72,7 @@ function addCard(item) {
 //отрисовка стандартных карточек
 initialCards.forEach(addCard);
 
-const popups = document.querySelectorAll('.popup')
+
 //при желании удалить
 
 
@@ -104,7 +106,7 @@ class Section {
 
 
 
-//нужно разложить как то и передать параметры
+//класс изображений
 class PopupWithImage extends Popup {
     open = (name,link) => {
         imageText.textContent = name;//name
@@ -114,39 +116,6 @@ class PopupWithImage extends Popup {
         this.overlay();
     }
 }
-
-class PopupWithForm extends Popup {
-    constructor(popupSelector,submit) {
-        super();
-        this._popup = document.querySelector(popupSelector);
-        this._submit = submit;
-        this._form = this._popup.querySelector(".popup__form");
-    }
-//собирает данные всех полей формы
-    _getInputValues(e) {
-        this._data = Object.fromEntries(new FormData(e.target));
-        return this._data;
-    }
-//добавить сабмит
-    setEventListeners() {
-        this._button = this._popup.querySelector(".popup__close-button");
-        this._button.addEventListener('click', () => this.close(this._popup));
-        this._form.addEventListener('submit', this.submitForm);//функция обработчик колбэк сабмита
-    }
-    //обнулять еще
-    close = () => {
-        this._popup.classList.remove('popup_opened');
-        document.removeEventListener("keyup", this._handleEscClose);
-        this._form.reset();
-    }
-
-    submitForm = (event) => {
-        this._submit(event);
-        this.close();
-    }
-}
-
-
 
 const profilePopupClass = new PopupWithForm('.popup_profile',submitEditProfileForm);
 profilePopupClass.setEventListeners();
