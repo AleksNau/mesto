@@ -3,7 +3,6 @@ export default class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
         this.popups = document.querySelectorAll('.popup');
-        this._esc = 27;
     }
 //которые отвечают за открытие и закрытие попапа.
     open = () => {
