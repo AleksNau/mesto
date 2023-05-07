@@ -1,6 +1,7 @@
 import {initialCards,validationConfig} from './constants.js'
 import FormValidator from './FormValidator.js'
 import Card from './Card.js'
+import UserInfo from './UserInfo.js'
 //переменные профиля
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
@@ -36,9 +37,9 @@ const esc = 27;
 //функции формы профиля - функция колбэк для класса
 const submitEditProfileForm = function (event) {
     event.preventDefault();
-    profileName.textContent = name.value;
-    profileInfo.textContent = info.value;
-    closePopup(popupProfile);
+    const profile = new UserInfo(name.value,info.value);
+    profile.setUserInfo();
+
 }
 
 //добавить новую карточку - функция колбэк для класса
@@ -47,13 +48,8 @@ const addNewCardElement = function (event){
 
     addCard({name: inputPlace.value, link: inputLink.value});
     formAdd.disableButton();
-    closePopup(popupElementAddNewCard);
-    event.target.reset();
-}
 
-//универсальная функция закрытия попапа кроме изображений
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
+    event.target.reset();
 }
 
 
@@ -75,16 +71,7 @@ initialCards.forEach(addCard);
 
 const popups = document.querySelectorAll('.popup')
 //при желании удалить
-popups.forEach((popup) => {
-    popup.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup)
-        }
-        if (evt.target.classList.contains('popup__close')) {
-            closePopup(popup)
-        }
-    })
-})
+
 
 const formProfile = new FormValidator(popupFormProfile, validationConfig);
 formProfile.enableValidation();
@@ -123,7 +110,9 @@ class Popup {
     open = () => {
         this._popup.classList.add('popup_opened');
         document.addEventListener("keyup", this._handleEscClose);
-        console.log("open")
+        this.overlay();
+        console.log("open");
+
     }
 
     close = () => {
@@ -134,10 +123,23 @@ class Popup {
     _handleEscClose(event) {
 //содержит логику закрытия попапа клавишей Esc.
         if (event.keyCode === esc) {
-            const closestOpenedPopup = document.querySelector('.popup_opened');
-            closePopup(closestOpenedPopup);
+            this.closestOpenedPopup = document.querySelector('.popup_opened');
+            this.closestOpenedPopup.classList.remove('popup_opened');
             console.log("_handleEscClose");
         }
+    }
+
+    overlay(){
+        popups.forEach((popup) => {
+            popup.addEventListener('mousedown', (evt) => {
+                if (evt.target.classList.contains('popup_opened')) {
+                    this.close();
+                }
+                if (evt.target.classList.contains('popup__close-button')) {
+                    this.close();
+                }
+            })
+        })
     }
 
     setEventListeners() {
@@ -156,6 +158,7 @@ class PopupWithImage extends Popup {
         imageZoomed.src = link;//устанавливаем ссылку
         imageZoomed.alt = name;//устанавливаем подпись картинке name
         this._popup.classList.add('popup_opened');
+        this.overlay();
     }
 }
 
@@ -175,7 +178,7 @@ class PopupWithForm extends Popup {
     setEventListeners() {
         this._button = this._popup.querySelector(".popup__close-button");
         this._button.addEventListener('click', () => this.close(this._popup));
-        this._form.addEventListener('submit', this._submit);//функция обработчик колбэк сабмита
+        this._form.addEventListener('submit', this.submitForm);//функция обработчик колбэк сабмита
     }
     //обнулять еще
     close = () => {
@@ -183,23 +186,14 @@ class PopupWithForm extends Popup {
         document.removeEventListener("keyup", this._handleEscClose);
         this._form.reset();
     }
-}
 
-class UserInfo {
-    constructor(name,info) {
-        this._name = name;
-        this._info = info;
-    }
-// возвращает объект с данными пользователя. Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
-    getUserInfo() {
-
-    }
-
-//принимает новые данные пользователя и добавляет их на страницу.
-    setUserInfo() {
-
+    submitForm = (event) => {
+        this._submit(event);
+        this.close();
     }
 }
+
+
 
 const profilePopupClass = new PopupWithForm('.popup_profile',submitEditProfileForm);
 profilePopupClass.setEventListeners();
