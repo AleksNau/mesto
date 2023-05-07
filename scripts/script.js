@@ -33,11 +33,6 @@ const elementTemplate = document.querySelector(".template-item").content;
 //код кнопки esc
 const esc = 27;
 
-// находим все крестики проекта по универсальному селектору
-const closeButtons = document.querySelectorAll('.popup__close-button');
-
-//функции профиля
-
 //функции формы профиля - функция колбэк для класса
 const submitEditProfileForm = function (event) {
     event.preventDefault();
@@ -213,10 +208,10 @@ class UserInfo {
     }
 }
 
-const pop = new PopupWithForm('.popup_profile',submitEditProfileForm);
-pop.setEventListeners();
-buttonEdit.addEventListener('click', pop.open);
+const profilePopupClass = new PopupWithForm('.popup_profile',submitEditProfileForm);
+profilePopupClass.setEventListeners();
+buttonEdit.addEventListener('click', profilePopupClass.open);
 
-const pop2 = new PopupWithForm('.popup_add',addNewCardElement);
-pop2.setEventListeners();
-buttonAddNewElement.addEventListener('click', pop2.open);
+const addNewCardPopupClass = new PopupWithForm('.popup_add',addNewCardElement);
+addNewCardPopupClass.setEventListeners();
+buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);
