@@ -45,15 +45,7 @@ const submitEditProfileForm = function (event) {
 
 }
 
-//добавить новую карточку - функция колбэк для класса
-const addNewCardElement = function (event){
-    event.preventDefault();
 
-    addCard({name: inputPlace.value, link: inputLink.value});
-    formAdd.disableButton();
-
-    event.target.reset();
-}
 
 
 //Создаем класс Card
@@ -64,13 +56,10 @@ function createCardItem(item) {
 
 
 //добавить карточку на страницу
-function addCard(item) {
-    const cardItem = createCardItem(item);
-    elementsList.prepend(cardItem);
-}
+
 
 //отрисовка стандартных карточек
-initialCards.forEach(addCard);
+
 
 
 //при желании удалить
@@ -99,19 +88,34 @@ class Section {
         this._conteiner = conteinerSelector;
     }
 
-    addItem() {
-//принимает DOM-элемент и добавляет его в контейнер
-
+    defoultItems() {
         this._items.forEach((item) => {
             const cardItem = this._renderer(item);
             this._conteiner.prepend(cardItem);
-            console.log(item)});
+        });
+    }
+
+    addItem() {
+//принимает DOM-элемент и добавляет его в контейнер
+        const cardItem = this._renderer(this._items);
+        this._conteiner.prepend(cardItem);
 
     }
 }
 
+//добавить новую карточку - функция колбэк для класса
+function addNewCardElement (event){
+    event.preventDefault();
+    const newSection2 = new Section({name: inputPlace.value, link: inputLink.value},createCardItem,elementsList);
+    newSection2.addItem();
+
+    formAdd.disableButton();
+
+    event.target.reset();
+}
+
 const newSection = new Section(initialCards,createCardItem,elementsList);
-newSection.addItem();
+newSection.defoultItems();
 
 
 //класс изображений
