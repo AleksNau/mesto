@@ -35,7 +35,7 @@ const inputLink = popupElementAddNewCard.querySelector(".popup__input_type_image
 const elementsList = document.querySelector(".elements");
 const elementTemplate = document.querySelector(".template-item").content;
 //код кнопки esc
-const esc = 27;
+
 
 //функции формы профиля - функция колбэк для класса
 const submitEditProfileForm = function (event) {
