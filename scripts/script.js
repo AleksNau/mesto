@@ -93,7 +93,7 @@ function handleCardClick(name, link) {
 
 
 class Section {
-    constructor({items, renderer},conteinerSelector) {
+    constructor(items, renderer,conteinerSelector) {
         this._items = items;
         this._renderer = renderer;
         this._conteiner = conteinerSelector;
@@ -101,9 +101,17 @@ class Section {
 
     addItem() {
 //принимает DOM-элемент и добавляет его в контейнер
+
+        this._items.forEach((item) => {
+            const cardItem = this._renderer(item);
+            this._conteiner.prepend(cardItem);
+            console.log(item)});
+
     }
 }
 
+const newSection = new Section(initialCards,createCardItem,elementsList);
+newSection.addItem();
 
 
 //класс изображений
