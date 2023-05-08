@@ -9,8 +9,6 @@ export default class Popup {
         this._popup.classList.add('popup_opened');
         document.addEventListener("keyup", this._handleEscClose);
         this.overlay();
-        console.log("open");
-
     }
 
     close = () => {
@@ -23,7 +21,6 @@ export default class Popup {
         if (event.key === 'Escape') {
             this.closestOpenedPopup = document.querySelector('.popup_opened');
             this.closestOpenedPopup.classList.remove('popup_opened');
-            console.log("_handleEscClose");
         }
     }
 
@@ -44,7 +41,5 @@ export default class Popup {
 //оторый добавляет слушатель клика иконке закрытия попапа
         this._button = this._popup.querySelector(".popup__close-button");
         this._button.addEventListener('click', () => this.close(this._popup));
-        console.log("setEventListeners");
-
     }
 }
