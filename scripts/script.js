@@ -5,7 +5,7 @@ import UserInfo from './UserInfo.js'
 import Popup from './Popup.js'
 import PopupWithForm from "./PopupWithForm.js";
 import Section from './Section.js'
-import PopupWithImage from './PopupWithImage.js'
+
 //переменные профиля
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
@@ -38,55 +38,61 @@ const elementTemplate = document.querySelector(".template-item").content;
 //код кнопки esc
 
 
+//функции формы профиля - функция колбэк для класса
+const submitEditProfileForm = function (event) {
+    event.preventDefault();
+    const profile = new UserInfo(name.value,info.value);
+    profile.setUserInfo();
+
+}
+
+//Создаем класс Card
+function createCardItem(item) {
+    const itemCard = new Card(elementTemplate, item,handleCardClick);
+    return itemCard.createCard();
+}
+
 const formProfile = new FormValidator(popupFormProfile, validationConfig);
 formProfile.enableValidation();
 const formAdd = new FormValidator(popupFormAdd, validationConfig);
 formAdd.enableValidation();
 
 
+function handleCardClick(name, link) {
+    const handleImage = new PopupWithImage(".popup_image-zoom");
+    handleImage.setEventListeners();
+    document.addEventListener("keyup", handleImage._handleEscClose);
+    handleImage.open(name,link);
+}
 
-//передаём функцию createCardItem в renderer
-const newSection = new Section(initialCards,(item) => {
-    const itemCard = new Card(elementTemplate, item,(name, link) => {
-        const imagePopup = new PopupWithImage(".popup_image-zoom");
-        imagePopup.setEventListeners()
-        document.addEventListener("keyup", imagePopup._handleEscClose);
-        imagePopup.open(name,link)
-    });
-    return itemCard.createCard();
-},elementsList);
+//добавить новую карточку - функция колбэк для класса
+function addNewCardElement (event){
+    event.preventDefault();
+    const addSection = new Section({name: inputPlace.value, link: inputLink.value},createCardItem,elementsList);
+    addSection.addItem();
+    formAdd.disableButton();
+    event.target.reset();
+}
+
+const newSection = new Section(initialCards,createCardItem,elementsList);
 newSection.defoultItems();
 
 
 //класс изображений
+class PopupWithImage extends Popup {
+    open = (name,link) => {
+        imageText.textContent = name;//name
+        imageZoomed.src = link;//устанавливаем ссылку
+        imageZoomed.alt = name;//устанавливаем подпись картинке name
+        this._popup.classList.add('popup_opened');
+        this.overlay();
+    }
+}
 
-//передаем функцию submitEditProfileForm
-const profilePopupClass = new PopupWithForm('.popup_profile',(event) => {
-    event.preventDefault();
-    const profile = new UserInfo(name.value,info.value);
-    profile.setUserInfo();
-});
+const profilePopupClass = new PopupWithForm('.popup_profile',submitEditProfileForm);
 profilePopupClass.setEventListeners();
 buttonEdit.addEventListener('click', profilePopupClass.open);
-//передаем addNewCardElement
-const addNewCardPopupClass = new PopupWithForm('.popup_add',(event) => {
-    event.preventDefault();
-    //передаём функцию createCardItem в renderer
-    const newSection2 = new Section({name: inputPlace.value, link: inputLink.value},(item) => {
-        //передаем функцию handleCardClick
-        const itemCard = new Card(elementTemplate, item,(name, link) => {
-            const ni = new PopupWithImage(".popup_image-zoom");
-            ni.setEventListeners()
-            document.addEventListener("keyup", ni._handleEscClose);
-            ni.open(name,link)
-        });
-        return itemCard.createCard();
-    },elementsList);
-    newSection2.addItem();
 
-    formAdd.disableButton();
-
-    event.target.reset();
-});
+const addNewCardPopupClass = new PopupWithForm('.popup_add',addNewCardElement);
 addNewCardPopupClass.setEventListeners();
 buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);
