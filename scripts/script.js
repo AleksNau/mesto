@@ -3,14 +3,12 @@ import FormValidator from './FormValidator.js'
 import Card from './Card.js'
 import UserInfo from './UserInfo.js'
 import Popup from './Popup.js'
-import PopupWithForm from "./PopupWithForm.js";
+import PopupWithForm from "./PopupWithForm.js"
 import Section from './Section.js'
-
+import PopupWithImage from './PopupWithImage.js'
 //переменные профиля
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
-const profileName = profileElement.querySelector('.profile__name');
-const profileInfo = profileElement.querySelector('.profile__info');
 
 // переменные формы профиля
 const popupProfile = document.querySelector('.popup_profile');
@@ -23,8 +21,6 @@ const buttonAddNewElement = profileElement.querySelector(".profile__add-button")
 
 // переменные формы изображения
 export const popupImage = document.querySelector(".popup_image-zoom");
-const imageZoomed = popupImage.querySelector(".popup__image");
-const imageText = popupImage.querySelector(".popup__place-name");
 
 // инпуты
 const name = popupProfile.querySelector('.popup__input_type_name');
@@ -35,15 +31,13 @@ const inputLink = popupElementAddNewCard.querySelector(".popup__input_type_image
 //карточки и темплейт
 const elementsList = document.querySelector(".elements");
 const elementTemplate = document.querySelector(".template-item").content;
-//код кнопки esc
 
 
 //функции формы профиля - функция колбэк для класса
-const submitEditProfileForm = function (event) {
+function submitEditProfileForm (event) {
     event.preventDefault();
     const profile = new UserInfo(name.value,info.value);
     profile.setUserInfo();
-
 }
 
 //Создаем класс Card
@@ -77,17 +71,6 @@ function addNewCardElement (event){
 const newSection = new Section(initialCards,createCardItem,elementsList);
 newSection.defoultItems();
 
-
-//класс изображений
-class PopupWithImage extends Popup {
-    open = (name,link) => {
-        imageText.textContent = name;//name
-        imageZoomed.src = link;//устанавливаем ссылку
-        imageZoomed.alt = name;//устанавливаем подпись картинке name
-        this._popup.classList.add('popup_opened');
-        this.overlay();
-    }
-}
 
 const profilePopupClass = new PopupWithForm('.popup_profile',submitEditProfileForm);
 profilePopupClass.setEventListeners();
