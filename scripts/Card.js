@@ -1,4 +1,3 @@
-
 export default class Card {
     //принимает в себя два параметра
     constructor(templateSelector, data, handleCardClick) {
@@ -17,7 +16,6 @@ export default class Card {
     #deleteCard = () => {
         this.element.remove();
     }
-
 
 
 //Метод навешивания всех слушателей
