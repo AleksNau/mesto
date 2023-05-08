@@ -4,7 +4,8 @@ import Card from './Card.js'
 import UserInfo from './UserInfo.js'
 import Popup from './Popup.js'
 import PopupWithForm from "./PopupWithForm.js";
-
+import Section from './Section.js'
+import PopupWithImage from './PopupWithImage.js'
 //переменные профиля
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
@@ -44,30 +45,31 @@ formAdd.enableValidation();
 
 
 
-class Section {
-    constructor(items, renderer,conteinerSelector) {
-        this._items = items;
-        this._renderer = renderer;
-        this._conteiner = conteinerSelector;
-    }
+//передаём функцию createCardItem в renderer
+const newSection = new Section(initialCards,(item) => {
+    const itemCard = new Card(elementTemplate, item,(name, link) => {
+        const imagePopup = new PopupWithImage(".popup_image-zoom");
+        imagePopup.setEventListeners()
+        document.addEventListener("keyup", imagePopup._handleEscClose);
+        imagePopup.open(name,link)
+    });
+    return itemCard.createCard();
+},elementsList);
+newSection.defoultItems();
 
-    defoultItems() {
-        this._items.forEach((item) => {
-            const cardItem = this._renderer(item);
-            this._conteiner.prepend(cardItem);
-        });
-    }
 
-    addItem() {
-//принимает DOM-элемент и добавляет его в контейнер
-        const cardItem = this._renderer(this._items);
-        this._conteiner.prepend(cardItem);
+//класс изображений
 
-    }
-}
-
-//добавить новую карточку - функция колбэк для класса
-function addNewCardElement (event){
+//передаем функцию submitEditProfileForm
+const profilePopupClass = new PopupWithForm('.popup_profile',(event) => {
+    event.preventDefault();
+    const profile = new UserInfo(name.value,info.value);
+    profile.setUserInfo();
+});
+profilePopupClass.setEventListeners();
+buttonEdit.addEventListener('click', profilePopupClass.open);
+//передаем addNewCardElement
+const addNewCardPopupClass = new PopupWithForm('.popup_add',(event) => {
     event.preventDefault();
     //передаём функцию createCardItem в renderer
     const newSection2 = new Section({name: inputPlace.value, link: inputLink.value},(item) => {
@@ -85,39 +87,6 @@ function addNewCardElement (event){
     formAdd.disableButton();
 
     event.target.reset();
-}
-//передаём функцию createCardItem в renderer
-const newSection = new Section(initialCards,(item) => {
-    const itemCard = new Card(elementTemplate, item,(name, link) => {
-        const ni = new PopupWithImage(".popup_image-zoom");
-        ni.setEventListeners()
-        document.addEventListener("keyup", ni._handleEscClose);
-        ni.open(name,link)
-    });
-    return itemCard.createCard();
-},elementsList);
-newSection.defoultItems();
-
-
-//класс изображений
-class PopupWithImage extends Popup {
-    open = (name,link) => {
-        imageText.textContent = name;//name
-        imageZoomed.src = link;//устанавливаем ссылку
-        imageZoomed.alt = name;//устанавливаем подпись картинке name
-        this._popup.classList.add('popup_opened');
-        this.overlay();
-    }
-}
-//передаем функцию submitEditProfileForm
-const profilePopupClass = new PopupWithForm('.popup_profile',(event) => {
-    event.preventDefault();
-    const profile = new UserInfo(name.value,info.value);
-    profile.setUserInfo();
 });
-profilePopupClass.setEventListeners();
-buttonEdit.addEventListener('click', profilePopupClass.open);
-
-const addNewCardPopupClass = new PopupWithForm('.popup_add',addNewCardElement);
 addNewCardPopupClass.setEventListeners();
 buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);

@@ -20,7 +20,7 @@ export default class Popup {
 
     _handleEscClose(event) {
 //содержит логику закрытия попапа клавишей Esc.
-        if (event.keyCode === esc) {
+        if (event.key === 'Escape') {
             this.closestOpenedPopup = document.querySelector('.popup_opened');
             this.closestOpenedPopup.classList.remove('popup_opened');
             console.log("_handleEscClose");
