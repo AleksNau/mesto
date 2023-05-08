@@ -45,25 +45,11 @@ const submitEditProfileForm = function (event) {
 
 }
 
-
-
-
 //Создаем класс Card
 function createCardItem(item) {
     const itemCard = new Card(elementTemplate, item,handleCardClick);
     return itemCard.createCard();
 }
-
-
-//добавить карточку на страницу
-
-
-//отрисовка стандартных карточек
-
-
-
-//при желании удалить
-
 
 const formProfile = new FormValidator(popupFormProfile, validationConfig);
 formProfile.enableValidation();
