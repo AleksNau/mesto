@@ -21,8 +21,6 @@ const buttonAddNewElement = profileElement.querySelector(".profile__add-button")
 // инпуты
 const name = popupProfile.querySelector('.popup__input_type_name');
 const info = popupProfile.querySelector('.popup__input_type_info');
-const inputPlace = popupElementAddNewCard.querySelector(".popup__input_type_place");
-const inputLink = popupElementAddNewCard.querySelector(".popup__input_type_image-link");
 
 //карточки и темплейт
 const elementsList = document.querySelector(".elements");
