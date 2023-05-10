@@ -27,15 +27,17 @@ const inputLink = popupElementAddNewCard.querySelector(".popup__input_type_image
 //карточки и темплейт
 const elementsList = document.querySelector(".elements");
 const elementTemplate = document.querySelector(".template-item").content;
-
-
+const profile = new UserInfo(name.value, info.value);
 //функции формы профиля - функция колбэк для класса
 function submitEditProfileForm(event, item) {
     event.preventDefault();
     const profile = new UserInfo(item.Name, item.Info);
     profile.setUserInfo();
+    fill();
 }
-
+function fill() {
+    profile.setPopupInfo(profile.getUserInfo())
+}
 //Создаем класс Card
 function createCardItem(item) {
     const itemCard = new Card(elementTemplate, item, handleCardClick);
