@@ -56,9 +56,10 @@ function handleCardClick(name, link) {
 }
 
 //добавить новую карточку - функция колбэк для класса
-function addNewCardElement(event) {
+function addNewCardElement(event,item) {
     event.preventDefault();
-    const addSection = new Section({name: inputPlace.value, link: inputLink.value}, createCardItem, elementsList);
+//сделать линк
+    const addSection = new Section({name: item.place, link: inputLink.value}, createCardItem, elementsList);
     addSection.addItem();
     formAdd.disableButton();
     event.target.reset();
