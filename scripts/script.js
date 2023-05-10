@@ -33,11 +33,9 @@ function submitEditProfileForm(event, item) {
     event.preventDefault();
     const profile = new UserInfo(item.Name, item.Info);
     profile.setUserInfo();
-    fill();
+
 }
-function fill() {
-    profile.setPopupInfo(profile.getUserInfo())
-}
+
 //Создаем класс Card
 function createCardItem(item) {
     const itemCard = new Card(elementTemplate, item, handleCardClick);
@@ -61,7 +59,7 @@ function handleCardClick(name, link) {
 function addNewCardElement(event,item) {
     event.preventDefault();
 //сделать линк
-    const addSection = new Section({name: item.place, link: inputLink.value}, createCardItem, elementsList);
+    const addSection = new Section({name: item.place, link: item.imagelink}, createCardItem, elementsList);
     addSection.addItem();
     formAdd.disableButton();
     event.target.reset();
@@ -72,7 +70,10 @@ newSection.defoultItems();
 
 const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
 profilePopupClass.setEventListeners();
-buttonEdit.addEventListener('click', profilePopupClass.open);
+buttonEdit.addEventListener('click',()=> {
+    profile.setPopupInfo(profile.getUserInfo());
+    profilePopupClass.open();
+} );
 
 const addNewCardPopupClass = new PopupWithForm('.popup_add', addNewCardElement);
 addNewCardPopupClass.setEventListeners();

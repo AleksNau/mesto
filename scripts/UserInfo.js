@@ -13,7 +13,7 @@ export default class UserInfo {
 
 // возвращает объект с данными пользователя. Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
     getUserInfo() {
-        return {name: this.popupName.value, info: this.popupinfo.value};
+        return {name: this.profileName.textContent, info: this.profileInfo.textContent};
     }
 
 //принимает новые данные пользователя и добавляет их на страницу.
