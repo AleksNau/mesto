@@ -32,8 +32,6 @@ const elementTemplate = document.querySelector(".template-item").content;
 //функции формы профиля - функция колбэк для класса
 function submitEditProfileForm(event, item) {
     event.preventDefault();
-    console.log(item.Name);
-    console.log(item.Info);
     const profile = new UserInfo(item.Name, item.Info);
     profile.setUserInfo();
 }
