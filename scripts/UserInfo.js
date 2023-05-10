@@ -1,6 +1,6 @@
 export default class UserInfo {
 
-    constructor(name, info) {
+    constructor(name,info) {
         this._name = name;
         this._info = info;
         this.profileElement = document.querySelector('.profile');

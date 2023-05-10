@@ -29,7 +29,7 @@ export default class PopupWithForm extends Popup {
     }
 
     submitForm = (event) => {
-        this._submit(event);
+        this._submit(event, this._getInputValues(event));
         this.close();
     }
 }
