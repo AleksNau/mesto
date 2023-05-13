@@ -1,4 +1,3 @@
-
 export default class FormValidator {
 
     //добавить в параметры конструктора объект с его параметрами

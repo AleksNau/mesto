@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./pages/index.css">
+
     <title>Проект Место</title>
 </head>
 
 <body class="root">
 <div class="page">
     <header class="header">
-        <img src="./images/logo.svg" alt="логотип" class="header__logo">
+        <img src="<%=require('./images/logo.svg')%>" alt="логотип" class="header__logo">
     </header>
     <main class="main">
         <section class="profile">
             <div class="profile__info-conteiner">
-                <img src="./blocks/profile/__avatar/images/kusto.jpg" alt="Жак Кусто" class="profile__avatar">
+                <img src="<%=require('./blocks/profile/__avatar/images/kusto.jpg')%>"alt="Жак Кусто" class="profile__avatar">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button type="button" class="profile__edit-button"></button>
                 <p class="profile__info">Исследователь океана</p>
@@ -61,7 +61,7 @@
                         <span id="place-error" class="popup__error"></span>
                     </label>
                     <label>
-                        <input name="image-link" id="image-link" type="url" class="popup__input popup__input_type_image-link"
+                        <input name="imagelink" id="image-link" type="url" class="popup__input popup__input_type_image-link"
                                placeholder="Ссылка на картинку" required>
                         <span id="image-link-error" class="popup__error"></span>
                     </label>
@@ -89,10 +89,7 @@
         </div>
     </li>
 </template>
-<script type="module" src="./scripts/constants.js"></script>
-<script type="module" src="./scripts/script.js"></script>
-<script type="module" src="./scripts/FormValidator.js"></script>
-<script type="module" src="./scripts/Card.js"></script>
+
 </body>
 
 </html>
