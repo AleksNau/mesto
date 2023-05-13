@@ -16,6 +16,7 @@ export default class Card {
 //метод удаления карточки
     #deleteCard = () => {
         this.element.remove();
+        this.element = null;
     }
 
 
