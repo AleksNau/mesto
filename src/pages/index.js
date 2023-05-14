@@ -60,7 +60,6 @@ function createCardItem(item) {
 
 function handleCardClick(name, link) {
     handleImage.setEventListeners();
-    document.addEventListener("keyup", handleImage._handleEscClose);
     handleImage.open(name, link);
 }
 
