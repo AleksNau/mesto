@@ -30,9 +30,9 @@ export default class Popup {
                 if (evt.target.classList.contains('popup_opened')) {
                     this.close();
                 }
-                if (evt.target.classList.contains('popup__close-button')) {
+/*                if (evt.target.classList.contains('popup__close-button')) {
                     this.close();
-                }
+                }*/
             })
         })
     }

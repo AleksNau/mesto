@@ -2,7 +2,7 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
     constructor(popupSelector, submit) {
-        super(popupSelector);
+        super(popupSelector,close);
         this._submit = submit;
         this._form = this._popup.querySelector(".popup__form");
     }
@@ -16,16 +16,13 @@ export default class PopupWithForm extends Popup {
 //добавить сабмит
     setEventListeners() {
         this._button = this._popup.querySelector(".popup__close-button");
-        this._button.addEventListener('click', () => this.close());
+        this._button.addEventListener('click', () => {
+            this.close();
+            this._form.reset();
+        });
         this._form.addEventListener('submit', this.submitForm);//функция обработчик колбэк сабмита
     }
 
-    //обнулять еще
-    close = () => {
-        this._popup.classList.remove('popup_opened');
-        document.removeEventListener("keyup", this._handleEscClose);
-        this._form.reset();
-    }
 
     submitForm = (event) => {
         this._submit(event, this._getInputValues());
