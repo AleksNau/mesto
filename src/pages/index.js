@@ -44,6 +44,8 @@ profilePopupClass.setEventListeners();
 const addNewCardPopupClass = new PopupWithForm('.popup_add', addNewCardElement);
 addNewCardPopupClass.setEventListeners();
 
+const handleImage = new PopupWithImage(".popup_image-zoom");
+
 //функции формы профиля - функция колбэк для класса
 function submitEditProfileForm(event) {
     event.preventDefault();
@@ -57,7 +59,6 @@ function createCardItem(item) {
 }
 
 function handleCardClick(name, link) {
-    const handleImage = new PopupWithImage(".popup_image-zoom");
     handleImage.setEventListeners();
     document.addEventListener("keyup", handleImage._handleEscClose);
     handleImage.open(name, link);
@@ -67,8 +68,7 @@ function handleCardClick(name, link) {
 function addNewCardElement(event, item) {
     event.preventDefault();
     const data = new Object({name: item.place, link: item.imagelink})
-    const addSection = new Section(data, createCardItem, cardsContainer);
-    addSection.addItem(data);
+    newSection.addItem(data);
     formAdd.disableButton();
     event.target.reset();
 }
