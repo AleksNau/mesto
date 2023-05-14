@@ -68,7 +68,7 @@ function handleCardClick(name, link) {
 function addNewCardElement(event, item) {
     event.preventDefault();
     const addSection = new Section({name: item.place, link: item.imagelink}, createCardItem, elementsList);
-    addSection.addItem();
+    addSection.addItem({name: item.place, link: item.imagelink});
     formAdd.disableButton();
     event.target.reset();
 }
