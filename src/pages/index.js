@@ -48,7 +48,7 @@ addNewCardPopupClass.setEventListeners();
 function submitEditProfileForm(event, item) {
     event.preventDefault();
     const profile = new UserInfo(item.Name, item.Info);
-    profile.setUserInfo();
+    profile.setUserInfo(profile.getUserInfo());
 }
 
 //Создаем класс Card
@@ -75,7 +75,7 @@ function addNewCardElement(event, item) {
 
 //навесить слушатель  на кнопку и передать ей инфо с профиля
 buttonEdit.addEventListener('click', () => {
-    profile.setPopupInfo(profile.getUserInfo());
+    profile.setPopupInfo();
     profilePopupClass.open();
 });
 
