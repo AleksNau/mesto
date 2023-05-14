@@ -7,15 +7,13 @@ export default class Section {
 
     defoultItems() {
         this._items.forEach((item) => {
-            const cardItem = this._renderer(item);
-            this._conteiner.prepend(cardItem);
+            this.addItem(item)
         });
     }
 
 //принимает DOM-элемент и добавляет его в контейнер
-    addItem() {
-        const cardItem = this._renderer(this._items);
+    addItem(item) {
+        const cardItem = this._renderer(item);
         this._conteiner.prepend(cardItem);
-
     }
 }

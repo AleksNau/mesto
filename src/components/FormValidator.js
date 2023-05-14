@@ -18,8 +18,8 @@ export default class FormValidator {
         this.#setEventListeners();
     }
 
-    #hasInvalidInput(formInputs) {
-        return formInputs.some(item => !item.validity.valid);
+    #hasInvalidInput() {
+        return this.inputList.some(item => !item.validity.valid);
     }
 
     #setEventListeners() {
@@ -29,7 +29,7 @@ export default class FormValidator {
             input.addEventListener('input', () => {
                 this.#checkInputValidity(input);
                 //проверить есть ли хоть один незаполеный инпут
-                if (this.#hasInvalidInput(this.inputList)) {
+                if (this.#hasInvalidInput()) {
                     this.disableButton();
                 } else {
                     this.enableButton();

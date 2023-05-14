@@ -5,16 +5,18 @@ export default class Card {
         this._template = templateSelector;
         this._handleCardClick = handleCardClick;
 
+
     }
 
 //метод навешивания лайка
-    #toggleLike(event) {
-        event.currentTarget.classList.toggle("elements__like_active");
+    #toggleLike () {
+        this.classList.toggle("elements__like_active");
     }
 
 //метод удаления карточки
     #deleteCard = () => {
         this.element.remove();
+        this.element = null;
     }
 
 

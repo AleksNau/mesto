@@ -1,5 +1,5 @@
 import './index.css'
-import {initialCards, validationConfig} from '../components/constants.js'
+import {initialCards, validationConfig} from '../utils/constants.js'
 import FormValidator from '../components/FormValidator.js'
 import Card from '../components/Card.js'
 import UserInfo from '../components/UserInfo.js'
@@ -24,10 +24,10 @@ const name = popupProfile.querySelector('.popup__input_type_name');
 const info = popupProfile.querySelector('.popup__input_type_info');
 
 //карточки и темплейт
-const elementsList = document.querySelector(".elements");
+const cardsContainer = document.querySelector(".elements");
 const elementTemplate = document.querySelector(".template-item").content;
 //создаем профиль
-const profile = new UserInfo(name.value, info.value);
+const profile = new UserInfo();
 //включаем валидацию попап-профиля
 const formProfile = new FormValidator(popupFormProfile, validationConfig);
 formProfile.enableValidation();
@@ -35,7 +35,7 @@ formProfile.enableValidation();
 const formAdd = new FormValidator(popupFormAdd, validationConfig);
 formAdd.enableValidation();
 //создать секцию и отрисовать стартовые карточки
-const newSection = new Section(initialCards, createCardItem, elementsList);
+const newSection = new Section(initialCards, createCardItem, cardsContainer);
 newSection.defoultItems();
 //создать попап профиль и навесить слушатели
 const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
@@ -44,11 +44,12 @@ profilePopupClass.setEventListeners();
 const addNewCardPopupClass = new PopupWithForm('.popup_add', addNewCardElement);
 addNewCardPopupClass.setEventListeners();
 
+const handleImage = new PopupWithImage(".popup_image-zoom");
+
 //функции формы профиля - функция колбэк для класса
-function submitEditProfileForm(event, item) {
+function submitEditProfileForm(event) {
     event.preventDefault();
-    const profile = new UserInfo(item.Name, item.Info);
-    profile.setUserInfo();
+    profile.setUserInfo({name:name.value,info: info.value});
 }
 
 //Создаем класс Card
@@ -58,17 +59,15 @@ function createCardItem(item) {
 }
 
 function handleCardClick(name, link) {
-    const handleImage = new PopupWithImage(".popup_image-zoom");
     handleImage.setEventListeners();
-    document.addEventListener("keyup", handleImage._handleEscClose);
     handleImage.open(name, link);
 }
 
 //добавить новую карточку - функция колбэк для класса
 function addNewCardElement(event, item) {
     event.preventDefault();
-    const addSection = new Section({name: item.place, link: item.imagelink}, createCardItem, elementsList);
-    addSection.addItem();
+    const data = new Object({name: item.place, link: item.imagelink})
+    newSection.addItem(data);
     formAdd.disableButton();
     event.target.reset();
 }

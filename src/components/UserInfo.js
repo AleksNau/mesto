@@ -1,8 +1,6 @@
 export default class UserInfo {
 
-    constructor(name,info) {
-        this._name = name;
-        this._info = info;
+    constructor() {
         this.profileElement = document.querySelector('.profile');
         this.profileName = this.profileElement.querySelector('.profile__name');
         this.profileInfo = this.profileElement.querySelector('.profile__info');
@@ -17,13 +15,13 @@ export default class UserInfo {
     }
 
 //принимает новые данные пользователя и добавляет их на страницу.
-    setUserInfo() {
-        this.profileName.textContent = this._name;
-        this.profileInfo.textContent = this._info;
+    setUserInfo(userData) {
+        this.profileName.textContent = userData.name;
+        this.profileInfo.textContent = userData.info;
     }
 
-    setPopupInfo(item) {
-       this.popupName.value = item.name;
-        this.popupinfo.value = item.info;
+    setPopupInfo() {
+       this.popupName.value = this.profileName.textContent;
+        this.popupinfo.value = this.profileInfo.textContent;
     }
 }
