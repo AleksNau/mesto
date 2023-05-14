@@ -5,7 +5,7 @@ export default class Popup {
     }
 
 //которые отвечают за открытие и закрытие попапа.
-    open = () => {
+    open () {
         this._popup.classList.add('popup_opened');
         document.addEventListener("keyup", this._handleEscClose);
         this.overlay();
