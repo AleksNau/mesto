@@ -16,7 +16,7 @@ export default class PopupWithForm extends Popup {
 //добавить сабмит
     setEventListeners() {
         this._button = this._popup.querySelector(".popup__close-button");
-        this._button.addEventListener('click', () => this.close(this._popup));
+        this._button.addEventListener('click', () => this.close());
         this._form.addEventListener('submit', this.submitForm);//функция обработчик колбэк сабмита
     }
 
@@ -24,10 +24,11 @@ export default class PopupWithForm extends Popup {
     close = () => {
         this._popup.classList.remove('popup_opened');
         document.removeEventListener("keyup", this._handleEscClose);
+        this._form.reset();
     }
 
     submitForm = (event) => {
-        this._submit(event, this._getInputValues(event));
+        this._submit(event, this._getInputValues());
         this.close();
     }
 }
