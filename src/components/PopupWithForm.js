@@ -8,8 +8,8 @@ export default class PopupWithForm extends Popup {
     }
 
 //собирает данные всех полей формы
-    _getInputValues(e) {
-        this._data = Object.fromEntries(new FormData(e.target));
+    _getInputValues() {
+        this._data = Object.fromEntries(new FormData(this._form));
         return this._data;
     }
 
