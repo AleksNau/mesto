@@ -24,7 +24,7 @@ const name = popupProfile.querySelector('.popup__input_type_name');
 const info = popupProfile.querySelector('.popup__input_type_info');
 
 //карточки и темплейт
-const elementsList = document.querySelector(".elements");
+const cardsContainer = document.querySelector(".elements");
 const elementTemplate = document.querySelector(".template-item").content;
 //создаем профиль
 const profile = new UserInfo(name.value, info.value);
@@ -35,7 +35,7 @@ formProfile.enableValidation();
 const formAdd = new FormValidator(popupFormAdd, validationConfig);
 formAdd.enableValidation();
 //создать секцию и отрисовать стартовые карточки
-const newSection = new Section(initialCards, createCardItem, elementsList);
+const newSection = new Section(initialCards, createCardItem, cardsContainer);
 newSection.defoultItems();
 //создать попап профиль и навесить слушатели
 const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
@@ -67,7 +67,7 @@ function handleCardClick(name, link) {
 //добавить новую карточку - функция колбэк для класса
 function addNewCardElement(event, item) {
     event.preventDefault();
-    const addSection = new Section({name: item.place, link: item.imagelink}, createCardItem, elementsList);
+    const addSection = new Section({name: item.place, link: item.imagelink}, createCardItem, cardsContainer);
     addSection.addItem({name: item.place, link: item.imagelink});
     formAdd.disableButton();
     event.target.reset();
