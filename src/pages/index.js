@@ -24,7 +24,6 @@ const name = popupProfile.querySelector('.popup__input_type_name');
 const info = popupProfile.querySelector('.popup__input_type_info');
 
 //карточки и темплейт
-const cardsContainer = document.querySelector(".elements");
 const elementTemplate = document.querySelector(".template-item").content;
 //создаем профиль
 const profile = new UserInfo();
@@ -35,8 +34,8 @@ formProfile.enableValidation();
 const formAdd = new FormValidator(popupFormAdd, validationConfig);
 formAdd.enableValidation();
 //создать секцию и отрисовать стартовые карточки
-const newSection = new Section(initialCards, createCardItem, cardsContainer);
-newSection.defoultItems();
+const newSection = new Section(initialCards, createCardItem, ".elements");
+newSection.renderItems();
 //создать попап профиль и навесить слушатели
 const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
 profilePopupClass.setEventListeners();

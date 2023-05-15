@@ -3,8 +3,6 @@ import Popup from "./Popup.js";
 export default class PopupWithImage extends Popup {
     constructor(popupSelector) {
         super(popupSelector);
-
-        this.popups = document.querySelectorAll('.popup');
         this.popupImage = document.querySelector(".popup_image-zoom");
         this.imageZoomed = this.popupImage.querySelector(".popup__image");
         this.imageText = this.popupImage.querySelector(".popup__place-name");
