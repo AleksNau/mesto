@@ -47,8 +47,7 @@ addNewCardPopupClass.setEventListeners();
 const handleImage = new PopupWithImage(".popup_image-zoom");
 
 //функции формы профиля - функция колбэк для класса
-function submitEditProfileForm(event) {
-    event.preventDefault();
+function submitEditProfileForm() {
     profile.setUserInfo({name:name.value,info: info.value});
 }
 
@@ -64,12 +63,10 @@ function handleCardClick(name, link) {
 }
 
 //добавить новую карточку - функция колбэк для класса
-function addNewCardElement(event, item) {
-    event.preventDefault();
+function addNewCardElement(item) {
     const data = new Object({name: item.place, link: item.imagelink})
     newSection.addItem(data);
     formAdd.disableButton();
-    event.target.reset();
 }
 
 //навесить слушатель  на кнопку и передать ей инфо с профиля

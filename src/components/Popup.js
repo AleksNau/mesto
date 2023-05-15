@@ -1,6 +1,7 @@
 export default class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
+        this._buttonClose = this._popup.querySelector(".popup__close-button");
     }
 
 //которые отвечают за открытие и закрытие попапа.
@@ -32,8 +33,8 @@ export default class Popup {
 
 //оторый добавляет слушатель клика иконке закрытия попапа
     setEventListeners() {
-        this._button = this._popup.querySelector(".popup__close-button");
-        this._button.addEventListener('click', () => this.close(this._popup));
+
+        this._buttonClose.addEventListener('click', () => this.close(this._popup));
         this.clickByOverlay();
     }
 }
