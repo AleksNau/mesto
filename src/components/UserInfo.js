@@ -1,9 +1,9 @@
 export default class UserInfo {
 
-    constructor() {
+    constructor(profileName,profileInfo) {
         this.profileElement = document.querySelector('.profile');
-        this.profileName = this.profileElement.querySelector('.profile__name');
-        this.profileInfo = this.profileElement.querySelector('.profile__info');
+        this.profileName = this.profileElement.querySelector(profileName);
+        this.profileInfo = this.profileElement.querySelector(profileInfo);
         this.popupProfile = document.querySelector('.popup_profile');
         this.popupName = this.popupProfile.querySelector('.popup__input_type_name');
         this.popupinfo = this.popupProfile.querySelector('.popup__input_type_info');

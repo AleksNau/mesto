@@ -26,7 +26,7 @@ const info = popupProfile.querySelector('.popup__input_type_info');
 //карточки и темплейт
 const elementTemplate = document.querySelector(".template-item").content;
 //создаем профиль
-const profile = new UserInfo();
+const profile = new UserInfo('.profile__name','.profile__info');
 //включаем валидацию попап-профиля
 const formProfile = new FormValidator(popupFormProfile, validationConfig);
 formProfile.enableValidation();
