@@ -6,24 +6,23 @@ export default class Popup {
 //которые отвечают за открытие и закрытие попапа.
     open () {
         this._popup.classList.add('popup_opened');
-        document.addEventListener("keyup", this._handleEscClose);
-        this.overlay();
+        document.addEventListener("keyup",this._handleEscClose);
+
     }
 
-    close = () => {
+    close() {
         this._popup.classList.remove('popup_opened');
-        document.removeEventListener("keyup", this._handleEscClose);
+        document.removeEventListener("keyup",this._handleEscClose);
     }
 
 //содержит логику закрытия попапа клавишей Esc.
-    _handleEscClose(event) {
-        if (event.key === 'Escape') {
-            this.closestOpenedPopup = document.querySelector('.popup_opened');
-            this.closestOpenedPopup.classList.remove('popup_opened');
+    _handleEscClose = (evt) => {
+        if (evt.key === 'Escape') {
+            this.close();
         }
     }
 
-    overlay() {
+    clickByOverlay() {
         this._popup.addEventListener('mousedown', (evt) => {
             if (evt.target.classList.contains('popup_opened')) {
                 this.close();
@@ -35,5 +34,6 @@ export default class Popup {
     setEventListeners() {
         this._button = this._popup.querySelector(".popup__close-button");
         this._button.addEventListener('click', () => this.close(this._popup));
+        this.clickByOverlay();
     }
 }

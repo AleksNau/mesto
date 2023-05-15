@@ -21,6 +21,7 @@ export default class PopupWithForm extends Popup {
             this._form.reset();
         });
         this._form.addEventListener('submit', this.submitForm);//функция обработчик колбэк сабмита
+        super.clickByOverlay();
     }
 
 
