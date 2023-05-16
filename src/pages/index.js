@@ -35,9 +35,9 @@ const formAdd = new FormValidator(popupFormAdd, validationConfig);
 formAdd.enableValidation();
 //создать секцию и отрисовать стартовые карточки
 const renderCard = (cardData) => {
-
     const cardItem = createCardItem(cardData)
     newSection.addItem(cardItem)
+    formAdd.disableButton();
 }
 //создать попап профиль и навесить слушатели
 const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
