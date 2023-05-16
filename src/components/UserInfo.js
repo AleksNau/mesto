@@ -4,9 +4,7 @@ export default class UserInfo {
         this.profileElement = document.querySelector('.profile');
         this.profileName = this.profileElement.querySelector(profileName);
         this.profileInfo = this.profileElement.querySelector(profileInfo);
-        this.popupProfile = document.querySelector('.popup_profile');
-        this.popupName = this.popupProfile.querySelector('.popup__input_type_name');
-        this.popupinfo = this.popupProfile.querySelector('.popup__input_type_info');
+
     }
 
 // возвращает объект с данными пользователя. Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
@@ -20,8 +18,4 @@ export default class UserInfo {
         this.profileInfo.textContent = userData.info;
     }
 
-    setPopupInfo() {
-       this.popupName.value = this.profileName.textContent;
-        this.popupinfo.value = this.profileInfo.textContent;
-    }
 }

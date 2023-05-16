@@ -68,9 +68,13 @@ function addNewCardElement(item) {
     formAdd.disableButton();
 }
 
+const popupName = popupProfile.querySelector('.popup__input_type_name');
+const popupinfo = popupProfile.querySelector('.popup__input_type_info');
 //навесить слушатель  на кнопку и передать ей инфо с профиля
 buttonEdit.addEventListener('click', () => {
-    profile.setPopupInfo(profile.getUserInfo());
+    const userData = profile.getUserInfo();
+    popupName.value = userData.name;
+    popupinfo.value = userData.info;
     profilePopupClass.open();
 });
 
