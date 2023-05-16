@@ -13,6 +13,8 @@ const buttonEdit = profileElement.querySelector('.profile__edit-button');
 // переменные формы профиля
 const popupProfile = document.querySelector('.popup_profile');
 const popupFormProfile = popupProfile.querySelector('.popup__form_profile');
+const popupName = popupProfile.querySelector('.popup__input_type_name');
+const popupinfo = popupProfile.querySelector('.popup__input_type_info');
 
 // переменные формы карточки
 const popupElementAddNewCard = document.querySelector(".popup_add");
@@ -66,15 +68,8 @@ function handleCardClick(name, link) {
 
 const newSection = new Section(initialCards, renderCard, ".elements");
 newSection.renderItems(initialCards);
-//добавить новую карточку - функция колбэк для класса
-function addNewCardElement(item) {
-    const data = new Object({name: item.place, link: item.imagelink})
-    newSection.addItem(data);
-    formAdd.disableButton();
-}
 
-const popupName = popupProfile.querySelector('.popup__input_type_name');
-const popupinfo = popupProfile.querySelector('.popup__input_type_info');
+
 //навесить слушатель  на кнопку и передать ей инфо с профиля
 buttonEdit.addEventListener('click', () => {
     const userData = profile.getUserInfo();
