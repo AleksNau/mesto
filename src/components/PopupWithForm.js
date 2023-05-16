@@ -16,22 +16,22 @@ export default class PopupWithForm extends Popup {
 
 //добавить сабмит
     setEventListeners() {
-        this._buttonClose.addEventListener('click', () => {
-            this.close();
-            this._form.reset();
-        });
+        super.setEventListeners()
         this._form.addEventListener('submit',(event) => {
             this.submitForm(event);
-            this._form.reset();
             this.close();
         } );//функция обработчик колбэк сабмита
         super.clickByOverlay();
     }
-
+    close() {
+        super.close();
+        this._form.reset();
+    }
 
     submitForm = (event) => {
         event.preventDefault();
         this._submit(this._getInputValues());
+        this._form.reset();
     }
 
 }

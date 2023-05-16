@@ -33,7 +33,6 @@ export default class Popup {
 
 //оторый добавляет слушатель клика иконке закрытия попапа
     setEventListeners() {
-
         this._buttonClose.addEventListener('click', () => this.close(this._popup));
         this.clickByOverlay();
     }
