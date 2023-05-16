@@ -5,15 +5,12 @@ export default class Section {
         this._conteiner = document.querySelector(containerSelector);
     }
 
-    renderItems() {
-        this._items.forEach((item) => {
-            this.addItem(item)
-        });
+    renderItems(items) {
+        items.forEach((item) => this._renderer(item));
     }
 
 //принимает DOM-элемент и добавляет его в контейнер
     addItem(item) {
-        const cardItem = this._renderer(item);
-        this._conteiner.prepend(cardItem);
+        this._conteiner.prepend(item);
     }
 }

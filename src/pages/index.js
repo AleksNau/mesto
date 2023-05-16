@@ -34,13 +34,16 @@ formProfile.enableValidation();
 const formAdd = new FormValidator(popupFormAdd, validationConfig);
 formAdd.enableValidation();
 //создать секцию и отрисовать стартовые карточки
-const newSection = new Section(initialCards, createCardItem, ".elements");
-newSection.renderItems();
+const renderCard = (cardData) => {
+
+    const cardItem = createCardItem(cardData)
+    newSection.addItem(cardItem)
+}
 //создать попап профиль и навесить слушатели
 const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
 profilePopupClass.setEventListeners();
 //создать попап новой карточки и навесить слушатели
-const addNewCardPopupClass = new PopupWithForm('.popup_add', addNewCardElement);
+const addNewCardPopupClass = new PopupWithForm('.popup_add', renderCard);
 addNewCardPopupClass.setEventListeners();
 
 const handleImage = new PopupWithImage(".popup_image-zoom");
@@ -61,6 +64,8 @@ function handleCardClick(name, link) {
     handleImage.open(name, link);
 }
 
+const newSection = new Section(initialCards, renderCard, ".elements");
+newSection.renderItems(initialCards);
 //добавить новую карточку - функция колбэк для класса
 function addNewCardElement(item) {
     const data = new Object({name: item.place, link: item.imagelink})

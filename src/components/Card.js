@@ -38,9 +38,9 @@ export default class Card {
     createCard() {
         this.element = this._template.cloneNode(true).children[0];
         this._cardImage = this.element.querySelector(".elements__image");
-        this._cardImage.src = this._data.link;
-        this._cardImage.alt = this._data.name;
-        this.element.querySelector(".elements__text").textContent = this._data.name;
+        this._cardImage.src = this._data.imagelink;
+        this._cardImage.alt = this._data.place;
+        this.element.querySelector(".elements__text").textContent = this._data.place;
         this.setEventListener();
 
         return this.element;
