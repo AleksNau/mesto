@@ -14,10 +14,9 @@ https://aleksnau.github.io/mesto/
 
 ## Features
 
-- Flexbox
-- Grid
-- Адаптив
-- Кросбраузерность
+- Flexbox,Grid
+- Проект собран через Webpack
+- Адаптив,Кросбраузерность
 - javascript
 - Git
 - Валидация всех форм через JS
@@ -28,17 +27,8 @@ https://aleksnau.github.io/mesto/
 ## Optimizations
 
 Оптимизированы изображения через Photoshop
-Добавлены префиксы через Autoprefixer
+Код оптимизирован через PostCss
 
-## Lessons Learned
-
-- Узнал как работать с переменными
-- DOM элементы
-- Узнал больше о Git
-- Валидация форм
-- Обработка событий
-- Принципы ООП
-- Модульность
 
 ## Related
 
@@ -47,3 +37,5 @@ https://aleksnau.github.io/mesto/
 [README.SO](https://github.com/matiassingers/awesome-readme)
 
 [Practicum](https://practicum.yandex.ru/)
+
+[Webpack](https://webpack.js.org/)
