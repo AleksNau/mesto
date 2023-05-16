@@ -4,8 +4,6 @@ export default class Card {
         this._data = data;
         this._template = templateSelector;
         this._handleCardClick = handleCardClick;
-
-
     }
 
 //метод навешивания лайка

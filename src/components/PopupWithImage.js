@@ -13,6 +13,5 @@ export default class PopupWithImage extends Popup {
         this.imageText.textContent = name;//name
         this.imageZoomed.src = link;//устанавливаем ссылку
         this.imageZoomed.alt = name;//устанавливаем подпись картинке name
-
     }
 }
