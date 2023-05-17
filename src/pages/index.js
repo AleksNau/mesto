@@ -39,13 +39,16 @@ formAdd.enableValidation();
 const renderCard = (cardData) => {
     const cardItem = createCardItem(cardData)
     newSection.addItem(cardItem)
-    formAdd.disableButton();
+
 }
 //создать попап профиль и навесить слушатели
 const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
 profilePopupClass.setEventListeners();
 //создать попап новой карточки и навесить слушатели
-const addNewCardPopupClass = new PopupWithForm('.popup_add', renderCard);
+const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
+    renderCard(item);
+    formAdd.disableButton();
+} );
 addNewCardPopupClass.setEventListeners();
 
 const handleImage = new PopupWithImage(".popup_image-zoom");
@@ -66,7 +69,7 @@ function handleCardClick(name, link) {
     handleImage.open(name, link);
 }
 
-const newSection = new Section(initialCards, renderCard, ".elements");
+const newSection = new Section(renderCard, ".elements");
 newSection.renderItems(initialCards);
 
 

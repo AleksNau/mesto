@@ -4,6 +4,8 @@ export default class Card {
         this._data = data;
         this._template = templateSelector;
         this._handleCardClick = handleCardClick;
+        this.element = this._template.cloneNode(true).children[0];
+        this._cardImage = this.element.querySelector(".elements__image");
     }
 
 //метод навешивания лайка
@@ -24,8 +26,8 @@ export default class Card {
         this.element.querySelector(".elements__like").addEventListener("click", this.#toggleLike);
         //просмотреть изображение полностью
 
-        this.element.querySelector(".elements__image").addEventListener('click', () => {
-            this._handleCardClick(this._data.name, this._data.link)
+        this._cardImage.addEventListener('click', () => {
+            this._handleCardClick(this._data.place, this._data.imagelink)
         });
         //функция удаления
         this.element.querySelector(".elements__delete").addEventListener("click", this.#deleteCard);
@@ -34,8 +36,6 @@ export default class Card {
 
 //Основной (публичный) метод создания карточки, в котором мы вызываем нужные методы и наполняем будущую карточку данными из формы.
     createCard() {
-        this.element = this._template.cloneNode(true).children[0];
-        this._cardImage = this.element.querySelector(".elements__image");
         this._cardImage.src = this._data.imagelink;
         this._cardImage.alt = this._data.place;
         this.element.querySelector(".elements__text").textContent = this._data.place;
