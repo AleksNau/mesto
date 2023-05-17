@@ -66,7 +66,7 @@ function handleCardClick(name, link) {
     handleImage.open(name, link);
 }
 
-const newSection = new Section(initialCards, renderCard, ".elements");
+const newSection = new Section(renderCard, ".elements");
 newSection.renderItems(initialCards);
 
 
