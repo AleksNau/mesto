@@ -6,6 +6,7 @@ import UserInfo from '../components/UserInfo.js'
 import PopupWithForm from "../components/PopupWithForm.js"
 import Section from '../components/Section.js'
 import PopupWithImage from '../components/PopupWithImage.js'
+import PopupRemove from "../components/PopupRemove.js";
 //переменные профиля
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
@@ -44,6 +45,9 @@ const renderCard = (cardData) => {
 //создать попап профиль и навесить слушатели
 const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
 profilePopupClass.setEventListeners();
+//создать попап профиль и навесить слушатели
+const removePopupClass = new PopupRemove('.popup_remove');
+removePopupClass.setEventListeners();
 //создать попап новой карточки и навесить слушатели
 const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
     renderCard(item);
