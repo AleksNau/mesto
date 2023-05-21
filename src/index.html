@@ -89,6 +89,22 @@
             </form>
         </div>
     </div>
+    <div class="popup popup_avatar">
+        <div class="popup__conteiner">
+            <form name="create_card-form" class="popup__form popup__form_add" id="avatar-form"  method="post" novalidate>
+                <button type="button" class="popup__close-button"></button>
+                <fieldset class="popup__fieldset">
+                    <legend class="popup__title">Обновить аватар</legend>
+                    <label>
+                        <input name="place" id="avatar-link" type="url" class="popup__input popup__input_type_image-link"
+                               placeholder="Ссылка на аватар" required>
+                        <span id="avatar-link-error" class="popup__error"></span>
+                    </label>
+                    <button type="submit" class="popup__submit" form="avatar-form" value="Сохранить изменения">Сохранение...</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 </div>
 <template class="template-item">
     <li class="elements__item">
