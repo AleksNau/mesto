@@ -88,7 +88,7 @@ buttonEdit.addEventListener('click', () => {
 //навесить слушатель на кнопку новой карточки
 buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);
 
-
+//функция отрисовки стандартных карточек
 function getPosts() {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-66/cards', {
         headers: {
@@ -102,6 +102,17 @@ function getPosts() {
         });
       });
   } 
-  
-  getPosts();
-  
+  //getPosts();
+//функция получения и установки имени профиля
+  function getProfileInfo() {
+    return fetch('https://nomoreparties.co/v1/cohort-66/users/me', {
+        headers: {
+          authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba'
+        }
+      })
+      .then(res => res.json())
+      .then((posts) => {
+        profile.setUserInfo({name:posts.name,info: posts.about});
+      });
+  } 
+  getProfileInfo();
