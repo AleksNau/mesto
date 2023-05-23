@@ -87,3 +87,21 @@ buttonEdit.addEventListener('click', () => {
 
 //навесить слушатель на кнопку новой карточки
 buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);
+
+
+function getPosts() {
+    return fetch('https://mesto.nomoreparties.co/v1/cohort-66/cards', {
+        headers: {
+          authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba'
+        }
+      })
+      .then(res => res.json())
+      .then((posts) => {
+        posts.forEach((post) => {
+            renderCard(post);
+        });
+      });
+  } 
+  
+  getPosts();
+  

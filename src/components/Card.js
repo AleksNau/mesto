@@ -36,9 +36,9 @@ export default class Card {
 
 //Основной (публичный) метод создания карточки, в котором мы вызываем нужные методы и наполняем будущую карточку данными из формы.
     createCard() {
-        this._cardImage.src = this._data.imagelink;
-        this._cardImage.alt = this._data.place;
-        this.element.querySelector(".elements__text").textContent = this._data.place;
+        this._cardImage.src = this._data.link;
+        this._cardImage.alt = this._data.name;
+        this.element.querySelector(".elements__text").textContent = this._data.name;
         this.setEventListener();
 
         return this.element;
