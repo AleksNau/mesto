@@ -157,3 +157,17 @@ function deleteCard() {
   }
 });}
 
+//функция аватара отправки ссылки аватара
+function setAvatar() {
+    return fetch('https://mesto.nomoreparties.co/v1/cohort-66/users//me/avatar', {
+  method: 'PATCH',
+  headers: {
+    authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    avatar: 'https://klike.net/uploads/posts/2022-06/1654842644_4.jpg'
+  })
+});}
+  
+setAvatar();
