@@ -146,3 +146,14 @@ function getPosts() {
   })
 });}
 
+getPosts();
+//функция удаления карточки по id
+function deleteCard() {
+    return fetch('https://mesto.nomoreparties.co/v1/cohort-66/cards/id', {
+  method: 'DELETE',
+  headers: {
+    authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
+    'Content-Type': 'application/json'
+  }
+});}
+
