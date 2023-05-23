@@ -130,5 +130,19 @@ function getPosts() {
   })
 });
   }
-
  // setName();
+
+//функция добавления новой карточки на серв
+ function newCard() {
+    return fetch('https://mesto.nomoreparties.co/v1/cohort-66/cards', {
+  method: 'POST',
+  headers: {
+    authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'НеЯпония',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  })
+});}
+
