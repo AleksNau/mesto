@@ -20,12 +20,7 @@ export default class Api {
             headers: this._headers
         }
         )
-            .then(this._checkResponse)
-            .then((posts) => {
-                posts.forEach((post) => {
-                    this.renderCard(post);
-                });
-            });
+            .then(this._checkResponse);
     }
 
     //функция получения и установки имени профиля

@@ -62,7 +62,12 @@ const cardsFromServer = new Api(renderCard, profile,"https://mesto.nomoreparties
         authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
         'Content-Type': 'application/json'
     });
-cardsFromServer.getCards();//Приняли карточки
+cardsFromServer.getCards()
+    .then((cards) => {
+        cards.forEach((card) => {
+            renderCard(card);
+        });
+    });//Приняли карточки
 //отправили имя
 cardsFromServer.getProfileInfo();//приняли имя
 
