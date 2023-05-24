@@ -159,7 +159,7 @@ function deleteCard() {
 
 //функция аватара отправки ссылки аватара
 function setAvatar() {
-    return fetch('https://mesto.nomoreparties.co/v1/cohort-66/users//me/avatar', {
+    return fetch('https://mesto.nomoreparties.co/v1/cohort-66/users/me/avatar', {
   method: 'PATCH',
   headers: {
     authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
@@ -170,4 +170,4 @@ function setAvatar() {
   })
 });}
   
-setAvatar();
+//setAvatar();
