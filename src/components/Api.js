@@ -40,34 +40,34 @@ export default class Api {
     }
 
     //функция отправки имени на серв
-    setName() {
+    setName(profileName,profileAbout) {
         return fetch(this._url + '/users/me', {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                name: 'Marie Skłodowska Curie',
-                about: 'Physicist and Chemist'
+                name: profileName,
+                about: profileAbout
             })
         })
             .then(this._checkResponse);
     }
 
     //функция добавления новой карточки на серв
-    newCard() {
+    newCard(cardName, cardLink) {
         return fetch(this._url + '/cards', {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
-                name: 'НеЯпония',
-                link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+                name: cardName,
+                link: cardLink
             })
         })
             .then(this._checkResponse);
     }
 
 //функция удаления карточки по id
-    deleteCard() {
-        return fetch(this._url + '/cards/id', {
+    deleteCard(id) {
+        return fetch(this._url + `/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers
         })
