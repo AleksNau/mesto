@@ -57,7 +57,11 @@ const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
 addNewCardPopupClass.setEventListeners();
 
 
-const cardsFromServer = new Api(renderCard, profile);
+const cardsFromServer = new Api(renderCard, profile,"https://mesto.nomoreparties.co/v1/cohort-66",
+    {
+        authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
+        'Content-Type': 'application/json'
+    });
 cardsFromServer.getCards();//Приняли карточки
 cardsFromServer.setName();//отправили имя
 cardsFromServer.getProfileInfo();//приняли имя
