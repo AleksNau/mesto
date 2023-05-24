@@ -1,6 +1,5 @@
 export default class Api {
-    constructor(renderCard, profile, url, headers) {
-        this.renderCard = renderCard;
+    constructor(profile, url, headers) {
         this.profile = profile;
         this._url = url;
         this._headers = headers;
