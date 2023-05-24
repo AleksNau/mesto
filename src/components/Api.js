@@ -1,5 +1,6 @@
-class Api {
-    constructor() {
+export default class Api {
+    constructor(renderCard) {
+        this.renderCard = renderCard;
     }
 
     //функция отрисовки стандартных карточек
@@ -12,7 +13,7 @@ getCards() {
       .then(res => res.json())
       .then((posts) => {
         posts.forEach((post) => {
-            renderCard(post);
+            this.renderCard(post);
         });
       });
   }

@@ -7,6 +7,7 @@ import PopupWithForm from "../components/PopupWithForm.js"
 import Section from '../components/Section.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupRemove from "../components/PopupRemove.js";
+import Api from '../components/Api.js'
 //переменные профиля
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
@@ -54,6 +55,10 @@ const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
     formAdd.disableButton();
 } );
 addNewCardPopupClass.setEventListeners();
+
+
+const cardsFromServer = new Api(renderCard);
+cardsFromServer.getCards();
 
 const handleImage = new PopupWithImage(".popup_image-zoom");
 
