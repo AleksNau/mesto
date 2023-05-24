@@ -57,8 +57,10 @@ const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
 addNewCardPopupClass.setEventListeners();
 
 
-const cardsFromServer = new Api(renderCard);
-cardsFromServer.getCards();
+const cardsFromServer = new Api(renderCard, profile);
+cardsFromServer.getCards();//Приняли карточки
+cardsFromServer.setName();//отправили имя
+cardsFromServer.getProfileInfo();//приняли имя
 
 const handleImage = new PopupWithImage(".popup_image-zoom");
 

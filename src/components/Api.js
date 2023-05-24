@@ -1,6 +1,7 @@
 export default class Api {
-    constructor(renderCard) {
+    constructor(renderCard,profile) {
         this.renderCard = renderCard;
+        this.profile = profile;
     }
 
     //функция отрисовки стандартных карточек
@@ -27,7 +28,7 @@ getProfileInfo() {
       })
       .then(res => res.json())
       .then((posts) => {
-        profile.setUserInfo({name:posts.name,info: posts.about});
+        this.profile.setUserInfo({name:posts.name,info: posts.about});
       });
   }
   
