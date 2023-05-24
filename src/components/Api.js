@@ -27,10 +27,7 @@ export default class Api {
         return fetch(this._url + '/users/me', {
             headers: this._headers
         })
-            .then(this._checkResponse)
-            .then((posts) => {
-                this.profile.setUserInfo({name: posts.name, info: posts.about});
-            });
+            .then(this._checkResponse);
     }
 
     //функция отправки имени на серв

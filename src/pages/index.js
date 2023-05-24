@@ -57,24 +57,25 @@ const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
 addNewCardPopupClass.setEventListeners();
 
 
-const cardsFromServer = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66",
+const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66",
     {
         authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
         'Content-Type': 'application/json'
     });
-cardsFromServer.getCards()
+api.getCards()
     .then((cards) => {
         cards.forEach((card) => {
             renderCard(card);
         });
     });//Приняли карточки
 //отправили имя
-cardsFromServer.getProfileInfo();//приняли имя
+
 
 const handleImage = new PopupWithImage(".popup_image-zoom");
 
 //функции формы профиля - функция колбэк для класса
 function submitEditProfileForm() {
+    api.setName(name.value,info.value);
     profile.setUserInfo({name:name.value,info: info.value});
 }
 
