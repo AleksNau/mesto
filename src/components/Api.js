@@ -75,12 +75,12 @@ export default class Api {
     }
 
 //функция аватара отправки ссылки аватара
-    setAvatar() {
+    setAvatar(avatarLink) {
         return fetch(this._url + '/users/me/avatar', {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                avatar: 'https://klike.net/uploads/posts/2022-06/1654842644_4.jpg'
+                avatar: avatarLink
             })
         })
             .then(this._checkResponse);

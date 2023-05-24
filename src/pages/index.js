@@ -63,7 +63,7 @@ const cardsFromServer = new Api(renderCard, profile,"https://mesto.nomoreparties
         'Content-Type': 'application/json'
     });
 cardsFromServer.getCards();//Приняли карточки
-cardsFromServer.setName();//отправили имя
+//отправили имя
 cardsFromServer.getProfileInfo();//приняли имя
 
 const handleImage = new PopupWithImage(".popup_image-zoom");
