@@ -17,7 +17,7 @@ export default class Card {
 
 //метод удаления карточки, нужна проверка на своя не своя
     #deleteCard = () => {
-        this.api.deleteCard(this._data._id);
+        //this.api.deleteCard(this._data._id);
         this.element.remove();
         this.element = null;
     }
