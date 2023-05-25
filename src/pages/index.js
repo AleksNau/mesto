@@ -108,11 +108,13 @@ buttonEdit.addEventListener('click', () => {
 buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);
 
 const avatarPopup = new PopupWithForm('.popup_avatar', setAvatar);
+avatarPopup.setEventListeners();
 
 function setAvatar () {
     const newLink = avatarPopup._getInputValues().link;
-    console.log(newLink)
+    api.sendAvatar(newLink);
+    profileAvatar.src = newLink;
+
 }
 
 profileAvatar.addEventListener('click', avatarPopup.open);
-setAvatar();
