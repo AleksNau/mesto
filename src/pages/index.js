@@ -51,13 +51,14 @@ const removePopupClass = new PopupRemove('.popup_remove');
 removePopupClass.setEventListeners();
 //создать попап новой карточки и навесить слушатели
 const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
+    api.newCard(item.name, item.link);
     renderCard(item);
     formAdd.disableButton();
 } );
 addNewCardPopupClass.setEventListeners();
 
 
-const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66",
+export const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66",
     {
         authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
         'Content-Type': 'application/json'
@@ -81,7 +82,7 @@ function submitEditProfileForm() {
 
 //Создаем класс Card
 function createCardItem(item) {
-    const itemCard = new Card(elementTemplate, item, handleCardClick);
+    const itemCard = new Card(elementTemplate, item, handleCardClick,api);
     return itemCard.createCard();
 }
 

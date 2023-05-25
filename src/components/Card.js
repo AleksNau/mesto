@@ -1,7 +1,9 @@
+import Api from "./Api.js";
 export default class Card {
     //принимает в себя два параметра
-    constructor(templateSelector, data, handleCardClick) {
+    constructor(templateSelector, data, handleCardClick, api) {
         this._data = data;
+        this.api= api;
         this._template = templateSelector;
         this._handleCardClick = handleCardClick;
         this.element = this._template.cloneNode(true).children[0];
@@ -13,8 +15,9 @@ export default class Card {
         this.classList.toggle("elements__like_active");
     }
 
-//метод удаления карточки
+//метод удаления карточки, нужна проверка на своя не своя
     #deleteCard = () => {
+        this.api.deleteCard(this._data._id);
         this.element.remove();
         this.element = null;
     }
@@ -27,7 +30,7 @@ export default class Card {
         //просмотреть изображение полностью
 
         this._cardImage.addEventListener('click', () => {
-            this._handleCardClick(this._data.place, this._data.imagelink)
+            this._handleCardClick(this._data.name, this._data.link)
         });
         //функция удаления
         this.element.querySelector(".elements__delete").addEventListener("click", this.#deleteCard);
