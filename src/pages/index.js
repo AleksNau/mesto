@@ -11,6 +11,7 @@ import Api from '../components/Api.js'
 //переменные профиля
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
+const profileAvatar = profileElement.querySelector('.profile__avatar');
 
 // переменные формы профиля
 const popupProfile = document.querySelector('.popup_profile');
@@ -105,3 +106,13 @@ buttonEdit.addEventListener('click', () => {
 
 //навесить слушатель на кнопку новой карточки
 buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);
+
+const avatarPopup = new PopupWithForm('.popup_avatar', setAvatar);
+
+function setAvatar () {
+    const newLink = avatarPopup._getInputValues().link;
+    console.log(newLink)
+}
+
+profileAvatar.addEventListener('click', avatarPopup.open);
+setAvatar();

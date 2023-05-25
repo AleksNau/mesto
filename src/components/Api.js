@@ -66,7 +66,7 @@ export default class Api {
     }
 
 //функция аватара отправки ссылки аватара
-    setAvatar(avatarLink) {
+    sendAvatar(avatarLink) {
         return fetch(this._url + '/users/me/avatar', {
             method: 'PATCH',
             headers: this._headers,
