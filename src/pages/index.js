@@ -64,12 +64,12 @@ export const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66"
         authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
         'Content-Type': 'application/json'
     });
-api.getCards()
-    .then((cards) => {
-        cards.forEach((card) => {
-            renderCard(card);
-        });
-    });//Приняли карточки
+//api.getCards()
+//    .then((cards) => {
+//        cards.forEach((card) => {
+//            renderCard(card);
+//        });
+//    });//Приняли карточки
 //отправили имя
 
 
@@ -83,7 +83,7 @@ function submitEditProfileForm() {
 
 //Создаем класс Card
 function createCardItem(item) {
-    const itemCard = new Card(elementTemplate, item, handleCardClick,api);
+    const itemCard = new Card(elementTemplate, item, handleCardClick,api, userId);
     return itemCard.createCard();
 }
 
@@ -118,3 +118,24 @@ function setAvatar () {
 }
 
 profileAvatar.addEventListener('click', avatarPopup.open);
+
+//api.getCards()
+//    .then((cards) => {
+//        cards.forEach((card) => {
+//            renderCard(card);
+//        });
+//    });
+let userId = null;
+/* Вывод данных пользователя и карточек на тсраницу*/
+const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
+  .then(([userData, cardData]) => {
+    profile.setUserInfo(userData);
+    userId = userData._id;
+    newSection.renderItems(cardData);
+    console.log(userId);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+  
