@@ -104,6 +104,8 @@ function submitEditProfileForm() {
 //Создаем класс Card
 function createCardItem(item) {
     const itemCard = new Card(elementTemplate, item, handleCardClick,api, userId, handleLikeCard);
+
+    itemCard.updateLikes(item);
     return itemCard.createCard();
 }
 

@@ -54,14 +54,20 @@ export default class Card {
 
     }
 
+
+    updateLikes = (item) => {
+        if (!item.likes){item.likes= {};}
+
+        this._likesCounter.textContent = item.likes.length;
+    }
 //Основной (публичный) метод создания карточки, в котором мы вызываем нужные методы и наполняем будущую карточку данными из формы.
-    createCard() {
+    createCard = () => {
         this._cardImage.src = this._data.link;
         this._cardImage.alt = this._data.name;
         this.element.querySelector(".elements__text").textContent = this._data.name;
         this.setEventListener();
         this._checkAbilityToDelete();
-        this._likesCounter.textContent = this.likes.length;
+
 
         return this.element;
     }
