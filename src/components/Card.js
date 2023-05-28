@@ -7,6 +7,7 @@ export default class Card {
         this._template = templateSelector;
         this._handleCardClick = handleCardClick;
         this.element = this._template.cloneNode(true).children[0];
+        this.likeImage = this.element.querySelector('.elements__like')
         this.id = id;// айдишник работает
 
         this._deleteButton = this.element.querySelector('.elements__delete');
@@ -21,9 +22,8 @@ export default class Card {
     }
 
 //метод навешивания лайка
-    #toggleLike  ()  {
-        console.log(this)
-        //this.classList.toggle("elements__like_active");
+    #toggleLike = () => {
+        this.likeImage.classList.toggle("elements__like_active");
     }
 
 //метод удаления карточки, нужна проверка на своя не своя
@@ -38,7 +38,7 @@ export default class Card {
     setEventListener() {
         //закрасить лайк
         this.element.querySelector(".elements__like").addEventListener("click", () => {
-            this.api.putLike(this._data._id);
+            //this.api.putLike(this._data._id);
             this.#toggleLike();
         });
         //просмотреть изображение полностью
