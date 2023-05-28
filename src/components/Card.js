@@ -14,6 +14,9 @@ export default class Card {
         this._ownerId= this.owner._id;
 
 
+        this._likesCounter = this.element.querySelector('.elements__like-counter');
+
+
         this._cardImage = this.element.querySelector(".elements__image");
     }
 
@@ -51,7 +54,10 @@ export default class Card {
         this.element.querySelector(".elements__text").textContent = this._data.name;
         this.setEventListener();
         this._checkAbilityToDelete();
-
+        this.isLiked()
+        this.counter = new Array(this._data._likes);
+        this._likesCounter.textContent = this._data.likes.length;
+        console.log(this._data.likes)
         return this.element;
     }
 
@@ -61,7 +67,10 @@ export default class Card {
       this._deleteButton.classList.add('elements__delete_disable');
     } else {
       this._deleteButton.classList.remove('elements__delete_disable');
-    };
+    }
   };
 
+    isLiked() {
+
+    };
 }

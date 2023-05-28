@@ -93,7 +93,7 @@ function handleCardClick(name, link) {
 }
 
 const newSection = new Section(renderCard, ".elements");
-newSection.renderItems(initialCards);
+
 
 
 //навесить слушатель  на кнопку и передать ей инфо с профиля
@@ -126,13 +126,13 @@ profileAvatar.addEventListener('click', avatarPopup.open);
 //        });
 //    });
 let userId = null;
+let cardsLike = null;
 /* Вывод данных пользователя и карточек на тсраницу*/
 const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
   .then(([userData, cardData]) => {
     profile.setUserInfo(userData);
     userId = userData._id;
     newSection.renderItems(cardData);
-    console.log(userId);
   })
   .catch((err) => {
     console.log(err);
