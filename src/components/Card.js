@@ -21,8 +21,9 @@ export default class Card {
     }
 
 //метод навешивания лайка
-    #toggleLike () {
-        this.classList.toggle("elements__like_active");
+    #toggleLike  ()  {
+        console.log(this)
+        //this.classList.toggle("elements__like_active");
     }
 
 //метод удаления карточки, нужна проверка на своя не своя
@@ -36,7 +37,10 @@ export default class Card {
 //Метод навешивания всех слушателей
     setEventListener() {
         //закрасить лайк
-        this.element.querySelector(".elements__like").addEventListener("click", this.#toggleLike);
+        this.element.querySelector(".elements__like").addEventListener("click", () => {
+            this.api.putLike(this._data._id);
+            this.#toggleLike();
+        });
         //просмотреть изображение полностью
 
         this._cardImage.addEventListener('click', () => {
@@ -57,7 +61,7 @@ export default class Card {
         this.isLiked()
         this.counter = new Array(this._data._likes);
         this._likesCounter.textContent = this._data.likes.length;
-        console.log(this._data.likes)
+        //console.log(this._data._id)
         return this.element;
     }
 

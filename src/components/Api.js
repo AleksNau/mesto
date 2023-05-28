@@ -76,4 +76,13 @@ export default class Api {
         })
             .then(this._checkResponse);
     }
+
+    putLike(cardId) {
+        return fetch (this._url + `/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: this._headers
+        })
+            .then(this._checkResponse);
+    };
+
 }
