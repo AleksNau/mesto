@@ -9,10 +9,11 @@ export default class Card {
         this.element = this._template.cloneNode(true).children[0];
         this.likeImage = this.element.querySelector('.elements__like')
         this.id = id;// айдишник работает
-this.likes= this._data.likes;
+        this.likes= this._data.likes;
         this._deleteButton = this.element.querySelector('.elements__delete');
         this.owner = new Object(this._data.owner);
         this._ownerId= this.owner._id;
+        this._cardId = this._data._id;
 
 
         this._likesCounter = this.element.querySelector('.elements__like-counter');
@@ -58,13 +59,17 @@ this.likes= this._data.likes;
         this.element.querySelector(".elements__text").textContent = this._data.name;
         this.setEventListener();
         this._checkAbilityToDelete();
-        console.log(this.isLiked())
         this._likesCounter.textContent = this.likes.length;
-        //console.log(this._data._id)
+
         return this.element;
     }
+    // Получение ID
+    getCardId() {
+        return this._cardId;
+    };
 
     // Изменение состояния кнопки удаления карточки
+
   _checkAbilityToDelete() {
     if (this.id !== this._ownerId) {
       this._deleteButton.classList.add('elements__delete_disable');

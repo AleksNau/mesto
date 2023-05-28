@@ -71,6 +71,26 @@ export const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66"
 //        });
 //    });//Приняли карточки
 //отправили имя
+/* Хендлер поставноки и снятия лайков */
+const handleLikeCard = (card) => {
+    if (!card.isLiked()) {
+        api.putLike(card.id())
+            .then(cardData => {
+                card.updateLikes(cardData);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    } else {
+        api.deleteCardLike(card.id())
+            .then(cardData => {
+                card.updateLikes(cardData);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+};
 
 
 const handleImage = new PopupWithImage(".popup_image-zoom");
