@@ -75,20 +75,20 @@ export const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66"
 const handleLikeCard = (card) => {
     if (!card.isLiked()) {
         api.putLike(card.getCardId())
-            /*.then(cardData => {
+            .then(cardData => {
                 card.updateLikes(cardData);
             })
             .catch((err) => {
                 console.log(err);
-            })*/;
+            });
     } else {
         api.deleteLike(card.getCardId())
-            /*.then(cardData => {
+            .then(cardData => {
                 card.updateLikes(cardData);
             })
             .catch((err) => {
                 console.log(err);
-            })*/;
+            });
     }
 };
 

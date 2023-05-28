@@ -54,7 +54,7 @@ export default class Card {
 
     }
 
-
+//пересчитать лайки
     updateLikes = (item) => {
         if (!item.likes){item.likes= {};}
 
