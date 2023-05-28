@@ -67,6 +67,7 @@ export default class Card {
         this.element.querySelector(".elements__text").textContent = this._data.name;
         this.setEventListener();
         this._checkAbilityToDelete();
+        this._updateLikesView();
 
 
         return this.element;
@@ -88,5 +89,15 @@ export default class Card {
 
     isLiked() {
             return Boolean (this.likes.find(userData => userData._id === this.id))
+    };
+
+    _updateLikesView() {
+        if (this.isLiked()) {
+          //  this._likeCounter.textContent = this._likes.length;
+            this.likeImage.classList.add('elements__like_active');
+        } else {
+         //   this._likeCounter.textContent = this._likes.length;
+            this.likeImage.classList.remove('elements__like_active');
+        };
     };
 }
