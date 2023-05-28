@@ -1,7 +1,7 @@
 import Api from "./Api.js";
 export default class Card {
     //принимает в себя два параметра
-    constructor(templateSelector, data, handleCardClick, api, id) {
+    constructor(templateSelector, data, handleCardClick, api, id,handleLike) {
         this._data = data;
         this.api= api;
         this._template = templateSelector;
@@ -14,6 +14,7 @@ export default class Card {
         this.owner = new Object(this._data.owner);
         this._ownerId= this.owner._id;
         this._cardId = this._data._id;
+        this.handleLikeCard = handleLike;
 
 
         this._likesCounter = this.element.querySelector('.elements__like-counter');
@@ -39,7 +40,8 @@ export default class Card {
     setEventListener() {
         //закрасить лайк
         this.element.querySelector(".elements__like").addEventListener("click", () => {
-            this.api.putLike(this._data._id);
+            //this.api.putLike(this._data._id);
+            this.handleLikeCard(this);
             this.#toggleLike();
         });
         //просмотреть изображение полностью

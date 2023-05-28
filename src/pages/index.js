@@ -74,22 +74,22 @@ export const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66"
 /* Хендлер поставноки и снятия лайков */
 const handleLikeCard = (card) => {
     if (!card.isLiked()) {
-        api.putLike(card.id())
-            .then(cardData => {
+        api.putLike(card.getCardId())
+            /*.then(cardData => {
                 card.updateLikes(cardData);
             })
             .catch((err) => {
                 console.log(err);
-            });
+            })*/;
     } else {
-        api.deleteCardLike(card.id())
-            .then(cardData => {
+        api.deleteLike(card.getCardId())
+            /*.then(cardData => {
                 card.updateLikes(cardData);
             })
             .catch((err) => {
                 console.log(err);
-            });
-    };
+            })*/;
+    }
 };
 
 
@@ -103,7 +103,7 @@ function submitEditProfileForm() {
 
 //Создаем класс Card
 function createCardItem(item) {
-    const itemCard = new Card(elementTemplate, item, handleCardClick,api, userId);
+    const itemCard = new Card(elementTemplate, item, handleCardClick,api, userId, handleLikeCard);
     return itemCard.createCard();
 }
 
