@@ -9,7 +9,7 @@ export default class Card {
         this.element = this._template.cloneNode(true).children[0];
         this.likeImage = this.element.querySelector('.elements__like')
         this.id = id;// айдишник работает
-
+this.likes= this._data.likes;
         this._deleteButton = this.element.querySelector('.elements__delete');
         this.owner = new Object(this._data.owner);
         this._ownerId= this.owner._id;
@@ -38,7 +38,7 @@ export default class Card {
     setEventListener() {
         //закрасить лайк
         this.element.querySelector(".elements__like").addEventListener("click", () => {
-            //this.api.putLike(this._data._id);
+            this.api.putLike(this._data._id);
             this.#toggleLike();
         });
         //просмотреть изображение полностью
@@ -58,9 +58,8 @@ export default class Card {
         this.element.querySelector(".elements__text").textContent = this._data.name;
         this.setEventListener();
         this._checkAbilityToDelete();
-        this.isLiked()
-        this.counter = new Array(this._data._likes);
-        this._likesCounter.textContent = this._data.likes.length;
+        console.log(this.isLiked())
+        this._likesCounter.textContent = this.likes.length;
         //console.log(this._data._id)
         return this.element;
     }
@@ -75,6 +74,6 @@ export default class Card {
   };
 
     isLiked() {
-
+            return Boolean (this.likes.find(userData => userData._id === this.id))
     };
 }
