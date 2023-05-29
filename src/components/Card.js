@@ -56,7 +56,7 @@ export default class Card {
 
 //пересчитать лайки
     updateLikes = (item) => {
-        if (!item.likes){item.likes= {};}
+        if (item.likes === undefined){item.likes= 0;}//проверить это место
 
         this._likesCounter.textContent = item.likes.length;
     }
@@ -65,6 +65,7 @@ export default class Card {
         this._cardImage.src = this._data.link;
         this._cardImage.alt = this._data.name;
         this.element.querySelector(".elements__text").textContent = this._data.name;
+        if(this.likes === undefined){this.likes = [];}
         this.setEventListener();
         this._checkAbilityToDelete();
         this._updateLikesView();
@@ -88,6 +89,7 @@ export default class Card {
   };
 
     isLiked() {
+
             return Boolean (this.likes.find(userData => userData._id === this.id))
     };
 
