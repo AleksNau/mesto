@@ -25,5 +25,7 @@ export default class PopupRemove extends Popup {
 
     submitForm = (event) => {
         event.preventDefault();
+        console.log(this._submit)
+        
     }
 }

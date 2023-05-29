@@ -149,5 +149,3 @@ const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
   .catch((err) => {
     console.log(err);
   });
-
-  
