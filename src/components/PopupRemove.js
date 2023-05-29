@@ -1,11 +1,9 @@
 import Popup from "./Popup";
+import PopupWithForm from "./PopupWithForm.js";
 
-export default class PopupRemove extends Popup {
+export default class PopupRemove extends PopupWithForm {
     constructor(popupSelector, submit) {
-        super(popupSelector);
-        this._submit = submit;
-        this._form = this._popup.querySelector(".popup__form");
-        this._submit= this._submit.bind(this)
+        super(popupSelector,submit);
         this.open=this.open.bind(this);
     }
 
@@ -15,18 +13,9 @@ export default class PopupRemove extends Popup {
         this.delId =id;
     }
 
-//добавить сабмит
-    setEventListeners() {
-        super.setEventListeners();
-        this._form.addEventListener('submit',(event) => {
-            event.preventDefault();
-            this._submit(this.card, this.delId);
-            this.close();
-        } );
-    }
-    close() {
-        super.close();
-        this._form.reset();
+    submitForm = (event) => {
+        event.preventDefault();
+        this._submit(this.card, this.delId);
     }
 
 }
