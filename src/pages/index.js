@@ -48,8 +48,13 @@ const renderCard = (cardData) => {
 const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
 profilePopupClass.setEventListeners();
 //создать попап профиль и навесить слушатели
+
+
 const removePopupClass = new PopupRemove('.popup_remove');
 removePopupClass.setEventListeners();
+
+
+
 //создать попап новой карточки и навесить слушатели
 const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
     api.newCard(item.name, item.link);
