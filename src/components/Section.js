@@ -10,6 +10,10 @@ export default class Section {
 
 //принимает DOM-элемент и добавляет его в контейнер
     addItem(item) {
+        this._container.append(item);
+    }
+
+    addItemToBegin(item) {
         this._container.prepend(item);
     }
 }

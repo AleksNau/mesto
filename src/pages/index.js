@@ -42,8 +42,8 @@ formAdd.enableValidation();
 const renderCard = (cardData) => {
     const cardItem = createCardItem(cardData)
     newSection.addItem(cardItem)
-
 }
+
 //создать попап профиль и навесить слушатели
 const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
 profilePopupClass.setEventListeners();
@@ -145,7 +145,6 @@ let userId = null;
 /* Вывод данных пользователя и карточек на сраницу*/
 const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
   .then(([userData, cardData]) => {
-    console.log(userData)
     profile.setUserInfo(userData);
     profile.setAvatar(userData);
     userId = userData._id;

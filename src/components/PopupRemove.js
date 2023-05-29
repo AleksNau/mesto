@@ -1,4 +1,3 @@
-import Popup from "./Popup";
 import PopupWithForm from "./PopupWithForm.js";
 
 export default class PopupRemove extends PopupWithForm {
