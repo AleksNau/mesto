@@ -69,6 +69,9 @@ export default class Card {
         this._cardImage.alt = this._data.name;
         this.element.querySelector(".elements__text").textContent = this._data.name;
         if(this.likes === undefined){this.likes = [];}
+        if (this._ownerId === undefined){
+            this._ownerId =  this.id;
+        }
         this.setEventListener();
         this._checkAbilityToDelete();
         this._updateLikesView();
@@ -84,7 +87,7 @@ export default class Card {
     // Изменение состояния кнопки удаления карточки
 
   _checkAbilityToDelete() {
-    if (this.id !== this._ownerId) {
+    if (this.id !== this._ownerId && this._ownerId !== undefined) {
       this._deleteButton.classList.add('elements__delete_disable');
     } else {
       this._deleteButton.classList.remove('elements__delete_disable');
