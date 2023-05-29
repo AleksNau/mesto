@@ -52,8 +52,7 @@ export default class Card {
         });
         //функция удаления
         this.element.querySelector(".elements__delete").addEventListener("click",() =>{
-            this.submitOpen()
-            console.log(this.element)
+            this.submitOpen(this.element,this._cardId)
         } );//this.#deleteCard
 
     }

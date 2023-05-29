@@ -50,7 +50,7 @@ profilePopupClass.setEventListeners();
 //создать попап профиль и навесить слушатели
 
 
-const removePopupClass = new PopupRemove('.popup_remove');
+const removePopupClass = new PopupRemove('.popup_remove',handleDelete);
 removePopupClass.setEventListeners();
 
 
@@ -102,7 +102,7 @@ function submitEditProfileForm() {
 
 //Создаем класс Card
 function createCardItem(item) {
-    const itemCard = new Card(elementTemplate, item, handleCardClick,api, userId, handleLikeCard);
+    const itemCard = new Card(elementTemplate, item, handleCardClick,api, userId, handleLikeCard,removePopupClass.open);
 
     itemCard.updateLikes(item);
     return itemCard.createCard();
@@ -154,3 +154,8 @@ const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
   .catch((err) => {
     console.log(err);
   });
+
+function handleDelete (card, id) {
+    api.deleteCard(id);
+    card.remove();
+}
