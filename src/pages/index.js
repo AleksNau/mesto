@@ -31,7 +31,7 @@ const info = popupProfile.querySelector('.popup__input_type_info');
 //карточки и темплейт
 const elementTemplate = document.querySelector(".template-item").content;
 //создаем профиль
-const profile = new UserInfo('.profile__name','.profile__info');
+const profile = new UserInfo('.profile__name','.profile__info', '.profile__avatar');
 //включаем валидацию попап-профиля
 const formProfile = new FormValidator(popupFormProfile, validationConfig);
 formProfile.enableValidation();
@@ -64,13 +64,7 @@ export const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66"
         authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
         'Content-Type': 'application/json'
     });
-//api.getCards()
-//    .then((cards) => {
-//        cards.forEach((card) => {
-//            renderCard(card);
-//        });
-//    });//Приняли карточки
-//отправили имя
+
 /* Хендлер поставноки и снятия лайков */
 const handleLikeCard = (card) => {
     if (!card.isLiked()) {
@@ -98,7 +92,7 @@ const handleImage = new PopupWithImage(".popup_image-zoom");
 //функции формы профиля - функция колбэк для класса
 function submitEditProfileForm() {
     api.setName(name.value,info.value);
-    profile.setUserInfo({name:name.value,info: info.value});
+    profile.setUserInfo({name:name.value, about: info.value});
 }
 
 //Создаем класс Card
@@ -122,7 +116,7 @@ const newSection = new Section(renderCard, ".elements");
 buttonEdit.addEventListener('click', () => {
     const userData = profile.getUserInfo();
     popupName.value = userData.name;
-    popupinfo.value = userData.info;
+    popupinfo.value = userData.about;
     profilePopupClass.open();
 });
 
@@ -141,18 +135,14 @@ function setAvatar () {
 
 profileAvatar.addEventListener('click', avatarPopup.open);
 
-//api.getCards()
-//    .then((cards) => {
-//        cards.forEach((card) => {
-//            renderCard(card);
-//        });
-//    });
 let userId = null;
-let cardsLike = null;
-/* Вывод данных пользователя и карточек на тсраницу*/
+
+/* Вывод данных пользователя и карточек на сраницу*/
 const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
   .then(([userData, cardData]) => {
+    console.log(userData)
     profile.setUserInfo(userData);
+    profile.setAvatar(userData);
     userId = userData._id;
     newSection.renderItems(cardData);
   })
