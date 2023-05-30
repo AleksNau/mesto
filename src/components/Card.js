@@ -28,7 +28,7 @@ export default class Card {
     setEventListener() {
         //закрасить лайк
         this.element.querySelector(".elements__like").addEventListener("click", () => {
-            //this.api.putLike(this._data._id);
+
             this.handleLikeCard(this);
             this.#toggleLike();
         });
@@ -46,22 +46,14 @@ export default class Card {
 
     //пересчитать лайки
     updateLikes = (item) => {
-        if (item.likes === undefined) { item.likes = 0; }//проверить это место
-
-        this._likesCounter.textContent = item.likes.length;
+        this.likes = item.likes;
+        this._likesCounter.textContent = this.likes.length;
     }
     //Основной (публичный) метод создания карточки, в котором мы вызываем нужные методы и наполняем будущую карточку данными из формы.
     createCard = () => {
         this._cardImage.src = this._data.link;
         this._cardImage.alt = this._data.name;
         this.element.querySelector(".elements__text").textContent = this._data.name;
-        if (this.likes === undefined) {
-            this.likes = [];
-            this._likesCounter.textContent = 0;
-        }
-        if (this._ownerId === undefined) {
-            this._ownerId = this.id;
-        }
         this.setEventListener();
         this._checkAbilityToDelete();
         this._updateLikesView();
@@ -90,10 +82,8 @@ export default class Card {
 
     _updateLikesView() {
         if (this.isLiked()) {
-            //  this._likeCounter.textContent = this._likes.length;
             this.likeImage.classList.add('elements__like_active');
         } else {
-            //   this._likeCounter.textContent = this._likes.length;
             this.likeImage.classList.remove('elements__like_active');
         };
     };

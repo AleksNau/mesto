@@ -54,8 +54,11 @@ removePopupClass.setEventListeners();
 
 //создать попап новой карточки и навесить слушатели
 const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
-    api.newCard(item.name, item.link);
-    renderCard(item);
+    api.newCard(item.name, item.link)
+        .catch((err) => {
+        console.log(err);
+    })
+        .then(res => renderCard(res));
     formAdd.disableButton();
 } );
 addNewCardPopupClass.setEventListeners();
@@ -101,7 +104,10 @@ const handleLikeCard = (card) => {
 
 //функции формы профиля - функция колбэк для класса
 function submitEditProfileForm() {
-    api.setName(name.value,info.value);
+    api.setName(name.value,info.value)
+        .catch((err) => {
+            console.log(err);
+        })
     profile.setUserInfo({name:name.value, about: info.value});
 }
 
@@ -131,7 +137,10 @@ buttonEdit.addEventListener('click', () => {
 //установка аватара
 function setAvatar () {
     const newLink = avatarPopup._getInputValues().link;
-    api.sendAvatar(newLink);
+    api.sendAvatar(newLink)
+        .catch((err) => {
+            console.log(err);
+        });
     profileAvatar.src = newLink;
 }
 
@@ -148,7 +157,10 @@ const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
   });
 
 function handleDelete (card, id) {
-    api.deleteCard(id);
+    api.deleteCard(id)
+        .catch((err) => {
+            console.log(err);
+        });
     card.remove();
     card = null;
 }
