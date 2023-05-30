@@ -163,9 +163,11 @@ const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
 
 function handleDelete (card, id) {
     api.deleteCard(id)
+        .then(() => {
+            card.remove();
+            card = null;
+        })
         .catch((err) => {
             console.log(err);
         });
-    card.remove();
-    card = null;
 }
