@@ -108,7 +108,9 @@ function submitEditProfileForm() {
         .catch((err) => {
             console.log(err);
         })
-    profile.setUserInfo({name:name.value, about: info.value});
+        .then((res) => {
+            profile.setUserInfo({name:res.name, about: res.about});
+        })
 }
 
 //Создаем класс Card
@@ -140,8 +142,11 @@ function setAvatar () {
     api.sendAvatar(newLink)
         .catch((err) => {
             console.log(err);
-        });
-    profileAvatar.src = newLink;
+        })
+    .then((res) => {
+        profileAvatar.src = res.avatar;
+    });
+
 }
 
 // Вывести данные пользователя и карточки на страницу
