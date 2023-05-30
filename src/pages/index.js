@@ -54,11 +54,15 @@ removePopupClass.setEventListeners();
 
 //создать попап новой карточки и навесить слушатели
 const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
+
     api.newCard(item.name, item.link)
         .catch((err) => {
         console.log(err);
     })
-        .then(res => renderCard(res));
+        .then(res => renderCard(res))
+        .finally(() => {
+            addNewCardPopupClass.renderLoading();
+    });
     formAdd.disableButton();
 } );
 addNewCardPopupClass.setEventListeners();
@@ -111,6 +115,9 @@ function submitEditProfileForm() {
         .then((res) => {
             profile.setUserInfo({name:res.name, about: res.about});
         })
+        .finally(() => {
+            profilePopupClass.renderLoading();
+        });
 }
 
 //Создаем класс Card
@@ -143,8 +150,11 @@ function setAvatar () {
         .catch((err) => {
             console.log(err);
         })
-    .then((res) => {
+        .then((res) => {
         profileAvatar.src = res.avatar;
+    })
+        .finally(() => {
+            avatarPopup.renderLoading();
     });
 
 }
@@ -169,5 +179,8 @@ function handleDelete (card, id) {
         })
         .catch((err) => {
             console.log(err);
+        })
+        .finally(() => {
+            removePopupClass.renderLoading();
         });
 }
