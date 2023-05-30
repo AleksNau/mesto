@@ -9,86 +9,128 @@
 </head>
 
 <body class="root">
-<div class="page">
-    <header class="header">
-        <img src="<%=require('./images/logo.svg')%>" alt="логотип" class="header__logo">
-    </header>
-    <main class="main">
-        <section class="profile">
-            <div class="profile__info-conteiner">
-                <img src="<%=require('./blocks/profile/__avatar/images/kusto.jpg')%>"alt="Жак Кусто" class="profile__avatar">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button type="button" class="profile__edit-button"></button>
-                <p class="profile__info">Исследователь океана</p>
-            </div>
-            <button type="button" class="profile__add-button"></button>
-        </section>
-        <ul class="elements">
+    <div class="page">
+        <header class="header">
+            <img src="<%=require('./images/logo.svg')%>" alt="логотип" class="header__logo">
+        </header>
+        <main class="main">
+            <section class="profile">
+                <div class="profile__info-conteiner">
+                    <img src="#" alt="Жак Кусто" class="profile__avatar">
+                    <button class="profile__avatar-button">
+                        <a href="#" class="profile__avatar-icon"></a>
+                    </button>
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button type="button" class="profile__edit-button"></button>
+                    <p class="profile__info">Исследователь океана</p>
+                </div>
+                <button type="button" class="profile__add-button"></button>
+            </section>
+            <ul class="elements">
 
-        </ul>
-    </main>
-    <footer class="footer">
-        <p class="footer__trademark">© 2020 Mesto Russia</p>
-    </footer>
-    <div class="popup popup_profile">
-        <div class="popup__conteiner">
-            <form name="profile-form" class="popup__form popup__form_profile" method="post"  novalidate>
+            </ul>
+        </main>
+        <footer class="footer">
+            <p class="footer__trademark">© 2020 Mesto Russia</p>
+        </footer>
+        <div class="popup popup_profile">
+            <div class="popup__conteiner">
+                <form name="profile-form" class="popup__form popup__form_profile" method="post" novalidate>
+                    <button type="button" class="popup__close-button"></button>
+                    <fieldset class="popup__fieldset">
+                        <legend class="popup__title">Редактировать профиль</legend>
+                        <label>
+                            <input name="Name" id="name" type="text" class="popup__input popup__input_type_name"
+                                minlength="2" maxlength="40" required>
+                            <span id="name-error" class="popup__error">&nbsp;</span>
+                        </label>
+                        <label>
+                            <input name="Info" id="info" type="text" class="popup__input popup__input_type_info"
+                                minlength="2" maxlength="200" required>
+                            <span id="info-error" class="popup__error">&nbsp;</span>
+                        </label>
+                        <button type="submit" class="popup__submit">Сохранить</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup_add">
+            <div class="popup__conteiner">
+                <form name="create_card-form" class="popup__form popup__form_add" id="create_card-form" method="post"
+                    novalidate>
+                    <button type="button" class="popup__close-button"></button>
+                    <fieldset class="popup__fieldset">
+                        <legend class="popup__title">Новое место</legend>
+                        <label>
+                            <input name="name" id="place" type="text" class="popup__input popup__input_type_place"
+                                placeholder="Название" minlength="2" maxlength="30" required>
+                            <span id="place-error" class="popup__error"></span>
+                        </label>
+                        <label>
+                            <input name="link" id="image-link" type="url"
+                                class="popup__input popup__input_type_image-link" placeholder="Ссылка на картинку"
+                                required>
+                            <span id="image-link-error" class="popup__error"></span>
+                        </label>
+                        <button type="submit" class="popup__submit" form="create_card-form"
+                            value="Сохранить изменения">Создать</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup_image-zoom">
+            <div class="popup__conteiner-zoom">
                 <button type="button" class="popup__close-button"></button>
-                <fieldset class="popup__fieldset">
-                    <legend class="popup__title">Редактировать профиль</legend>
-                    <label>
-                        <input name="Name" id="name" type="text" class="popup__input popup__input_type_name" minlength="2" maxlength="40" required>
-                        <span id="name-error" class="popup__error">&nbsp;</span>
-                    </label>
-                    <label>
-                        <input name="Info" id="info" type="text" class="popup__input popup__input_type_info" minlength="2" maxlength="200" required>
-                        <span id="info-error" class="popup__error">&nbsp;</span>
-                    </label>
-                    <button type="submit" class="popup__submit">Сохранить</button>
-                </fieldset>
-            </form>
+                <img src="#" alt="" class="popup__image">
+                <p class="popup__place-name">Место</p>
+            </div>
+        </div>
+        <div class="popup popup_remove">
+            <div class="popup__conteiner">
+                <form name="remove-form" class="popup__form popup__form_remove" id="remove-form" method="post"
+                    novalidate>
+                    <button type="button" class="popup__close-button"></button>
+                    <fieldset class="popup__fieldset">
+                        <legend class="popup__title">Вы уверены?</legend>
+                        <button type="submit" class="popup__submit" form="remove-form"
+                            value="Удалить картинку">Да</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup_avatar">
+            <div class="popup__conteiner">
+                <form name="create_card-form" class="popup__form popup__form_add" id="avatar-form" method="post"
+                    novalidate>
+                    <button type="button" class="popup__close-button"></button>
+                    <fieldset class="popup__fieldset">
+                        <legend class="popup__title">Обновить аватар</legend>
+                        <label>
+                            <input name="link" id="avatar-link" type="url"
+                                class="popup__input popup__input_type_image-link" placeholder="Ссылка на аватар"
+                                required>
+                            <span id="avatar-link-error" class="popup__error"></span>
+                        </label>
+                        <button type="submit" class="popup__submit" form="avatar-form"
+                            value="Обновить аватар">Сохранение...</button>
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="popup popup_add">
-        <div class="popup__conteiner">
-            <form name="create_card-form" class="popup__form popup__form_add" id="create_card-form"  method="post" novalidate>
-                <button type="button" class="popup__close-button"></button>
-                <fieldset class="popup__fieldset">
-                    <legend class="popup__title">Новое место</legend>
-                    <label>
-                        <input name="place" id="place" type="text" class="popup__input popup__input_type_place"
-                               placeholder="Название" minlength="2" maxlength="30" required>
-                        <span id="place-error" class="popup__error"></span>
-                    </label>
-                    <label>
-                        <input name="imagelink" id="image-link" type="url" class="popup__input popup__input_type_image-link"
-                               placeholder="Ссылка на картинку" required>
-                        <span id="image-link-error" class="popup__error"></span>
-                    </label>
-                    <button type="submit" class="popup__submit" form="create_card-form" value="Сохранить изменения">Создать</button>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-    <div class="popup popup_image-zoom">
-        <div class="popup__conteiner-zoom">
-            <button type="button" class="popup__close-button"></button>
-            <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt=""
-                 class="popup__image">
-            <p class="popup__place-name">Место</p>
-        </div>
-    </div>
-</div>
-<template class="template-item">
-    <li class="elements__item">
-        <img src="#" alt="Элемент" class="elements__image">
-        <div class="elements__info">
-            <p class="elements__text"></p>
-            <button type="button" class="elements__like"></button>
-            <button type="button" class="elements__delete"></button>
-        </div>
-    </li>
-</template>
+    <template class="template-item">
+        <li class="elements__item">
+            <img src="#" alt="Элемент" class="elements__image">
+            <div class="elements__info">
+                <p class="elements__text"></p>
+                <div class="elements__like-container">
+                    <button type="button" class="elements__like"></button>
+                    <p class="elements__like-counter">2</p>
+                </div>
+                <button type="button" class="elements__delete"></button>
+            </div>
+        </li>
+    </template>
 
 </body>
 
