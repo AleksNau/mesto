@@ -120,7 +120,7 @@ function handleCardClick(name, link) {
 
 const newSection = new Section(renderCard, ".elements");
 
-//навесить слушатель  на кнопку и передать ей инфо с профиля
+//навесить слушатель на кнопку и передать ей инфо с профиля
 buttonEdit.addEventListener('click', () => {
     const userData = profile.getUserInfo();
     popupName.value = userData.name;

@@ -1,4 +1,3 @@
-import Api from "./Api.js";
 export default class Card {
     //принимает в себя два параметра
     constructor(templateSelector, data, handleCardClick, api, id,handleLike,submitOpen) {
@@ -66,7 +65,6 @@ export default class Card {
         this.setEventListener();
         this._checkAbilityToDelete();
         this._updateLikesView();
-
 
         return this.element;
     }
