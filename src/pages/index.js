@@ -12,6 +12,8 @@ import Api from '../components/Api.js'
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
 const profileAvatar = profileElement.querySelector('.profile__avatar');
+const profileAvatarButton = profileElement.querySelector('.profile__avatar-button');
+
 
 // переменные формы профиля
 const popupProfile = document.querySelector('.popup_profile');
@@ -138,7 +140,7 @@ function setAvatar () {
 
 }
 
-profileAvatar.addEventListener('click', avatarPopup.open);
+profileAvatarButton.addEventListener('click', avatarPopup.open);
 
 let userId = null;
 
