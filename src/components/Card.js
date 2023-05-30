@@ -68,7 +68,10 @@ export default class Card {
         this._cardImage.src = this._data.link;
         this._cardImage.alt = this._data.name;
         this.element.querySelector(".elements__text").textContent = this._data.name;
-        if(this.likes === undefined){this.likes = [];}
+        if(this.likes === undefined){
+            this.likes = [];
+            this._likesCounter.textContent = 0;
+        }
         if (this._ownerId === undefined){
             this._ownerId =  this.id;
         }

@@ -150,7 +150,7 @@ const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
     profile.setUserInfo(userData);
     profile.setAvatar(userData);
     userId = userData._id;
-    newSection.renderItems(cardData);
+    newSection.renderItems(cardData.reverse());
   })
   .catch((err) => {
     console.log(err);
