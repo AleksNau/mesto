@@ -2,14 +2,14 @@ import PopupWithForm from "./PopupWithForm.js";
 
 export default class PopupRemove extends PopupWithForm {
     constructor(popupSelector, submit) {
-        super(popupSelector,submit);
-        this.open=this.open.bind(this);
+        super(popupSelector, submit);
+        this.open = this.open.bind(this);
     }
 
-    open(card,id) {
+    open(card, id) {
         super.open();
-        this.card= card;
-        this.delId =id;
+        this.card = card;
+        this.delId = id;
     }
 
     submitForm = (event) => {

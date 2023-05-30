@@ -31,7 +31,7 @@ export default class Api {
     }
 
     //функция отправки имени на серв
-    setName(profileName,profileAbout) {
+    setName(profileName, profileAbout) {
         return fetch(this._url + '/users/me', {
             method: 'PATCH',
             headers: this._headers,
@@ -56,7 +56,7 @@ export default class Api {
             .then(this._checkResponse);
     }
 
-//функция удаления карточки по id
+    //функция удаления карточки по id
     deleteCard(id) {
         return fetch(this._url + `/cards/${id}`, {
             method: 'DELETE',
@@ -65,7 +65,7 @@ export default class Api {
             .then(this._checkResponse);
     }
 
-//функция аватара отправки ссылки аватара
+    //функция аватара отправки ссылки аватара
     sendAvatar(avatarLink) {
         return fetch(this._url + '/users/me/avatar', {
             method: 'PATCH',
@@ -78,7 +78,7 @@ export default class Api {
     }
 
     putLike(cardId) {
-        return fetch (this._url + `/cards/likes/${cardId}`, {
+        return fetch(this._url + `/cards/likes/${cardId}`, {
             method: 'PUT',
             headers: this._headers
         })
@@ -86,7 +86,7 @@ export default class Api {
     };
 
     deleteLike(cardId) {
-        return fetch (this._url + `/cards/likes/${cardId}`, {
+        return fetch(this._url + `/cards/likes/${cardId}`, {
             method: 'DELETE',
             headers: this._headers
         })
