@@ -8,7 +8,7 @@ export default class Card {
         this._handleCardClick = handleCardClick;
         this.element = this._template.cloneNode(true).children[0];
         this.likeImage = this.element.querySelector('.elements__like')
-        this.id = id;// айдишник работает
+        this.id = id;
         this.likes= this._data.likes;
         this._deleteButton = this.element.querySelector('.elements__delete');
         this.owner = new Object(this._data.owner);
@@ -16,11 +16,7 @@ export default class Card {
         this._cardId = this._data._id;
         this.handleLikeCard = handleLike;
         this.submitOpen = submitOpen;
-
-
         this._likesCounter = this.element.querySelector('.elements__like-counter');
-
-
         this._cardImage = this.element.querySelector(".elements__image");
     }
 
@@ -28,14 +24,6 @@ export default class Card {
     #toggleLike = () => {
         this.likeImage.classList.toggle("elements__like_active");
     }
-
-//метод удаления карточки, нужна проверка на своя не своя
-    #deleteCard = () => {
-        this.api.deleteCard(this._data._id);
-        this.element.remove();
-        this.element = null;
-    }
-
 
 //Метод навешивания всех слушателей
     setEventListener() {

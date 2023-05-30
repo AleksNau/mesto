@@ -1,5 +1,5 @@
 import './index.css'
-import {initialCards, validationConfig} from '../utils/constants.js'
+import {validationConfig} from '../utils/constants.js'
 import FormValidator from '../components/FormValidator.js'
 import Card from '../components/Card.js'
 import UserInfo from '../components/UserInfo.js'
@@ -13,7 +13,6 @@ const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
 const profileAvatar = profileElement.querySelector('.profile__avatar');
 const profileAvatarButton = profileElement.querySelector('.profile__avatar-button');
-
 
 // переменные формы профиля
 const popupProfile = document.querySelector('.popup_profile');
@@ -49,13 +48,9 @@ const renderCard = (cardData) => {
 //создать попап профиль и навесить слушатели
 const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
 profilePopupClass.setEventListeners();
-//создать попап профиль и навесить слушатели
-
 
 const removePopupClass = new PopupRemove('.popup_remove',handleDelete);
 removePopupClass.setEventListeners();
-
-
 
 //создать попап новой карточки и навесить слушатели
 const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
@@ -65,6 +60,17 @@ const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
 } );
 addNewCardPopupClass.setEventListeners();
 
+const handleImage = new PopupWithImage(".popup_image-zoom");
+
+//навесить слушатель на кнопку новой карточки
+buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);
+
+//попап смены аватара
+const avatarPopup = new PopupWithForm('.popup_avatar', setAvatar);
+avatarPopup.setEventListeners();
+profileAvatarButton.addEventListener('click', avatarPopup.open);
+
+let userId = null;
 
 export const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66",
     {
@@ -72,7 +78,7 @@ export const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66"
         'Content-Type': 'application/json'
     });
 
-/* Хендлер поставноки и снятия лайков */
+// Хендлер поставновки и снятия лайков
 const handleLikeCard = (card) => {
     if (!card.isLiked()) {
         api.putLike(card.getCardId())
@@ -93,9 +99,6 @@ const handleLikeCard = (card) => {
     }
 };
 
-
-const handleImage = new PopupWithImage(".popup_image-zoom");
-
 //функции формы профиля - функция колбэк для класса
 function submitEditProfileForm() {
     api.setName(name.value,info.value);
@@ -105,8 +108,8 @@ function submitEditProfileForm() {
 //Создаем класс Card
 function createCardItem(item) {
     const itemCard = new Card(elementTemplate, item, handleCardClick,api, userId, handleLikeCard,removePopupClass.open);
-
     itemCard.updateLikes(item);
+
     return itemCard.createCard();
 }
 
@@ -117,8 +120,6 @@ function handleCardClick(name, link) {
 
 const newSection = new Section(renderCard, ".elements");
 
-
-
 //навесить слушатель  на кнопку и передать ей инфо с профиля
 buttonEdit.addEventListener('click', () => {
     const userData = profile.getUserInfo();
@@ -127,24 +128,14 @@ buttonEdit.addEventListener('click', () => {
     profilePopupClass.open();
 });
 
-//навесить слушатель на кнопку новой карточки
-buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);
-
-const avatarPopup = new PopupWithForm('.popup_avatar', setAvatar);
-avatarPopup.setEventListeners();
-
+//установка аватара
 function setAvatar () {
     const newLink = avatarPopup._getInputValues().link;
     api.sendAvatar(newLink);
     profileAvatar.src = newLink;
-
 }
 
-profileAvatarButton.addEventListener('click', avatarPopup.open);
-
-let userId = null;
-
-/* Вывод данных пользователя и карточек на сраницу*/
+// Вывести данные пользователя и карточки на страницу
 const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
   .then(([userData, cardData]) => {
     profile.setUserInfo(userData);
@@ -159,4 +150,5 @@ const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
 function handleDelete (card, id) {
     api.deleteCard(id);
     card.remove();
+    card = null;
 }
