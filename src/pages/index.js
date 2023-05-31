@@ -68,6 +68,7 @@ const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
 addNewCardPopupClass.setEventListeners();
 
 const handleImage = new PopupWithImage(".popup_image-zoom");
+handleImage.setEventListeners();
 
 //навесить слушатель на кнопку новой карточки
 buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);
@@ -129,7 +130,6 @@ function createCardItem(item) {
 }
 
 function handleCardClick(name, link) {
-    handleImage.setEventListeners();
     handleImage.open(name, link);
 }
 
