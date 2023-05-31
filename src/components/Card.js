@@ -18,11 +18,7 @@ export default class Card {
         this._likesCounter = this.element.querySelector('.elements__like-counter');
         this._cardImage = this.element.querySelector(".elements__image");
     }
-    #deleteCard = () => {
-        //this.api.deleteCard(this._data._id);
-        this.element.remove();
-        this.element = null;
-    }
+
     //метод навешивания лайка
     #toggleLike = () => {
         this.likeImage.classList.toggle("elements__like_active");
@@ -89,7 +85,7 @@ export default class Card {
             this.likeImage.classList.add('elements__like_active');
         } else {
             this.likeImage.classList.remove('elements__like_active');
-        };
+        }
     };
 
     id() {

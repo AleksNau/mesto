@@ -68,6 +68,7 @@ const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
 addNewCardPopupClass.setEventListeners();
 
 const handleImage = new PopupWithImage(".popup_image-zoom");
+handleImage.setEventListeners();
 
 //навесить слушатель на кнопку новой карточки
 buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);
@@ -79,7 +80,7 @@ profileAvatarButton.addEventListener('click', avatarPopup.open);
 
 let userId = null;
 
-export const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66",
+export const api = new Api("https://mesto.nomoreparties.co/v1/cohort-66",
     {
         authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
         'Content-Type': 'application/json'
@@ -129,7 +130,6 @@ function createCardItem(item) {
 }
 
 function handleCardClick(name, link) {
-    handleImage.setEventListeners();
     handleImage.open(name, link);
 }
 
