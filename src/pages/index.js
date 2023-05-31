@@ -84,7 +84,19 @@ handleImage.setEventListeners();
 buttonAddNewElement.addEventListener('click', addNewCardPopupClass.open);
 
 //попап смены аватара
-const avatarPopup = new PopupWithForm('.popup_avatar', setAvatar);
+const avatarPopup = new PopupWithForm('.popup_avatar', (item) => {
+    api.sendAvatar(item.link)
+        .then((res) => {
+            profile.setAvatar(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            avatarPopup.renderLoading();
+        });
+
+});
 avatarPopup.setEventListeners();
 profileAvatarButton.addEventListener('click', avatarPopup.open);
 
@@ -139,21 +151,6 @@ buttonEdit.addEventListener('click', () => {
     popupinfo.value = userData.about;
     profilePopupClass.open();
 });
-
-//установка аватара
-function setAvatar(item) {
-    api.sendAvatar(item.link)
-        .then((res) => {
-            profileAvatar.src = res.avatar;
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-        .finally(() => {
-            avatarPopup.renderLoading();
-        });
-
-}
 
 // Вывести данные пользователя и карточки на страницу
 const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
