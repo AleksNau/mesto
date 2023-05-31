@@ -1,6 +1,5 @@
 export default class Api {
-    constructor(profile, url, headers) {
-        this.profile = profile;
+    constructor(url, headers) {
         this._url = url;
         this._headers = headers;
     }

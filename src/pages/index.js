@@ -80,7 +80,7 @@ profileAvatarButton.addEventListener('click', avatarPopup.open);
 
 let userId = null;
 
-export const api = new Api(profile,"https://mesto.nomoreparties.co/v1/cohort-66",
+export const api = new Api("https://mesto.nomoreparties.co/v1/cohort-66",
     {
         authorization: '15d7e2e1-013e-46c1-bf6c-b7380245bfba',
         'Content-Type': 'application/json'
