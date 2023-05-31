@@ -91,4 +91,9 @@ export default class Card {
     id() {
         return this._cardId;
     };
+
+    deleteCard  ()  {
+        this.element.remove();
+        this.element = null;
+    }
 }

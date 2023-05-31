@@ -60,7 +60,19 @@ const profilePopupClass = new PopupWithForm('.popup_profile', (item) => {
 });
 profilePopupClass.setEventListeners();
 
-const removePopupClass = new PopupRemove('.popup_remove', handleDelete);
+const removePopupClass = new PopupRemove('.popup_remove', (card, id) => {
+    api.deleteCard(id)
+        .then(() => {
+            card.remove();
+            card = null;
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            removePopupClass.renderLoading();
+        });
+});
 removePopupClass.setEventListeners();
 
 //создать попап новой карточки и навесить слушатели
