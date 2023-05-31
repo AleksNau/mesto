@@ -56,10 +56,10 @@ removePopupClass.setEventListeners();
 const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
 
     api.newCard(item.name, item.link)
-        .catch((err) => {
-        console.log(err);
-    })
         .then(res => renderCard(res))
+        .catch((err) => {
+            console.log(err);
+        })
         .finally(() => {
             addNewCardPopupClass.renderLoading();
     });
@@ -110,11 +110,11 @@ const handleLikeCard = (card) => {
 //функции формы профиля - функция колбэк для класса
 function submitEditProfileForm() {
     api.setName(name.value,info.value)
-        .catch((err) => {
-            console.log(err);
-        })
         .then((res) => {
             profile.setUserInfo({name:res.name, about: res.about});
+        })
+        .catch((err) => {
+            console.log(err);
         })
         .finally(() => {
             profilePopupClass.renderLoading();
@@ -147,11 +147,11 @@ buttonEdit.addEventListener('click', () => {
 function setAvatar () {
     const newLink = avatarPopup._getInputValues().link;
     api.sendAvatar(newLink)
-        .catch((err) => {
-            console.log(err);
-        })
         .then((res) => {
         profileAvatar.src = res.avatar;
+    })
+    .catch((err) => {
+        console.log(err);
     })
         .finally(() => {
             avatarPopup.renderLoading();
