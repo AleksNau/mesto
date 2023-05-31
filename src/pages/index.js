@@ -109,16 +109,16 @@ const handleLikeCard = (card) => {
 
 //функции формы профиля - функция колбэк для класса
 function submitEditProfileForm() {
-    api.setName(name.value,info.value)
-        .then((res) => {
-            profile.setUserInfo({name:res.name, about: res.about});
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-        .finally(() => {
-            profilePopupClass.renderLoading();
-        });
+   api.setName(profilePopupClass._getInputValues())
+       .then((res) => {
+           profile.setUserInfo({name:res.name, about: res.about});
+       })
+       .catch((err) => {
+           console.log(err);
+       })
+       .finally(() => {
+           profilePopupClass.renderLoading();
+       });
 }
 
 //Создаем класс Card
