@@ -32,7 +32,7 @@ const info = popupProfile.querySelector('.popup__input_type_info');
 //карточки и темплейт
 const elementTemplate = document.querySelector(".template-item").content;
 //создаем профиль
-const profile = new UserInfo('.profile__name','.profile__info', '.profile__avatar');
+const profile = new UserInfo('.profile__name', '.profile__info', '.profile__avatar');
 //включаем валидацию попап-профиля
 const formProfile = new FormValidator(popupFormProfile, validationConfig);
 formProfile.enableValidation();
@@ -46,15 +46,25 @@ const renderCard = (cardData) => {
 }
 
 //создать попап профиль и навесить слушатели
-const profilePopupClass = new PopupWithForm('.popup_profile', submitEditProfileForm);
+const profilePopupClass = new PopupWithForm('.popup_profile', (item) => {
+    api.setName(item)
+        .then((res) => {
+            profile.setUserInfo({name: res.name, about: res.about});
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            profilePopupClass.renderLoading();
+        });
+});
 profilePopupClass.setEventListeners();
 
-const removePopupClass = new PopupRemove('.popup_remove',handleDelete);
+const removePopupClass = new PopupRemove('.popup_remove', handleDelete);
 removePopupClass.setEventListeners();
 
 //создать попап новой карточки и навесить слушатели
-const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
-
+const addNewCardPopupClass = new PopupWithForm('.popup_add', (item) => {
     api.newCard(item.name, item.link)
         .then(res => renderCard(res))
         .catch((err) => {
@@ -62,9 +72,9 @@ const addNewCardPopupClass = new PopupWithForm('.popup_add',(item) => {
         })
         .finally(() => {
             addNewCardPopupClass.renderLoading();
-    });
+        });
     formAdd.disableButton();
-} );
+});
 addNewCardPopupClass.setEventListeners();
 
 const handleImage = new PopupWithImage(".popup_image-zoom");
@@ -107,23 +117,10 @@ const handleLikeCard = (card) => {
     }
 };
 
-//функции формы профиля - функция колбэк для класса
-function submitEditProfileForm() {
-   api.setName(profilePopupClass._getInputValues())
-       .then((res) => {
-           profile.setUserInfo({name:res.name, about: res.about});
-       })
-       .catch((err) => {
-           console.log(err);
-       })
-       .finally(() => {
-           profilePopupClass.renderLoading();
-       });
-}
 
 //Создаем класс Card
 function createCardItem(item) {
-    const itemCard = new Card(elementTemplate, item, handleCardClick,api, userId, handleLikeCard,removePopupClass.open);
+    const itemCard = new Card(elementTemplate, item, handleCardClick, api, userId, handleLikeCard, removePopupClass.open);
     itemCard.updateLikes(item);
 
     return itemCard.createCard();
@@ -144,34 +141,33 @@ buttonEdit.addEventListener('click', () => {
 });
 
 //установка аватара
-function setAvatar () {
-    const newLink = avatarPopup._getInputValues().link;
-    api.sendAvatar(newLink)
+function setAvatar(item) {
+    api.sendAvatar(item.link)
         .then((res) => {
-        profileAvatar.src = res.avatar;
-    })
-    .catch((err) => {
-        console.log(err);
-    })
+            profileAvatar.src = res.avatar;
+        })
+        .catch((err) => {
+            console.log(err);
+        })
         .finally(() => {
             avatarPopup.renderLoading();
-    });
+        });
 
 }
 
 // Вывести данные пользователя и карточки на страницу
 const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
-  .then(([userData, cardData]) => {
-    profile.setUserInfo(userData);
-    profile.setAvatar(userData);
-    userId = userData._id;
-    newSection.renderItems(cardData.reverse());
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+    .then(([userData, cardData]) => {
+        profile.setUserInfo(userData);
+        profile.setAvatar(userData);
+        userId = userData._id;
+        newSection.renderItems(cardData.reverse());
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
-function handleDelete (card, id) {
+function handleDelete(card, id) {
     api.deleteCard(id)
         .then(() => {
             card.remove();
