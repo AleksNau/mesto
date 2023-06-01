@@ -63,8 +63,7 @@ profilePopupClass.setEventListeners();
 const removePopupClass = new PopupRemove('.popup_remove', (card, id) => {
     api.deleteCard(id)
         .then(() => {
-            card.remove();
-            card = null;
+            card.deleteCard();
         })
         .catch((err) => {
             console.log(err);
