@@ -20,7 +20,7 @@ export default class Card {
     }
 
     //метод навешивания лайка
-    #toggleLike = () => {
+    toggleLike = () => {
         this.likeImage.classList.toggle("elements__like_active");
     }
 
@@ -28,9 +28,8 @@ export default class Card {
     setEventListener() {
         //закрасить лайк
         this.element.querySelector(".elements__like").addEventListener("click", () => {
-
             this.handleLikeCard(this);
-            this.#toggleLike();
+        
         });
         //просмотреть изображение полностью
 
@@ -39,8 +38,8 @@ export default class Card {
         });
         //функция удаления
         this.element.querySelector(".elements__delete").addEventListener("click", () => {
-            this.submitOpen(this.element, this._cardId)
-        });//this.#deleteCard
+            this.submitOpen(this, this._cardId)
+        });
 
     }
 
@@ -91,4 +90,9 @@ export default class Card {
     id() {
         return this._cardId;
     };
+
+    deleteCard  ()  {
+        this.element.remove();
+        this.element = null;
+    }
 }

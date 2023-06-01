@@ -30,13 +30,13 @@ export default class Api {
     }
 
     //функция отправки имени на серв
-    setName(profileName, profileAbout) {
+    setName(profile) {
         return fetch(this._url + '/users/me', {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                name: profileName,
-                about: profileAbout
+                name: profile.Name,
+                about: profile.Info
             })
         })
             .then(this._checkResponse);
