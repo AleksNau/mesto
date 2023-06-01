@@ -127,6 +127,9 @@ const handleLikeCard = (card) => {
             })
             .catch((err) => {
                 console.log(err);
+            })
+            .finally(() =>{
+                card.toggleLike();
             });
     } else {
         api.deleteLike(card.getCardId())
@@ -135,6 +138,9 @@ const handleLikeCard = (card) => {
             })
             .catch((err) => {
                 console.log(err);
+            })
+            .finally(() =>{
+                card.toggleLike();
             });
     }
 };
