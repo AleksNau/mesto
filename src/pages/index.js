@@ -125,23 +125,25 @@ const handleLikeCard = (card) => {
             .then(cardData => {
                 card.updateLikes(cardData);
             })
+            .then(() =>{
+                card.toggleLike();
+            })
             .catch((err) => {
                 console.log(err);
-            })
-            .finally(() =>{
-                card.toggleLike();
             });
+            
     } else {
         api.deleteLike(card.getCardId())
             .then(cardData => {
                 card.updateLikes(cardData);
             })
+            .then(() =>{
+                card.toggleLike();
+            })
             .catch((err) => {
                 console.log(err);
-            })
-            .finally(() =>{
-                card.toggleLike();
             });
+            
     }
 };
 
