@@ -24,6 +24,12 @@ const popupElementAddNewCard = document.querySelector(".popup_add");
 const popupFormAdd = popupElementAddNewCard.querySelector('.popup__form_add');
 const buttonAddNewElement = profileElement.querySelector(".profile__add-button");
 
+// переменные формы карточки
+const popupAvatar = document.querySelector(".popup_avatar");
+const popupFormAvatar = popupAvatar.querySelector('.popup__form_avatar');
+const formAvatar = new FormValidator(popupFormAvatar, validationConfig);
+formAvatar.enableValidation();
+
 //карточки и темплейт
 const elementTemplate = document.querySelector(".template-item").content;
 //создаем профиль
