@@ -13,8 +13,13 @@ export default class PopupRemove extends PopupWithForm {
     }
 
     submitForm = (event) => {
+        this.renderLoading("Сохранение...")
         event.preventDefault();
         this._submit(this.card, this.delId);
     }
+
+    renderLoading(text = 'Да') {
+        this._submitButton.textContent = text;
+    };
 
 }

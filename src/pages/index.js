@@ -45,13 +45,13 @@ const profilePopupClass = new PopupWithForm('.popup_profile', (item) => {
     api.setName(item)
         .then((res) => {
             profile.setUserInfo({name: res.name, about: res.about});
+            profilePopupClass.close();
         })
         .catch((err) => {
             console.log(err);
         })
         .finally(() => {
             profilePopupClass.renderLoading();
-            profilePopupClass.close();
         });
 });
 profilePopupClass.setEventListeners();
@@ -60,13 +60,13 @@ const removePopupClass = new PopupRemove('.popup_remove', (card, id) => {
     api.deleteCard(id)
         .then(() => {
             card.deleteCard();
+            removePopupClass.close();
         })
         .catch((err) => {
             console.log(err);
         })
         .finally(() => {
             removePopupClass.renderLoading();
-            removePopupClass.close();
         });
 });
 removePopupClass.setEventListeners();
@@ -74,13 +74,15 @@ removePopupClass.setEventListeners();
 //создать попап новой карточки и навесить слушатели
 const addNewCardPopupClass = new PopupWithForm('.popup_add', (item) => {
     api.newCard(item.name, item.link)
-        .then(res => renderCard(res))
+        .then(res => {
+            renderCard(res);
+            addNewCardPopupClass.close();
+        })
         .catch((err) => {
             console.log(err);
         })
         .finally(() => {
             addNewCardPopupClass.renderLoading();
-            addNewCardPopupClass.close();
         });
     formAdd.disableButton();
 });
@@ -97,13 +99,13 @@ const avatarPopup = new PopupWithForm('.popup_avatar', (item) => {
     api.sendAvatar(item.link)
         .then((res) => {
             profile.setAvatar(res);
+            avatarPopup.close();
         })
         .catch((err) => {
             console.log(err);
         })
         .finally(() => {
             avatarPopup.renderLoading();
-            avatarPopup.close();
         });
 
 });
