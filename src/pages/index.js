@@ -51,6 +51,7 @@ const profilePopupClass = new PopupWithForm('.popup_profile', (item) => {
         })
         .finally(() => {
             profilePopupClass.renderLoading();
+            profilePopupClass.close();
         });
 });
 profilePopupClass.setEventListeners();
@@ -65,6 +66,7 @@ const removePopupClass = new PopupRemove('.popup_remove', (card, id) => {
         })
         .finally(() => {
             removePopupClass.renderLoading();
+            removePopupClass.close();
         });
 });
 removePopupClass.setEventListeners();
@@ -78,6 +80,7 @@ const addNewCardPopupClass = new PopupWithForm('.popup_add', (item) => {
         })
         .finally(() => {
             addNewCardPopupClass.renderLoading();
+            addNewCardPopupClass.close();
         });
     formAdd.disableButton();
 });
@@ -100,6 +103,7 @@ const avatarPopup = new PopupWithForm('.popup_avatar', (item) => {
         })
         .finally(() => {
             avatarPopup.renderLoading();
+            avatarPopup.close();
         });
 
 });
