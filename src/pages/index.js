@@ -11,7 +11,6 @@ import Api from '../components/Api.js'
 //переменные профиля
 const profileElement = document.querySelector('.profile');
 const buttonEdit = profileElement.querySelector('.profile__edit-button');
-const profileAvatar = profileElement.querySelector('.profile__avatar');
 const profileAvatarButton = profileElement.querySelector('.profile__avatar-button');
 
 // переменные формы профиля
@@ -24,10 +23,6 @@ const popupinfo = popupProfile.querySelector('.popup__input_type_info');
 const popupElementAddNewCard = document.querySelector(".popup_add");
 const popupFormAdd = popupElementAddNewCard.querySelector('.popup__form_add');
 const buttonAddNewElement = profileElement.querySelector(".profile__add-button");
-
-// инпуты
-const name = popupProfile.querySelector('.popup__input_type_name');
-const info = popupProfile.querySelector('.popup__input_type_info');
 
 //карточки и темплейт
 const elementTemplate = document.querySelector(".template-item").content;
@@ -174,17 +169,3 @@ const getInfo = Promise.all([api.getProfileInfo(), api.getCards()])
     .catch((err) => {
         console.log(err);
     });
-
-function handleDelete(card, id) {
-    api.deleteCard(id)
-        .then(() => {
-            card.remove();
-            card = null;
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-        .finally(() => {
-            removePopupClass.renderLoading();
-        });
-}
