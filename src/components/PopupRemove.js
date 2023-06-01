@@ -13,8 +13,8 @@ export default class PopupRemove extends PopupWithForm {
     }
 
     submitForm = (event) => {
-        this.renderLoading("Сохранение...")
         event.preventDefault();
+        this.renderLoading("Сохранение...")
         this._submit(this.card, this.delId);
     }
 
